@@ -1,0 +1,122 @@
+@import "global";
+
+body {
+    font-family: "Poppins", sans-serif;
+
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message {
+    background-color: red;
+    color: #fff;
+    padding: 12px 12px 12px 24px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 478px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 18px;
+    transition-duration: 300ms;
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0px;
+    opacity: 0;
+    transform: translate(-50%, 0px);
+
+    &.show {
+        opacity: 1;
+        transform: translate(-50%, 48px);
+    }
+
+    .close_error {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background-color: #fff;
+        color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border: none;
+    }
+}
+
+.log_in {
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    max-width: 500px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    row-gap: 36px;
+
+    .head {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+
+        .logo {
+            width: 120px;
+            height: 120px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            text-transform: capitalize;
+            font-weight: bold;
+        }
+    }
+
+    .form {
+        width: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        row-gap: 24px;
+
+        & > div {
+            display: flex;
+            flex-flow: column;
+            align-items: start;
+            row-gap: 6px;
+        }
+
+        label {
+            font-size: 16px;
+            text-transform: capitalize;
+        }
+
+        input {
+            border-radius: 12px;
+            border: 1px solid transparentize(#212121, 0.75);
+            outline: none;
+            height: 56px;
+            width: 100%;
+            padding: 0 12px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        button {
+            height: 64px;
+            background-color: #3e4afa;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 500;
+            text-transform: capitalize;
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}
