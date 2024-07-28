@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Staf extends Authenticatable
+class Staff extends Authenticatable
 {
     
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\forgetPasswordMail;
 use App\Models\Admin;
-use App\Models\Staf;
+use App\Models\Staff;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -32,7 +32,7 @@ class AuthController extends Controller
                 Auth::guard('admin')->login($admin);
                 return redirect()->route('profile');
             } else {
-                $staff = Staf::where(['email' => $request->email, 'password' => $request->password])->first();
+                $staff = Staff::where(['email' => $request->email, 'password' => $request->password])->first();
                 if ($staff) {
                     Auth::guard('staff')->login($staff);
                     return redirect()->route('profile');
