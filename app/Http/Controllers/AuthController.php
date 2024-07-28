@@ -1,0 +1,91 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Mail\forgetPasswordMail;
+use App\Models\Admin;
+use App\Models\Staf;
+use Exception;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+
+class AuthController extends Controller
+{
+    //! --- login traitement
+    public function showLogin()
+    {
+        return view('login');
+    }
+
+    public function login(Request $request)
+    {
+        try {
+            $request->validate([
+                'email' => 'required|email|max:255',
+                'password' => 'required|string|min:8|max:255',
+            ]);
+
+            $admin = Admin::where('email', $request->email)->first();
+            if ($admin && Hash::check($request->password, $admin->password)) {
+                Auth::guard('admin')->login($admin);
+                return redirect()->route('profile');
+            } else {
+                $staff = Staf::where(['email' => $request->email, 'password' => $request->password])->first();
+                if ($staff) {
+                    Auth::guard('staff')->login($staff);
+                    return redirect()->route('profile');
+                }
+            }
+
+            return back()->withErrors(['error' => 'Email or password are incorrect']);
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => 'Invalid credentials']);
+        }
+    }
+
+
+    //! --- forget passsord traitement
+    public function showForgetPassword()
+    {
+        return view('forgetPassword');
+    }
+    public function SendPasswordInMail(Request $request)
+    {
+        $admin = Admin::where(['email' => $request->email])->first();
+        $password = $admin->password;
+        if ($admin) {
+            Mail::to($request->email)->send(new forgetPasswordMail($password));
+            return view('login');
+        }
+        return back()->withErrors(['error' => 'Email not found'])->withInput();
+    }
+
+
+
+
+
+    //! --- logout traitement
+    public function logout($guard)
+    {
+        Auth::guard($guard)->logout();
+
+        return redirect()->route('login.show');
+    }
+
+
+
+
+    //juste for ading new admin with password hash
+    // public function addAdmin()
+    // {
+    //     $admin = new Admin;
+    //     $admin->fullname = 'admin';
+    //     $admin->email = 'youssef@youssef.com';
+    //     $admin->password =  Hash::make('adminadmin');
+    //     $admin->save();
+
+    //     return redirect()->route('login.show');
+    // }
+}
