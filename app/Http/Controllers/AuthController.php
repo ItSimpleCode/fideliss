@@ -41,7 +41,7 @@ class AuthController extends Controller
 
             return back()->withErrors(['error' => 'Email or password are incorrect']);
         } catch (Exception $e) {
-            return back()->withErrors(['error' => 'Invalid credentials']);
+            return back()->withErrors(['error' => 'something uncorrected']);
         }
     }
 
