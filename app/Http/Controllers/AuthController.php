@@ -30,12 +30,12 @@ class AuthController extends Controller
             $admin = Admin::where('email', $request->email)->first();
             if ($admin && Hash::check($request->password, $admin->password)) {
                 Auth::guard('admin')->login($admin);
-                return redirect()->route('profile');
+                return redirect()->route('dashboard');
             } else {
                 $staff = Staff::where(['email' => $request->email, 'password' => $request->password])->first();
                 if ($staff) {
                     Auth::guard('staff')->login($staff);
-                    return redirect()->route('profile');
+                    return redirect()->route('dashboard');
                 }
             }
 

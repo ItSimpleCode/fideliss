@@ -23,15 +23,15 @@ Route::middleware(['user.auth'])->group(function () {
         return view('layout.layout');
     });
 
-    Route::get('/profile', function () {
-        return view('shared.profile');
-    })->name('profile');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
     Route::get('/staffs', function () {
         return view('admin.staff');
     })->name('staffs');
 
-    
+
     Route::post('/staff-logout', [AuthController::class, 'logout'])->name('staff.logout')->defaults('guard', 'staff');
     Route::post('/admin-logout', [AuthController::class, 'logout'])->name('admin.logout')->defaults('guard', 'admin');
 });

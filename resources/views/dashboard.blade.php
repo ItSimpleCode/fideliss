@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="icon" href="{{ asset('img/logo.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('img/logo.png') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/dashboard.css') }}">
+</head>
+
+<body>
+    @include('layouts.aside')
+
+    <div>
+        @include('layouts.navigation')
+        div
+    </div>
+
+    <script src="{{ asset('dist/js/main.js') }}"></script>
+</body>
+
+</html>
