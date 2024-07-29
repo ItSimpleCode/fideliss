@@ -1,11 +1,3 @@
-// window.addEventListener("load", () => {
-//     const mainAside = document.getElementById("main_aside");
-//     const asideToggle = document.getElementById("aside_toggle");
-
-//     asideToggle?.addEventListener("click", () =>
-//         mainAside?.classList.toggle("show-list")
-//     );
-// });
 window.addEventListener("load", () => {
     let aside = document.getElementById("aside");
     let asideToggle = document.getElementById("aside_toggle");

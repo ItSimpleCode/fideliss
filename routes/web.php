@@ -19,13 +19,19 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['user.auth'])->group(function () {
-    Route::get('/', function () {
-        return view('layout.layout');
-    });
+    // Route::get('/', function () {
+    //     return view('layout.layout');
+    // });
 
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::fallback(function () {
+        return redirect()->route('dashboard');
+    });
+
+
 
     Route::get('/staffs', function () {
         return view('admin.staff');
