@@ -280,9 +280,9 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
-  -webkit-box-direction: reverse;
+  /* -webkit-box-direction: reverse;
       -ms-flex-flow: row-reverse nowrap;
-          flex-flow: row-reverse nowrap;
+          flex-flow: row-reverse nowrap; */
 }
 
 main {
