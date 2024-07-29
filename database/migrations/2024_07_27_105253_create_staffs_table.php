@@ -13,9 +13,14 @@ return new class extends Migration
     {
         Schema::create('staffs', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname');
+            $table->string('username');
+            $table->date('dateNaissance');
+            $table->string('phoneNumber');
+            $table->string('gender');
+            $table->string('image');
             $table->string('email')->unique();
             $table->string('password');
+            $table->foreignId('id_creator')->nullable()->constrained('admins')->onDelete('set null');
             $table->timestamps();
         });
     }
