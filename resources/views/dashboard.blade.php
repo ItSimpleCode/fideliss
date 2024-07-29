@@ -18,7 +18,7 @@
 
     <main>
         @include('layouts.navigation')
-        main
+        @yield('content')
     </main>
 
     <script src="{{ asset('dist/js/main.js') }}"></script>

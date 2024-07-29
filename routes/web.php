@@ -19,27 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['user.auth'])->group(function () {
-    // Route::get('/', function () {
-    //     return view('layout.layout');
-    // });
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard/statistics', [AuthController::class, 'showStatistics'])->name('statistics');
 
+
+    
     Route::fallback(function () {
-        return redirect()->route('dashboard');
+        return redirect()->route('statistics');
     });
 
-
-
-    Route::get('/staffs', function () {
-        return view('admin.staff');
-    })->name('staffs');
-
-
-    Route::post('/staff-logout', [AuthController::class, 'logout'])->name('staff.logout')->defaults('guard', 'staff');
-    Route::post('/admin-logout', [AuthController::class, 'logout'])->name('admin.logout')->defaults('guard', 'admin');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
 

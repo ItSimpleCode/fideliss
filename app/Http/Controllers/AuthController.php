@@ -67,12 +67,25 @@ class AuthController extends Controller
 
 
     //! --- logout traitement
-    public function logout($guard)
+    public function logout()
     {
-        Auth::guard($guard)->logout();
+        if (Auth::guard('admin')->check()) {
+            Auth::guard('admin')->logout();
+        }
+
+        if (Auth::guard('staff')->check()) {
+            Auth::guard('staff')->logout();
+        }
 
         return redirect()->route('login.show');
     }
+
+    //! --- statistics traitement
+    public function showStatistics()
+    {
+        return view('layouts.dashboard.statistics');
+    }
+
 
 
 
