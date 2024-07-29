@@ -44,16 +44,9 @@
                 </a>
             </li>
             <li>
-                <a>
+                <a href="/logout">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i><span class="text">log out</span>
                 </a>
-                <form
-                    action="{{ (Auth::guard('admin')->check() ? route('admin.logout') : Auth::guard('staff')->check()) ? route('staff.logout') : '' }}"
-                    method="POST">
-                    <form action="{{ route('staff.logout') }}" method="POST">
-                        @csrf
-                        <button type="submit">Log Out</button>
-                    </form>
             </li>
 
         </ul>
