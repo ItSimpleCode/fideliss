@@ -16,27 +16,6 @@ ul {
     list-style: none;
 }
 
-a {
-    text-decoration: none;
-    width: 100%;
-    height: 36px;
-    height: var(--btn-height);
-    border: none;
-    background: none;
-    cursor: pointer;
-    border-radius: 12px;
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-
 .aside {
     width: var(--aside-width);
     padding: var(--aside-padding);
@@ -55,6 +34,20 @@ a {
     flex-flow: column nowrap;
     justify-content: start;
     row-gap: 48px;
+
+    a {
+        text-decoration: none;
+        width: 100%;
+        height: var(--btn-height);
+        border: none;
+        background: none;
+        cursor: pointer;
+        border-radius: 12px;
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 
     .aside_toggle {
         background-color: transparent;
@@ -82,7 +75,6 @@ a {
     }
 
     .text {
-        // width: 129px;
         color: var(--color-two);
         font-size: 16px;
         font-weight: 500;
@@ -114,6 +106,10 @@ a {
             overflow: hidden;
             opacity: 0.45;
             padding: 0 7px;
+
+            &.unclickable {
+                opacity: 1;
+            }
 
             i {
                 width: 24px;
