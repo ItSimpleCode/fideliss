@@ -14,13 +14,12 @@
 </head>
 
 <body>
-    @extends('layouts.aside')
-    <main>
-        {{--
-            @extends('layouts.navigation')
-            main
-        --}}
-    </main>
+    @include('layouts.aside')
+
+    <div>
+        @include('layouts.navigation')
+        div
+    </div>
 
     <script src="{{ asset('dist/js/main.js') }}"></script>
 </body>
