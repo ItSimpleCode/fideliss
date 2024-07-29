@@ -1,8 +1,6 @@
 @import "global";
 
 body {
-    font-family: "Poppins", sans-serif;
-
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -39,6 +37,7 @@ body {
     .close_error {
         width: 48px;
         height: 48px;
+        font-size: 20px;
         border-radius: 12px;
         background-color: #fff;
         color: red;

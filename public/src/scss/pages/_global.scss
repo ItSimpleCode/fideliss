@@ -6,3 +6,21 @@
     margin: 0;
     padding: 0;
 }
+
+body {
+    font-family: "sf-pro-rounded";
+}
+a,
+button {
+    cursor: pointer;
+}
+
+i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.unclickable {
+    pointer-events: none;
+}

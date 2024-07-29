@@ -1,0 +1,14 @@
+@import "global";
+@import "../layouts/aside";
+@import "../layouts/main";
+
+body {
+    font-family: "sf-pro-rounded";
+    height: 100dvh;
+    display: flex;
+    flex-flow: row-reverse nowrap;
+}
+
+main {
+    flex: 1;
+}
