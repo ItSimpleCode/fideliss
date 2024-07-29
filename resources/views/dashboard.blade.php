@@ -16,10 +16,10 @@
 <body>
     @include('layouts.aside')
 
-    <div>
+    <main>
         @include('layouts.navigation')
-        div
-    </div>
+        main
+    </main>
 
     <script src="{{ asset('dist/js/main.js') }}"></script>
 </body>
