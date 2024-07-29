@@ -22,15 +22,16 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         try {
-            $request->validate([
-                'email' => 'required|email|max:255',
-                'password' => 'required|string|min:8|max:255',
-            ]);
+            // $request->validate([
+            //     'email' => 'required|email|max:255',
+            //     'password' => 'required|string|min:8|max:255',
+            // ]);
 
-            $admin = Admin::where('email', $request->email)->first();
-            if ($admin && Hash::check($request->password, $admin->password)) {
+            $admin = Admin::where(['email' => $request->email, 'password' => $request->password])->first();
+            // if ($admin && Hash::check($request->password, $admin->password)) {
+            if ($admin) {
                 Auth::guard('admin')->login($admin);
-                return redirect()->route('dashboard');
+                return redirect()->route('statistics');
             } else {
                 $staff = Staff::where(['email' => $request->email, 'password' => $request->password])->first();
                 if ($staff) {
