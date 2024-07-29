@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('username');
             $table->date('dateNaissance');
             $table->string('phoneNumber');
-            $table->string('gender');
-            $table->string('image');
+            $table->enum('gender', ['male', 'female']);
+            $table->string('image')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
