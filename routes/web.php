@@ -25,9 +25,9 @@ Route::middleware(['user.auth'])->group(function () {
 
 
     
-    Route::fallback(function () {
-        return redirect()->route('statistics');
-    });
+    // Route::fallback(function () {
+    //     return redirect()->route('statistics');
+    // });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
