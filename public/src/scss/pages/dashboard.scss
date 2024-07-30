@@ -2,6 +2,7 @@
 @import "../layouts/aside";
 @import "../layouts/navigation";
 @import "../layouts/main";
+@import "../layouts/table";
 
 body {
     font-family: "sf-pro-rounded";
@@ -11,5 +12,101 @@ body {
 }
 
 main {
-    flex: 1;
+    .statistics-cards {
+        display: flex;
+        flex-flow: row nowrap;
+        column-gap: 24px;
+
+        .card {
+            flex: 200px;
+            background: linear-gradient(45deg, #f4baeb, #6bd3db);
+            padding: 24px;
+            border-radius: 24px;
+            color: #111525;
+            height: 127px;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+
+            & > div {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .up {
+                .number {
+                    font-size: 24px;
+                    font-weight: 900;
+                }
+                i {
+                    width: 42px;
+                    height: 42px;
+                    border-radius: 21px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #fff;
+                }
+            }
+            .down {
+                .card-name {
+                    font-size: 18px;
+                    font-weight: 500;
+                    text-transform: capitalize;
+                }
+                .percent {
+                    font-size: 12px;
+                    color: red;
+                }
+            }
+        }
+    }
+
+    .tables {
+        height: -webkit-fill-available;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 24px;
+
+        .rewards {
+            grid-column: 2 / span 1;
+            grid-row: 1 / span 2;
+        }
+    }
+
+    .table {
+        background-color: $bg_color_3;
+        display: flex;
+        flex-flow: column nowrap;
+        row-gap: 24px;
+        padding: 24px;
+        border-radius: 24px;
+
+        .table_head {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+        }
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+        button {
+            background-color: transparent;
+            border: none;
+            color: inherit;
+        }
+        i {
+            width: 24px;
+            height: 24px;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
 }

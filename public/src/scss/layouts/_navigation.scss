@@ -4,6 +4,15 @@
     justify-content: space-between;
     align-items: center;
 
+    i {
+        width: 24px;
+        height: 24px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .user {
         display: flex;
         flex-flow: row nowrap;
@@ -20,7 +29,10 @@
         object-position: center center;
     }
     .user_name {
-        color: #fff;
+        color: $text_color_1;
+        text-transform: capitalize;
+        font-size: 18px;
+        font-weight: 600;
     }
 
     .search {
@@ -35,13 +47,7 @@
             top: 50%;
             left: 12px;
             transform: translateY(-50%);
-            color: transparentize(#fff, 0.65);
-            width: 24px;
-            height: 24px;
-            font-size: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            color: transparentize($text_color_1, 0.65);
         }
         .bar {
             position: absolute;
@@ -50,7 +56,7 @@
             transform: translateY(-50%);
             width: 2.5px;
             height: 24px;
-            background-color: transparentize(#fff, 0.65);
+            background-color: transparentize($text_color_1, 0.65);
             border-radius: 1.25px;
         }
         input {
@@ -60,34 +66,66 @@
             border: none;
             outline: none;
             padding-left: 84px;
-            color: #fff;
+            color: $text_color_1;
             font-size: 16px;
             text-transform: capitalize;
-            font-weight: 600;
+            font-weight: 500;
 
             &::placeholder {
-                color: transparentize(#fff, 0.65);
+                color: transparentize($text_color_1, 0.65);
             }
         }
     }
 
     .nav-options {
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            display: none;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        column-gap: 24px;
+
+        button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: $text_color_1;
+            border: none;
         }
 
-        /* Hide the date input icon for Firefox */
-        input[type="date"]::-moz-calendar-picker-indicator {
-            display: none;
-        }
+        .date {
+            height: 48px;
+            border-radius: 24px;
+            background-color: #1a2431;
+            column-gap: 12px;
+            padding: 0 12px;
 
-        /* Hide the date input icon for IE */
-        input[type="date"]::-ms-calendar-picker-indicator {
-            display: none;
+            .range {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                font-size: 16px;
+
+                i {
+                    font-size: 14px;
+                }
+            }
         }
-        input[type="date"] {
-            appearance: none;
-            padding: 0;
+        .square-btn {
+            background-color: transparent;
+            flex-flow: column nowrap;
+
+            span {
+                width: 24px;
+                height: 14px;
+                background-color: yellow;
+                color: #1a2431;
+                font-weight: bold;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 12px;
+                line-height: 8px;
+                border-radius: 8px;
+            }
         }
     }
 }
