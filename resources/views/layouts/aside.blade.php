@@ -24,7 +24,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href={{ route('users') }}>
                     <i class="fa-solid fa-users"></i>
                     <span class="text">users</span>
                 </a>

@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['user.auth'])->group(function () {
 
     Route::get('/dashboard/statistics', [AuthController::class, 'showStatistics'])->name('statistics');
+    Route::get('/dashboard/users', [AuthController::class, 'showUsers'])->name('users');
 
 
     
