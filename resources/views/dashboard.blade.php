@@ -32,7 +32,6 @@
     <main>
         @include('layouts.navigation')
         @yield('content')
-
     </main>
 
     <script src="{{ asset('dist/js/main.js') }}"></script>
