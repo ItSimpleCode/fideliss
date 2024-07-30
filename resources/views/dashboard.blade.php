@@ -65,28 +65,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>id4589</td>
-                            <td>youssef elqayedy</td>
-                            <td>500</td>
-                            <td>youssef elqayedy</td>
-                            <td>07/26/2024</td>
-                        </tr>
-                        <tr>
-                            <td>id4589</td>
-                            <td>youssef elqayedy</td>
-                            <td>500</td>
-                            <td>youssef elqayedy</td>
-                            <td>07/26/2024</td>
-                        </tr>
-                        <tr>
-                            <td>id4589</td>
-                            <td>youssef elqayedy</td>
-                            <td>500</td>
-                            <td>youssef elqayedy</td>
-                            <td>07/26/2024</td>
-                        </tr>
-
+                        @for ($i = 0; $i < 3; $i++)
+                            <tr>
+                                <td>id4589</td>
+                                <td>youssef elqayedy</td>
+                                <td>500</td>
+                                <td>youssef elqayedy</td>
+                                <td>07/26/2024</td>
+                            </tr>
+                        @endfor
                     </tbody>
                 </table>
             </section>
