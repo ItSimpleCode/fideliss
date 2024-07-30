@@ -1,0 +1,45 @@
+.main-table {
+    width: 100%;
+    border-spacing: 0 12px;
+
+    table {
+        overflow: hidden;
+    }
+
+    thead {
+        color: $text_color_1;
+    }
+
+    tbody {
+        tr:not(:last-child) td {
+            border-bottom: 2px solid transparentize($text_color_1, 0.65);
+        }
+        width: 100%;
+        min-height: 10px;
+        overflow-y: scroll;
+    }
+
+    th {
+        background-color: hsl(236, 95%, 61%);
+        padding: 12px;
+        text-align: start;
+        font-size: 16px;
+        font-weight: 600;
+
+        &:first-child {
+            border-radius: 12px 0 0 12px;
+        }
+        &:last-child {
+            border-radius: 0 12px 12px 0;
+        }
+    }
+
+    td {
+        padding: 12px;
+        text-align: start;
+        color: transparentize($text_color_1, 0.65);
+        font-size: 15px;
+        font-weight: 400;
+        text-transform: capitalize;
+    }
+}

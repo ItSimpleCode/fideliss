@@ -1,12 +1,7 @@
 :root {
-    --color-zero: #fff;
-    --color-one: #22212f;
-    --color-two: #e9dede;
-    --color-tree: #530886;
-    --color-four: #43415c;
     --duration: 0.3s;
     --aside-width: 134px;
-    --aside-active-width: 307px;
+    --aside-active-width: 313px;
     --aside-padding: 48px;
     --btn-width: 38px;
     --btn-height: 38px;
@@ -17,7 +12,7 @@ ul {
 }
 
 .aside {
-    width: var(--aside-width);
+    width: $text_color_1;
     padding: var(--aside-padding);
     user-select: none;
     overflow: hidden;
@@ -27,7 +22,7 @@ ul {
     align-items: flex-start;
 
     background-color: $bg_color_1;
-    color: #fff;
+    color: $text_color_1;
     text-transform: capitalize;
     height: 100%;
     display: flex;
@@ -75,7 +70,7 @@ ul {
     }
 
     .text {
-        color: var(--color-two);
+        color: $text_color_1;
         font-size: 16px;
         font-weight: 500;
         text-transform: capitalize;
@@ -115,7 +110,7 @@ ul {
                 width: 24px;
                 height: 24px;
                 font-size: 20px;
-                color: var(--color-two);
+                color: $text_color_1;
                 transition-duration: var(--duration);
                 display: flex;
                 justify-content: center;

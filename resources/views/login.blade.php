@@ -29,11 +29,11 @@
             @csrf
             <div>
                 <label for="email">email</label>
-                <input type="text" id="email" name="email" autofocus required>
+                <input type="text" id="email" name="email" autofocus required value="elqayedycontact@gmail.com">
             </div>
             <div>
                 <label for="password">password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" required value="1234">
             </div>
             <button>connect</button>
             {{-- <a href={{ route('forgetPassword.show') }}>forget password</a> --}}
