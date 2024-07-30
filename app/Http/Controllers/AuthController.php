@@ -88,6 +88,16 @@ class AuthController extends Controller
     }
 
 
+    //! --- Users traitement
+    public function showUsers()
+    {
+        $admins = Admin::all()->sortBy('created_at');
+        $staffs = Staff::all()->sortBy('created_at');
+
+        return view('layouts.dashboard.users', compact('admins', 'staffs'));
+    }
+
+
 
 
 

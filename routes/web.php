@@ -21,12 +21,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['user.auth'])->group(function () {
 
     Route::get('/dashboard/statistics', [AuthController::class, 'showStatistics'])->name('statistics');
+    Route::get('/dashboard/users', [AuthController::class, 'showUsers'])->name('users');
 
 
     
-    Route::fallback(function () {
-        return redirect()->route('statistics');
-    });
+    // Route::fallback(function () {
+    //     return redirect()->route('statistics');
+    // });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

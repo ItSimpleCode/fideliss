@@ -6,7 +6,8 @@
     <div class="list main_list">
         <ul>
             <li>
-                <a href="#" class="unclickable">
+                {{-- <a href="#" class="unclickable"> --}}
+                <a href={{ route('statistics') }}>
                     <i class="fa-solid fa-chart-line"></i>
                     <span class="text">statistics</span>
                 </a>
@@ -24,7 +25,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href={{ route('users') }}>
                     <i class="fa-solid fa-users"></i>
                     <span class="text">users</span>
                 </a>
