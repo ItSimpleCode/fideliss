@@ -25,14 +25,14 @@ Route::middleware(['user.auth'])->group(function () {
     // Route::get('/dashboard/staffs', [AuthController::class, 'showStaffs'])->name('staffs');
     // Route::get('/dashboard/clients', [AuthController::class, 'showClients'])->name('clients');
     Route::get('/dashboard/cards', function () {
-        return view('layouts.dashboard.cards');
+        return view('layouts.dashboard.card');
     })->name('cards');
 
 
 
-    // Route::fallback(function () {
-    //     return redirect()->route('statistics');
-    // });
+    Route::fallback(function () {
+        return redirect()->route('statistics');
+    });
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
@@ -41,7 +41,7 @@ Route::middleware(['user.auth'])->group(function () {
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login.show');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-
+Route::fallback(fn () => redirect()->route('login.show'));
 
 Route::get('/forgetPassword', [AuthController::class, 'showForgetPassword'])->name('forgetPassword.show');
 Route::post('/forgetPassword', [AuthController::class, 'SendPasswordInMail'])->name('forgetPassword.sendPassword');

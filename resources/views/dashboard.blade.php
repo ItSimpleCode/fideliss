@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('dist/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/statistics.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/users.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/cards.css') }}">
 </head>
 
 <body>
