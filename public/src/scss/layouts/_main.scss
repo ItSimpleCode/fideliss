@@ -3,6 +3,7 @@ main {
     overflow: auto;
     background-color: $bg_color_2;
     padding: 43px 48px;
+    min-height: 100dvh;
     display: flex;
     flex-flow: column nowrap;
     row-gap: 24px;

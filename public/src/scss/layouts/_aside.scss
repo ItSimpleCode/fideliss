@@ -12,7 +12,7 @@ ul {
 }
 
 .aside {
-    width: $text_color_1;
+    width: var(--aside-width);
     padding: var(--aside-padding);
     user-select: none;
     overflow: hidden;
@@ -86,13 +86,16 @@ ul {
 
         &.main_list {
             flex: 1;
+            display: flex;
+            flex-flow: column nowrap;
+            row-gap: 36px;
         }
 
         ul {
             width: 100%;
             display: flex;
             flex-direction: column;
-            row-gap: 15px;
+            row-gap: 12px;
         }
 
         a {
