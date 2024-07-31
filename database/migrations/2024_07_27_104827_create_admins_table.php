@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            $table->date('dateNaissance');
-            $table->string('phoneNumber');
+            $table->string('phone_number');
             $table->enum('gender', ['male', 'female']);
             $table->string('image')->nullable();
             $table->string('email')->unique();

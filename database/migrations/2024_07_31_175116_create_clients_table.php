@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('staffs', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('username');
             $table->date('date_naissance');
@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignId('id_creator')->nullable()->constrained('admins')->onDelete('set null');
+            $table->integer('id_creator');
+            $table->enum('creator_type', ['admin', 'staff']);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('staffs');
+        Schema::dropIfExists('clients');
     }
 };

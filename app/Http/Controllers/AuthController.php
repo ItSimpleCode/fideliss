@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\forgetPasswordMail;
 use App\Models\Admin;
+use App\Models\Client;
 use App\Models\Staff;
 use Exception;
 use Illuminate\Http\Request;
@@ -91,26 +92,38 @@ class AuthController extends Controller
     //! --- Users traitement
     public function showAdmins()
     {
-        $admins = Admin::all()->sortBy('created_at');
-        // $staffs = Staff::all()->sortBy('created_at');
+        $columns = ['id' => '-', 'username' => 'name', 'phone_number' => 'phone number', 'gender' => 'gender', 'email' => 'email', 'created_at' => 'joining date'];
+        $data = Admin::select(array_keys($columns))
+            ->orderBy('created_at')
+            ->get();
 
-        return view('layouts.dashboard.table', compact('admins'));
+        $table = 'admins';
+        return view('layouts.dashboard.table', compact('data', 'columns', 'table'));
     }
-    // public function showAdmins()
-    // {
-    //     $admins = Admin::all()->sortBy('created_at');
-    //     return view('layouts.dashboard.users', compact('admins'));
-    // }
-    // public function showStaffs()
-    // {
-    //     $staffs = Staff::all()->sortBy('created_at');
-    //     return view('layouts.dashboard.users', compact('staffs'));
-    // }
-    // public function showClients()
-    // {
-    //      $clients = ;
-    //     return view('layouts.dashboard.users', compact('clients'));
-    // }
+
+
+    public function showStaffs()
+    {
+        $columns = ['id' => '-', 'username' => 'name', 'phone_number' => 'phone number', 'gender' => 'gender', 'email' => 'email', 'created_at' => 'joining date'];
+
+        $data = Staff::select(array_keys($columns))
+            ->orderBy('staffs.created_at')
+            ->get();
+
+        $table = 'staffs';
+        return view('layouts.dashboard.table', compact('data', 'columns', 'table'));
+    }
+
+    public function showClients()
+    {
+        $columns = ['id' => '-', 'username' => 'name', 'phone_number' => 'phone number', 'gender' => 'gender', 'email' => 'email', 'created_at' => 'joining date'];
+        $data = Client::select(array_keys($columns))
+            ->orderBy('created_at')
+            ->get();
+        $table = 'clients';
+        return view('layouts.dashboard.table', compact('data', 'columns', 'table'));
+    }
+
 
 
 
