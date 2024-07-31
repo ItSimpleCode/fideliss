@@ -19,8 +19,8 @@
 
     <div class="tables">
 
-        <section class="table transactions">
-            <div class="table_head">
+        <section class="dark-bg transactions">
+            <div class="head">
                 <div class="title">transactions</div>
                 <button>
                     <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -48,8 +48,8 @@
             </div>
         </section>
 
-        <section class="table rewards">
-            <div class="table_head">
+        <section class="dark-bg rewards">
+            <div class="head">
                 <div class="title">rewards</div>
                 <button>
                     <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -77,8 +77,8 @@
             </div>
         </section>
 
-        <section class="table transactions-static">
-            <div class="table_head">
+        <section class="dark-bg transactions-static">
+            <div class="head">
                 <div class="title">transactions static</div>
                 <button>
                     <i class="fa-solid fa-ellipsis-vertical"></i>
