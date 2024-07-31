@@ -16,49 +16,36 @@
         @endfor
     </section>
 
+
     <div class="tables">
-        <section class="table Transactions">
+
+        <section class="table transactions">
             <div class="table_head">
                 <div class="title">transactions</div>
                 <button>
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
             </div>
-            <table class="main-table">
-                <thead>
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">name</th>
-                        <th scope="col">points</th>
-                        <th scope="col">staff</th>
-                        <th scope="col">date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>id4589</td>
-                        <td>youssef elqayedy</td>
-                        <td>500</td>
-                        <td>youssef elqayedy</td>
-                        <td>07/26/2024</td>
-                    </tr>
-                    <tr>
-                        <td>id4589</td>
-                        <td>youssef elqayedy</td>
-                        <td>500</td>
-                        <td>youssef elqayedy</td>
-                        <td>07/26/2024</td>
-                    </tr>
-                    <tr>
-                        <td>id4589</td>
-                        <td>youssef elqayedy</td>
-                        <td>500</td>
-                        <td>youssef elqayedy</td>
-                        <td>07/26/2024</td>
-                    </tr>
-
-                </tbody>
-            </table>
+            <div class="main-table">
+                <div class="table_columns">
+                    <span>creator</span>
+                    <span>offer</span>
+                    <span>cost</span>
+                    <span>duration</span>
+                    <span>reacts</span>
+                </div>
+                <div class="table_rows" data-scrollbar>
+                    @for ($i = 0; $i < 15; $i++)
+                        <div class="row">
+                            <span>batata</span>
+                            <span>youssef elqayedy</span>
+                            <span>500</span>
+                            <span>2 years</span>
+                            <span>50k</span>
+                        </div>
+                    @endfor
+                </div>
+            </div>
         </section>
 
         <section class="table rewards">
@@ -68,92 +55,35 @@
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
             </div>
-            <table class="main-table">
-                <thead>
-                    <tr>
-                        <th scope="col">creator</th>
-                        <th scope="col">offer</th>
-                        <th scope="col">cost</th>
-                        <th scope="col">duration</th>
-                        <th scope="col">react</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>ad.youssef elqayedy</td>
-                        <td>batata</td>
-                        <td>500</td>
-                        <td>07/26/2024</td>
-                        <td>5127</td>
-                    </tr>
-                    <tr>
-                        <td>st.youssef elqayedy</td>
-                        <td>batata</td>
-                        <td>500</td>
-                        <td>07/26/2024</td>
-                        <td>5127</td>
-                    </tr>
-                    <tr>
-                        <td>st.youssef elqayedy</td>
-                        <td>batata</td>
-                        <td>500</td>
-                        <td>07/26/2024</td>
-                        <td>5127</td>
-                    </tr>
-                    <tr>
-                        <td>st.youssef elqayedy</td>
-                        <td>batata</td>
-                        <td>500</td>
-                        <td>07/26/2024</td>
-                        <td>5127</td>
-                    </tr>
-                    <tr>
-                        <td>ad.youssef elqayedy</td>
-                        <td>batata</td>
-                        <td>500</td>
-                        <td>07/26/2024</td>
-                        <td>5127</td>
-                    </tr>
-                    <tr>
-                        <td>st.youssef elqayedy</td>
-                        <td>batata</td>
-                        <td>500</td>
-                        <td>07/26/2024</td>
-                        <td>5127</td>
-                    </tr>
-                    <tr>
-                        <td>ad.youssef elqayedy</td>
-                        <td>batata</td>
-                        <td>500</td>
-                        <td>07/26/2024</td>
-                        <td>5127</td>
-                    </tr>
-                    <tr>
-                        <td>ad.youssef elqayedy</td>
-                        <td>batata</td>
-                        <td>500</td>
-                        <td>07/26/2024</td>
-                        <td>5127</td>
-                    </tr>
-                    <tr>
-                        <td>st.youssef elqayedy</td>
-                        <td>batata</td>
-                        <td>500</td>
-                        <td>07/26/2024</td>
-                        <td>5127</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="main-table">
+                <div class="table_columns">
+                    <span>creator</span>
+                    <span>offer</span>
+                    <span>cost</span>
+                    <span>duration</span>
+                    <span>react</span>
+                </div>
+                <div class="table_rows" data-scrollbar>
+                    @for ($i = 0; $i < 15; $i++)
+                        <div class="row">
+                            <span>ad.youssef elqayedy</span>
+                            <span>batata</span>
+                            <span>500</span>
+                            <span>07/26/2024</span>
+                            <span>5127</span>
+                        </div>
+                    @endfor
+                </div>
+            </div>
         </section>
-        
-        <section class="table Transactions-static">
+
+        <section class="table transactions-static">
             <div class="table_head">
                 <div class="title">transactions static</div>
                 <button>
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
             </div>
-
         </section>
     </div>
 @endsection

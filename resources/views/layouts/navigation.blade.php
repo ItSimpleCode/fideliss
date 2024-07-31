@@ -19,7 +19,7 @@
             <span class="range">26/06/2024 - 26/07/2024 <i class="fa-solid fa-angle-down"></i></span>
         </button>
         <button class="square-btn"><span>99</span><i class="fa-regular fa-bell"></i></button>
-        <button class="square-btn"><span>99</span><i class="fa-regular fa-message"></i></button>
+        {{-- <button class="square-btn"><span>99</span><i class="fa-regular fa-message"></i></button> --}}
         <button class="square-btn"><i class="fa-regular fa-lightbulb"></i></button>
     </div>
 </nav>

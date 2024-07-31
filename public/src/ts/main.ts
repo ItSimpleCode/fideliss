@@ -1,3 +1,7 @@
+var Scrollbar = window.Scrollbar;
+
+Scrollbar.initAll();
+
 window.addEventListener("load", () => {
     let aside = document.getElementById("aside");
     let asideToggle = document.getElementById("aside_toggle");

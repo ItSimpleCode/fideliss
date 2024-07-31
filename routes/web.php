@@ -21,10 +21,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['user.auth'])->group(function () {
 
     Route::get('/dashboard/statistics', [AuthController::class, 'showStatistics'])->name('statistics');
-    Route::get('/dashboard/users', [AuthController::class, 'showUsers'])->name('users');
+    Route::get('/dashboard/admins', [AuthController::class, 'showAdmins'])->name('admins');
+    // Route::get('/dashboard/staffs', [AuthController::class, 'showStaffs'])->name('staffs');
+    // Route::get('/dashboard/clients', [AuthController::class, 'showClients'])->name('clients');
+    Route::get('/dashboard/cards', function () {
+        return view('layouts.dashboard.cards');
+    })->name('cards');
 
 
-    
+
     // Route::fallback(function () {
     //     return redirect()->route('statistics');
     // });
