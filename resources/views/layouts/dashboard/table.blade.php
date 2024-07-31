@@ -1,5 +1,6 @@
 @extends('dashboard')
 @section('content')
+
     <section class="table users">
         <div class="table_head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>

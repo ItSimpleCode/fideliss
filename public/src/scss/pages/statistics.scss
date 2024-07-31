@@ -1,4 +1,5 @@
 @import "global";
+@import "../layouts/backgrounds";
 @import "../layouts/table";
 
 body {
@@ -19,7 +20,7 @@ main {
             background: linear-gradient(45deg, #f4baeb, #6bd3db);
             padding: 24px;
             border-radius: 24px;
-            color: #111525;
+            color: $bg_color_2;
             height: 127px;
             display: flex;
             flex-flow: column nowrap;
@@ -69,11 +70,6 @@ main {
         .rewards {
             grid-column: 2 / span 1;
             grid-row: 1 / span 2;
-        }
-
-        .transactions {
-        }
-        .transactions-static {
         }
     }
 }

@@ -2,6 +2,7 @@
 @import "../variables/fonts";
 
 body {
+    font-family: "sf-pro-rounded";
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -10,7 +11,7 @@ body {
 
 .message {
     background-color: red;
-    color: #fff;
+    color: $text_color_1;
     padding: 12px 12px 12px 24px;
     border-radius: 24px;
     width: 100%;
@@ -115,7 +116,7 @@ body {
             font-size: 20px;
             font-weight: 500;
             text-transform: capitalize;
-            color: #fff;
+            color: $text_color_1;
             cursor: pointer;
         }
     }
