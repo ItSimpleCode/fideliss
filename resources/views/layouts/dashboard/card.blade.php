@@ -13,8 +13,11 @@
             @for ($i = 0; $i < 15; $i++)
                 <div class="card">
                     <img class="bg-img" src="{{ asset('img/card1.png') }}" alt="">
-                    <img class="qr-code" src="{{ asset('img/qr_code.png') }}" alt="">
-                    <div class="card-info">
+                    <div class="up">
+                        <div class="card-type">Health insurance card</div>
+                        <img class="qr-code" src="{{ asset('img/qr_code.png') }}" alt="">
+                    </div>
+                    <div class="down">
                         <div class="user">
                             <div class="name">youssef elqayedy</div>
                             <div class="serial"><span>5195</span><span>1495</span><span>1989</span><span>1561</span></div>

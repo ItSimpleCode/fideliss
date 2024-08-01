@@ -26,9 +26,8 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/clients', [AuthController::class, 'showClients'])->name('clients');
 
 
-    Route::get('/dashboard/cards', function () {
-        return view('layouts.dashboard.card');
-    })->name('cards');
+    Route::get('/dashboard/cards', fn ()  => view('layouts.dashboard.card'))->name('cards');
+    Route::get('/dashboard/clients_cards', fn ()  => view('layouts.dashboard.card'))->name('clients_cards');
 
 
 

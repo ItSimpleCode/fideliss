@@ -10,8 +10,9 @@
 
     .card {
         position: relative;
-        border-radius: 24px;
+        border-radius: 12px;
         overflow: hidden;
+        color: $text_color_1;
 
         .bg-img {
             width: 100%;
@@ -19,23 +20,30 @@
             object-fit: cover;
         }
 
-        .qr-code {
+        .up,
+        .down {
             position: absolute;
-            top: 24px;
-            right: 24px;
-        }
-
-        .card-info {
-            position: absolute;
-            bottom: 24px;
             left: 24px;
             width: calc(100% - 24px * 2);
-
-            color: $text_color_1;
 
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .up {
+            top: 24px;
+        }
+
+        .card-type {
+            font-weight: 900;
+            font-size: 30px;
+        }
+
+        .down {
+            position: absolute;
+            bottom: 24px;
+            color: $text_color_1;
         }
 
         .user,
