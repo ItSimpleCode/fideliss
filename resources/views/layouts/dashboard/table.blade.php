@@ -20,8 +20,8 @@
             </div>
 
 
-
-            <div class="table_rows" data-scrollbar>
+            {{-- ! old code  --}}
+            {{-- <div class="table_rows" data-scrollbar>
                 @foreach ($data as $index => $item)
                     <div class="row">
                         <span>{{ $index + 1 }}</span>
@@ -37,7 +37,30 @@
                         <span>-</span>
                     </div>
                 @endforeach
+            </div> --}}
+
+            {{-- ! new code  --}}
+
+            <div class="table_rows" data-scrollbar>
+                @foreach ($data as $index => $item)
+                    <div class="row">
+                        <span>{{ $index + 1 }}</span>
+
+                        @foreach ($fields as $field)
+                            @if ($field == 'created_at')
+                                <span>{{ $item->$field->diffForHumans() }}</span>
+                            @elseif ($field == 'cards_number')
+                                <span><a href="/dashboard/client/{{ $item->id }}/cards">{{ $item->$field }}</a></span>
+                            @else
+                                <span>{{ $item->$field }}</span>
+                            @endif
+                        @endforeach
+
+                        <span>-</span>
+                    </div>
+                @endforeach
             </div>
+
 
         </div>
     </section>

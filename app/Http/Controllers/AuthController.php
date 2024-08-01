@@ -114,14 +114,28 @@ class AuthController extends Controller
         return view('layouts.dashboard.table', compact('data', 'columns', 'table'));
     }
 
+    // public function showClients()
+    // {
+    //     $columns = ['id' => '-', 'username' => 'name', 'phone_number' => 'phone number', 'gender' => 'gender', 'email' => 'email', 'created_at' => 'joining date'];
+    //     $data = Client::select(array_keys($columns))
+    //         ->orderBy('created_at')
+    //         ->get();
+    //     $table = 'clients';
+    //     return view('layouts.dashboard.table', compact('data', 'columns', 'table'));
+    // }
     public function showClients()
     {
-        $columns = ['id' => '-', 'username' => 'name', 'phone_number' => 'phone number', 'gender' => 'gender', 'email' => 'email', 'created_at' => 'joining date'];
-        $data = Client::select(array_keys($columns))
-            ->orderBy('created_at')
-            ->get();
+        $columns = ['name', 'phone number', 'gender', 'email', 'joining date', 'cards'];
+        $fields = ['username', 'phone_number', 'gender', 'email', 'created_at', 'cards_number'];
+        $clients = Client::select('id', 'username', 'phone_number', 'gender', 'email', 'created_at')->get();
+
+        $data = $clients->map(function ($client) {
+            $client->cards_number = $client->clientCards()->count();
+            return $client;
+        });
+
         $table = 'clients';
-        return view('layouts.dashboard.table', compact('data', 'columns', 'table'));
+        return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
     }
 
 
