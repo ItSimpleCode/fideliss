@@ -7,4 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Staff extends Authenticatable
 {
     protected $table = 'staffs';
+    public function cards(){
+        
+    }
 }

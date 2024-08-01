@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CardController;
+use App\Http\Controllers\ClientCardsController;
+use App\Models\ClientCards;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +27,7 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/admins', [AuthController::class, 'showAdmins'])->name('admins');
     Route::get('/dashboard/staffs', [AuthController::class, 'showStaffs'])->name('staffs');
     Route::get('/dashboard/clients', [AuthController::class, 'showClients'])->name('clients');
+    Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');
 
 
     Route::get('/dashboard/cards', fn ()  => view('layouts.dashboard.card'))->name('cards');
