@@ -1,8 +1,7 @@
 @extends('dashboard')
 @section('content')
-
-    <section class="table users">
-        <div class="table_head">
+    <section class="dark-bg users">
+        <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
             <button>
                 <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -14,7 +13,7 @@
                 <span>#</span>
                 @foreach ($columns as $column)
                     @if ($column !== '-')
-                    <span>{{ $column }}</span>
+                        <span>{{ $column }}</span>
                     @endif
                 @endforeach
                 <span>Actions</span>
