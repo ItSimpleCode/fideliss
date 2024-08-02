@@ -2,6 +2,7 @@
 @import "../layouts/backgrounds";
 @import "../layouts/table";
 @import "../layouts/card";
+@import "../layouts/form";
 
 .new-card {
     height: 100%;
@@ -21,61 +22,6 @@
         justify-content: space-between;
         flex-flow: column nowrap;
         gap: 24px;
-
-        .part {
-            display: flex;
-            flex-flow: column nowrap;
-            gap: 24px;
-        }
-
-        .title {
-            color: $text_color_1;
-            font-size: 18px;
-            text-transform: capitalize;
-        }
-    }
-    .double-fields {
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-        gap: 24px;
-
-        .field {
-            flex: 250px;
-        }
-    }
-    .field {
-        width: 100%;
-        height: 82px;
-        padding-top: 14px;
-
-        position: relative;
-
-        label,
-        input {
-            color: $text_color_1;
-            font-size: 16px;
-            font-weight: 500;
-        }
-
-        label {
-            text-transform: capitalize;
-            position: absolute;
-            top: 0;
-            left: 12px;
-            padding: 4px 8px;
-            background-color: $bg_color_3;
-        }
-
-        input {
-            width: 100%;
-            height: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid $text_color_1;
-            outline: none;
-            background-color: transparent;
-        }
     }
 
     .preview {
@@ -98,22 +44,5 @@
                 width: 300px;
             }
         }
-    }
-
-    button[type="submit"] {
-        background-color: #3e4afa;
-        padding: 24px 0;
-        border-radius: 12px;
-        border: none;
-        color: $text_color_1;
-        font-size: 16px;
-        text-transform: capitalize;
-        font-weight: 700;
-
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: center;
-        column-gap: 12px;
     }
 }

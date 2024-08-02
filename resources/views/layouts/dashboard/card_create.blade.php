@@ -15,13 +15,37 @@
                 <div class="part">
                     <h2 class="title">card information</h2>
                     <div class="double-fields">
-                        <div class="field">
-                            <label for="type">type of card</label>
-                            <input type="text" name="" id="type">
+                        <div class="selection-field">
+                            <div class="field">
+                                <label for="type">type of card</label>
+                                <input type="text" name="" id="type">
+                                <i class="fa-solid fa-angle-down"></i>
+                            </div>
+                            <div class="options">
+                                <span class="option">Gold Card</span>
+                                <span class="option">Silver Card</span>
+                                <span class="option">Platinum Card</span>
+                                <span class="option">Basic Card</span>
+                                <span class="option">Premium Card</span>
+                                <span class="option">Elite Card</span>
+                                <span class="option">Standard Card</span>
+                                <span class="option">Business Card</span>
+                                <span class="option">Student Card</span>
+                                <span class="option">Senior Card</span>
+
+                            </div>
                         </div>
-                        <div class="field">
-                            <label for="pay-method">pay method</label>
-                            <input type="text" name="" id="pay-method">
+                        <div class="selection-field">
+                            <div class="field">
+                                <label for="pay-method">pay method</label>
+                                <input type="text" name="" id="pay-method">
+                                <i class="fa-solid fa-angle-down"></i>
+                            </div>
+                            <div class="options">
+                                <span class="option">cash</span>
+                                <span class="option">card bank</span>
+                                <span class="option">card 1</span>
+                            </div>
                         </div>
                     </div>
                     <div class="double-fields">
