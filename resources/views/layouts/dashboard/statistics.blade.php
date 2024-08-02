@@ -28,24 +28,28 @@
                 </button>
             </div>
             <div class="main-table">
-                <div class="table_columns">
-                    <span>creator</span>
-                    <span>offer</span>
-                    <span>cost</span>
-                    <span>duration</span>
-                    <span>reacts</span>
-                </div>
-                <div class="table_rows" data-scrollbar>
-                    @for ($i = 0; $i < 15; $i++)
-                        <div class="row">
-                            <span>batata</span>
-                            <span>youssef elqayedy</span>
-                            <span>500</span>
-                            <span>2 years</span>
-                            <span>50k</span>
-                        </div>
-                    @endfor
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>creator</th>
+                            <th>offer</th>
+                            <th>cost</th>
+                            <th>duration</th>
+                            <th>reacts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for ($i = 0; $i < 15; $i++)
+                            <tr>
+                                <td>batata</td>
+                                <td>youssef elqayedy</td>
+                                <td>500</td>
+                                <td>2 years</td>
+                                <td>50k</td>
+                            </tr>
+                        @endfor
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -56,25 +60,30 @@
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
             </div>
+
             <div class="main-table">
-                <div class="table_columns">
-                    <span>creator</span>
-                    <span>offer</span>
-                    <span>cost</span>
-                    <span>duration</span>
-                    <span>react</span>
-                </div>
-                <div class="table_rows" data-scrollbar>
-                    @for ($i = 0; $i < 15; $i++)
-                        <div class="row">
-                            <span>ad.youssef elqayedy</span>
-                            <span>batata</span>
-                            <span>500</span>
-                            <span>07/26/2024</span>
-                            <span>5127</span>
-                        </div>
-                    @endfor
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>creator</th>
+                            <th>offer</th>
+                            <th>cost</th>
+                            <th>duration</th>
+                            <th>react</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for ($i = 0; $i < 15; $i++)
+                            <tr>
+                                <td>ad.youssef elqayedy</td>
+                                <td>batata</td>
+                                <td>500</td>
+                                <td>07/26/2024</td>
+                                <td>5127</td>
+                            </tr>
+                        @endfor
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -85,7 +94,7 @@
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
             </div>
-            <div style="width: 100%;height:100%; margin: auto;">
+            <div style="width: 100%;height:calc(100% - 28px - 24px); margin: auto;">
                 <canvas id="myChart"></canvas>
             </div>
 
@@ -93,13 +102,13 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
-                        type: 'bar', // Change this to 'line', 'pie', etc. for different chart types
+                        type: 'line', // Change this to 'line', 'pie', etc. for different chart types
                         data: {
-                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
                             datasets: [{
                                 label: 'My First Dataset',
                                 data: [12, 19, 3, 5, 2, 3, 7],
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.45)',
                                 borderColor: 'rgba(75, 192, 192, 1)',
                                 borderWidth: 1
                             }]

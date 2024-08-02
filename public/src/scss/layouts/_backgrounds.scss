@@ -6,6 +6,10 @@
     padding: 24px;
     border-radius: 24px;
 
+    &:has(table) {
+        padding-bottom: 0;
+    }
+
     .head {
         display: flex;
         flex-flow: row nowrap;
