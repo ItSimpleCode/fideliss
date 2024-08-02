@@ -8,9 +8,8 @@
             <li>
                 {{-- <a href="#" class="unclickable"> --}}
                 <a href={{ route('statistics') }}>
-                    <i class="fa-solid fa-chart-line"></i><span
-                        class="text">statistics</span>
-                    </a>
+                    <i class="fa-solid fa-chart-line"></i><span class="text">statistics</span>
+                </a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-arrow-pointer"></i><span class="text">actions</span></a>
@@ -22,6 +21,10 @@
         <ul>
             <li>
                 <a href={{ route('admins') }}><i class="fa-solid fa-user-tie"></i><span class="text">admins</span></a>
+            </li>
+            <li>
+                <a href={{ route('branchs') }}><i class="fa-solid fa-house-laptop"></i><span
+                        class="text">branchs</span></a>
             </li>
             <li>
                 <a href={{ route('staffs') }}><i class="fa-solid fa-users"></i><span class="text">staffs</span></a>

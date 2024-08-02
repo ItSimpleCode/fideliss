@@ -2,12 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
 use App\Models\Client;
 use App\Models\ClientCards;
 use Illuminate\Http\Request;
 
 class CardController extends Controller
 {
+
+    public function index()
+    {
+        $columns = ['name', 'coast', 'period', 'status', 'creations date'];
+        $fields = ['name', 'coast', 'period', 'active', 'created_at'];
+        $cards = Card::select('id', 'name', 'coast', 'period', 'active', 'created_at')
+            ->orderBy('created_at')
+            ->get();
+        $data = $cards->map(function ($card) {
+            return [
+                'id' => $card->id,
+                'name' => $card->name,
+                'coast' => $card->coast,
+                'period' => $card->period .' days',
+                'active' => $card->active == 1 ? 'active' : 'desactive',
+                'created_at' => $card->created_at,
+            ];
+        });
+
+        $table = 'Cards';
+        return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
+    }
     public function showClientCards($id)
     {
         $clientCards = ClientCards::with(['client', 'cards'])

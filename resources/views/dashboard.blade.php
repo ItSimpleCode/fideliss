@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Fidelis - @yield('title')</title>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="icon" href="{{ asset('img/logo.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('img/logo.png') }}">

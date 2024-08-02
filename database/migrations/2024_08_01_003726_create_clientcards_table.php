@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('id_creator');
             $table->enum('creator_type', ['admin', 'staff']);
             $table->json('card_style')->nullable();
+            $table->date('expiry_date');
             $table->timestamps();
         });
     }

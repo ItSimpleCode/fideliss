@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Mail\forgetPasswordMail;
 use App\Models\Admin;
+use App\Models\Branch;
 use App\Models\Client;
 use App\Models\Staff;
+use App\Models\Transaction;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -85,90 +87,69 @@ class AuthController extends Controller
     //! --- statistics traitement
     public function showStatistics()
     {
-        return view('layouts.dashboard.statistics');
+        // $transactions = Transaction::with([
+        //     'clientCards' => ['cards']
+        // ])
+        //     ->orderBy('created_at')
+        //     ->get();
+        //     $data = 
+
+        // return response()->json($transactions);
+        return view('layouts.dashboard.statistics', ['transactions']);
     }
 
 
     //! --- Users traitement
     public function showAdmins()
     {
-        //! --  old code
-        // $columns = ['id' => '-', 'username' => 'name', 'phone_number' => 'phone number', 'gender' => 'gender', 'email' => 'email', 'created_at' => 'joining date'];
-        // $data = Admin::select(array_keys($columns))
-        //     ->orderBy('created_at')
-        //     ->get();
-
-        //! --  new code
-        $columns = ['name', 'phone number', 'gender', 'email', 'joining date'];
-        $fields = ['username', 'phone_number', 'gender', 'email', 'created_at'];
-        $data = Admin::select('id', 'username', 'phone_number', 'gender', 'email', 'created_at')
+        $columns = ['First name', 'Last name', 'phone number', 'gender', 'email', 'joining date'];
+        $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at'];
+        $data = Admin::select('id', 'first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at')
             ->orderBy('created_at')
             ->get();
 
-        $table = 'admins';
+        $table = 'Admins';
         return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
     }
 
 
     public function showStaffs()
     {
-        //! --  old code
-        // $columns = ['id' => '-', 'username' => 'name', 'phone_number' => 'phone number', 'gender' => 'gender', 'email' => 'email', 'created_at' => 'joining date'];
-
-        // $data = Staff::select(array_keys($columns))
-        //     ->orderBy('staffs.created_at')
-        //     ->get();
-        // $table = 'staffs';
-
-        //! --  new code
-        $columns = ['name', 'phone number', 'gender', 'email', 'joining date'];
-        $fields = ['username', 'phone_number', 'gender', 'email', 'created_at'];
-        $data = Client::select('id', 'username', 'phone_number', 'gender', 'email', 'created_at')
+        $columns = ['First name', 'Last name', 'phone number', 'gender', 'email', 'joining date', 'creator', 'branch'];
+        $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'creator', 'branch'];
+        $staffs = Staff::with(['admins', 'branchs'])
             ->orderBy('created_at')
             ->get();
-        $table = 'staffs';
+
+        $data = $staffs->map(function ($staff) {
+            return [
+                'id' => $staff->id,
+                'first_name' => $staff->first_name,
+                'last_name' => $staff->last_name,
+                'phone_number' => $staff->phone_number,
+                'gender' => $staff->gender,
+                'email' => $staff->email,
+                'created_at' => $staff->created_at,
+                'creator' => $staff->admins ? $staff->admins->username : 'N/A',
+                'branch' => $staff->branchs ? $staff->branchs->name : 'N/A',
+            ];
+        });
+        $table = 'Staffs';
         return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
     }
 
     public function showClients()
     {
-        //! --  old code
-        //     $columns = ['id' => '-', 'username' => 'name', 'phone_number' => 'phone number', 'gender' => 'gender', 'email' => 'email', 'created_at' => 'joining date'];
-        //     $data = Client::select(array_keys($columns))
-        //         ->orderBy('created_at')
-        //         ->get();
-        //     $table = 'clients';
-        //     return view('layouts.dashboard.table', compact('data', 'columns', 'table'));
-
-        //! --  new code
-
-        $columns = ['name', 'phone number', 'gender', 'email', 'joining date', 'cards'];
-        $fields = ['username', 'phone_number', 'gender', 'email', 'created_at', 'cards_number'];
-        $clients = Client::select('id', 'username', 'phone_number', 'gender', 'email', 'created_at')->get();
+        $columns = ['First name', 'Last name', 'phone number', 'gender', 'email', 'joining date', 'cards'];
+        $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'cards_number'];
+        $clients = Client::select('id', 'first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at')->get();
 
         $data = $clients->map(function ($client) {
             $client->cards_number = $client->clientCards()->count();
             return $client;
         });
 
-        $table = 'clients';
+        $table = 'Clients';
         return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
     }
-
-
-
-
-
-
-    //juste for ading new admin with password hash
-    // public function addAdmin()
-    // {
-    //     $admin = new Admin;
-    //     $admin->fullname = 'admin';
-    //     $admin->email = 'youssef@youssef.com';
-    //     $admin->password =  Hash::make('adminadmin');
-    //     $admin->save();
-
-    //     return redirect()->route('login.show');
-    // }
 }
