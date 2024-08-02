@@ -130,7 +130,7 @@ class AuthController extends Controller
                 'gender' => $staff->gender,
                 'email' => $staff->email,
                 'created_at' => $staff->created_at,
-                'creator' => $staff->admins ? $staff->admins->username : 'N/A',
+                'creator' => $staff->admins ? $staff->admins->first_name . ' ' .  $staff->admins->last_name : 'N/A',
                 'branch' => $staff->branchs ? $staff->branchs->name : 'N/A',
             ];
         });

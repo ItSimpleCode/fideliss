@@ -1,37 +1,39 @@
 @extends('dashboard')
+@section('title', 'add card to ' . $client['first_name'] . ' ' . $client['last_name'])
 
 @section('content')
     <section class="dark-bg new-card">
+        @error('error')
+            <div class="message">
+                <span>{{ $message }}</span>
+                <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        @enderror
+
         <div class="head">
             <h1 class="title">
-                <a href="">
+                <a href="{{ route('client.cards', ['id' => $client['id']]) }}">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-                <span>transactions</span>
+                <span>Cards</span>
             </h1>
         </div>
         <div class="form">
-            <form action="">
+            <form action="{{ route('cards.create.store', ['id' => $client['id']]) }}" method="POST">
+                @csrf
                 <div class="part">
                     <h2 class="title">card information</h2>
                     <div class="double-fields">
                         <div class="selection-field">
                             <div class="field">
                                 <label for="type">type of card</label>
-                                <input type="text" name="" id="type">
+                                <input type="text" name="card_type" id="type">
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
-                                <span class="option">Gold Card</span>
-                                <span class="option">Silver Card</span>
-                                <span class="option">Platinum Card</span>
-                                <span class="option">Basic Card</span>
-                                <span class="option">Premium Card</span>
-                                <span class="option">Elite Card</span>
-                                <span class="option">Standard Card</span>
-                                <span class="option">Business Card</span>
-                                <span class="option">Student Card</span>
-                                <span class="option">Senior Card</span>
+                                @foreach ($cards as $card)
+                                    <span class="option">{{ $card['name'] }}</span>
+                                @endforeach
 
                             </div>
                         </div>
@@ -44,18 +46,20 @@
                             <div class="options">
                                 <span class="option">cash</span>
                                 <span class="option">card bank</span>
-                                <span class="option">card 1</span>
+                                @foreach ($clientCards as $card)
+                                    <span class="option">{{ $card['card_serial'] }}</span>
+                                @endforeach
                             </div>
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field">
-                            <label for="pay">client pay</label>
-                            <input type="text" name="" id="pay">
+                            <label for="pay">Card serial</label>
+                            <input type="text" name="card_serial" id="pay">
                         </div>
                         <div class="field">
                             <label for="wallet">wallet</label>
-                            <input type="text" name="" id="wallet">
+                            <input type="text" name="wallet" id="wallet">
                         </div>
                     </div>
                 </div>
@@ -64,27 +68,27 @@
                     <div class="double-fields">
                         <div class="field">
                             <label for="first-name">first name</label>
-                            <input type="text" name="" id="first-name">
+                            <input type="text" name="" id="first-name" value={{ $client['first_name'] }} disabled>
                         </div>
                         <div class="field">
                             <label for="last-name">last name</label>
-                            <input type="text" name="" id="last-name">
+                            <input type="text" name="" id="last-name"value={{ $client['last_name'] }} disabled>
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field">
                             <label for="email">email</label>
-                            <input type="text" name="" id="email">
+                            <input type="text" name="" id="email" value={{ $client['email'] }} disabled>
                         </div>
                         <div class="field">
                             <label for="phone">phone number</label>
-                            <input type="text" name="" id="phone">
+                            <input type="text" name="" id="phone"value={{ $client['phone_number'] }} disabled>
                         </div>
                     </div>
-                    <div class="field">
+                    {{-- <div class="field">
                         <label for="address">adderss</label>
                         <input type="text" name="" id="address">
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="part">
@@ -103,7 +107,8 @@
                         <div>
                             <div class="client">
                                 <div class="name">youssef elqayedy</div>
-                                <div class="serial"><span>5195</span><span>1495</span><span>1989</span><span>1561</span></div>
+                                <div class="serial"><span>5195</span><span>1495</span><span>1989</span><span>1561</span>
+                                </div>
                             </div>
                             <div class="expiry-date">
                                 <div class="expiry">expiry</div>
