@@ -7,7 +7,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Staff extends Authenticatable
 {
     protected $table = 'staffs';
-    public function cards(){
-        
+
+    public function admins()
+    {
+        return $this->belongsTo(Admin::class, 'id_creator');
+    }
+    public function branchs()
+    {
+        return $this->belongsTo(Branch::class,'id_branch');
     }
 }

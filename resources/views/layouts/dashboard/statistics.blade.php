@@ -1,4 +1,5 @@
 @extends('dashboard')
+@section('title', 'Statistics')
 
 @section('content')
     <section class="statistics-cards">
@@ -84,6 +85,35 @@
                     <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
             </div>
+            <div style="width: 100%;height:100%; margin: auto;">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var ctx = document.getElementById('myChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar', // Change this to 'line', 'pie', etc. for different chart types
+                        data: {
+                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                            datasets: [{
+                                label: 'My First Dataset',
+                                data: [12, 19, 3, 5, 2, 3, 7],
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
         </section>
     </div>
 @endsection
