@@ -1,0 +1,129 @@
+form {
+    .part {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 24px;
+    }
+
+    .title {
+        color: $text_color_1;
+        font-size: 18px;
+        text-transform: capitalize;
+    }
+
+    .double-fields {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        gap: 24px;
+
+        .selection-field,
+        .field {
+            flex: 250px;
+        }
+    }
+
+    .selection-field,
+    .field {
+        width: 100%;
+        height: 82px;
+        padding-top: 14px;
+
+        position: relative;
+
+        label,
+        input {
+            color: $text_color_1;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        label {
+            text-transform: capitalize;
+            position: absolute;
+            top: 0;
+            left: 12px;
+            padding: 4px 8px;
+            background-color: $bg_color_3;
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid $text_color_1;
+            outline: none;
+            background-color: transparent;
+        }
+    }
+
+    .selection-field {
+        padding: 0;
+        .field {
+        }
+
+        i {
+            position: absolute;
+            top: calc(50% + 7px);
+            right: 12px;
+            transform: translateY(-50%);
+
+            color: $text_color_1;
+            font-size: 24px;
+        }
+
+        .options {
+            background-color: #fff;
+            width: 100%;
+            border-radius: 12px;
+
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            z-index: 10;
+
+            display: none;
+            flex-flow: column nowrap;
+
+            overflow: hidden;
+            opacity: 0;
+            transition-duration: 0.3s;
+
+            &.show {
+                opacity: 1;
+                display: flex;
+            }
+
+            span {
+                font-size: 16px;
+                text-transform: capitalize;
+                padding: 12px;
+                cursor: pointer;
+                transition-duration: 0.1s;
+
+                &:hover {
+                    background-color: #3e4afa;
+                    color: $text_color_1;
+                }
+            }
+        }
+    }
+
+    button[type="submit"] {
+        background-color: #3e4afa;
+        padding: 24px 0;
+        border-radius: 12px;
+        border: none;
+        color: $text_color_1;
+        font-size: 16px;
+        text-transform: capitalize;
+        font-weight: 700;
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+        column-gap: 12px;
+    }
+}
