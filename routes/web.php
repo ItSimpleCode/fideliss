@@ -30,6 +30,10 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/clients', [AuthController::class, 'showClients'])->name('clients');
     Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');
     Route::get('/dashboard/cards', [CardController::class, 'index'])->name('cards');
+    Route::get('/dashboard/cards/new', fn ()  => view('layouts.dashboard.card_create'))->name('cards.create');
+
+//     Route::get('/dashboard/clients_cards', fn ()  => view('layouts.dashboard.card'))->name('clients_cards');
+
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
