@@ -31,6 +31,8 @@ Route::middleware(['user.auth'])->group(function () {
 
 
     Route::get('/dashboard/cards', fn ()  => view('layouts.dashboard.card'))->name('cards');
+    Route::get('/dashboard/cards/new', fn ()  => view('layouts.dashboard.card_create'))->name('cards.create');
+
     Route::get('/dashboard/clients_cards', fn ()  => view('layouts.dashboard.card'))->name('clients_cards');
 
 
