@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Card;
 use App\Models\Client;
 use App\Models\ClientCards;
+use Exception;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CardController extends Controller
 {
@@ -22,7 +25,7 @@ class CardController extends Controller
                 'id' => $card->id,
                 'name' => $card->name,
                 'coast' => $card->coast,
-                'period' => $card->period .' days',
+                'period' => $card->period . ' days',
                 'active' => $card->active == 1 ? 'active' : 'desactive',
                 'created_at' => $card->created_at,
             ];
@@ -31,9 +34,10 @@ class CardController extends Controller
         $table = 'Cards';
         return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
     }
+
     public function showClientCards($id)
     {
-        $clientCards = ClientCards::with(['client', 'cards'])
+        $clientCards = ClientCards::with(['cards'])
             ->where('id_client', $id)
             ->get();
 
@@ -43,10 +47,7 @@ class CardController extends Controller
                 'card_serial' => $clientCard->card_serial,
                 'wallet' => $clientCard->wallet,
                 'created_at' => $clientCard->created_at->toDateTimeString(),
-                'client' => [
-                    'id' => $clientCard->client ? $clientCard->client->id : null,
-                    'username' => $clientCard->client ? $clientCard->client->username : 'N/A',
-                ],
+                'expiry_date' => Carbon::parse($clientCard->expiry_date)->format('m/d'),
                 'cards' => [
                     'name' => $clientCard->cards ? $clientCard->cards->name : 'N/A',
                     'duration' => $clientCard->cards ? $clientCard->cards->duration : 'N/A',
@@ -55,11 +56,66 @@ class CardController extends Controller
             ];
         });
 
-        $client = Client::select('username')
+        $clientNameData = Client::select('first_name', 'last_name')
             ->where('id', $id)
-            ->get();
-        $clientname = $client[0]->username;
+            ->first();
+        $clientname = $clientNameData->first_name . ' ' . $clientNameData->last_name;
+        $client = [
+            $id, $clientname
+        ];
 
-        return view('layouts.dashboard.client_cards', compact('data', 'clientname'));
+        return view('layouts.dashboard.clients.cards', compact('data', 'client'));
+    }
+
+    public function showClientCardsAddForm($id)
+    {
+        $client = Client::select('id', 'first_name', 'last_name', 'phone_number', 'email')
+            ->where('id', $id)
+            ->first();
+
+
+        $cards = Card::all();
+        $clientCards = ClientCards::where('id_client', $id)->get();
+        return view('layouts.dashboard.clients.card_create', compact('client', 'cards', 'clientCards'));
+    }
+
+    public function addCardToClient(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'card_type' => 'required|max:255',
+                'card_serial' => 'required|string|max:255',
+                'wallet' => 'required|numeric',
+            ]);
+
+            $cardSelected = Card::where('name', $request->card_type)->first();
+            if ($cardSelected) {
+                $clientCard = new ClientCards;
+                $clientCard->id_client = $request->id;
+                $clientCard->id_card = $cardSelected->id;
+                $clientCard->card_serial = $request->card_serial;
+                $clientCard->wallet = $request->wallet;
+                if (Auth::guard('admin')->check()) {
+                    $clientCard->id_creator = Auth::guard('admin')->user()->id;
+                    $clientCard->creator_type = 'admin';
+                } else if (Auth::guard('staff')->check()) {
+                    $clientCard->id_creator = Auth::guard('staff')->user()->id;
+                    $clientCard->creator_type = 'staff';
+                }
+                $expiryDate = Carbon::today()->addDays($cardSelected->period);
+                $clientCard->expiry_date = $expiryDate;
+                $clientCard->save();
+                return redirect()->route('client.cards', ['id' => $id]);
+            }
+
+
+            return back()->withErrors(['error' => 'You type an invalide data']);
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => 'something uncorrected ' . $e]);
+        }
+
+
+
+        return response()->json($request->all());
     }
 }

@@ -33,7 +33,13 @@
                                 @endif
                             @endforeach
 
-                            <span>-</span>
+                            <span>
+                                @if ($table == 'Clients')
+                                    <a href="/dashboard/client/{{ $item['id'] }}/cards">cards</a>
+                                @endif
+                                <a>Edite</a>
+                                <a>Delete</a>
+                            </span>
                         </div>
                     @endforeach
                 </div>
