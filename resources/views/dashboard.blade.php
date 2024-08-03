@@ -19,10 +19,10 @@
 
 
 
-    {{-- <link rel="stylesheet" href="{{ asset('dist/css/statistics.css') }}"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('dist/css/users.css') }}"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('dist/css/cards.css') }}"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('dist/css/cards_create.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('dist/css/statistics.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/users.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/cards.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/cards_create.css') }}">
 
 </head>
 
