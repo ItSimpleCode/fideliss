@@ -38,26 +38,27 @@
                                         <td>{{ $item[$field] }}</td>
                                     @endif
                                 @endforeach
+                                
                                 <td>
                                     <div class="actions">
-                                        <a href=""><i class="fa-regular fa-credit-card"></i><span>cards</span></a>
-                                        <a href=""><i class="fa-regular fa-pen-to-square"></i><span>edit</span></a>
+                                        @if ($table == 'clients')
+                                            <a href="/dashboard/client/{{ $item['id'] }}/cards">
+                                                <i class="fa-regular fa-credit-card"></i>
+                                                <span>cards</span>
+                                            </a>
+                                        @endif
+                                        <a href={{ route($table . '.edite.show', ['id' => $item['id']]) }}>
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                            <span>edit</span>
+                                        </a>
                                         <a href=""><i class="fa-solid fa-user-slash"></i><span>disactive</span></a>
                                     </div>
                                 </td>
-                                
-                                <span>
-                                      @if ($table == 'clients')
-                                          <a href="/dashboard/client/{{ $item['id'] }}/cards">cards</a>
-                                      @endif
-                                      <a href={{ route($table . '.edite.show', ['id' => $item['id']]) }}>cards</a>
-                                      <a>Desactivate</a>
-                                </span>
+
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-
             @else
                 <div class="no_data">
                     <p>no data exist</p>
