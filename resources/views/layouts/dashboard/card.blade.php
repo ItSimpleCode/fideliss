@@ -1,7 +1,6 @@
 @extends('dashboard')
 
 @section('content')
-@section('content')
     <section class="dark-bg">
         <div class="head">
             <div class="title">cards</div>
@@ -31,5 +30,4 @@
             @endfor
         </div>
     </section>
-@endsection
 @endsection
