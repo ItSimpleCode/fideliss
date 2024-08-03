@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class CardController extends Controller
 {
@@ -31,7 +32,7 @@ class CardController extends Controller
             ];
         });
 
-        $table = 'Cards';
+        $table = 'cards';
         return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
     }
 
@@ -53,6 +54,7 @@ class CardController extends Controller
                     'duration' => $clientCard->cards ? $clientCard->cards->duration : 'N/A',
                     'active' => $clientCard->cards ? $clientCard->cards->active : 'N/A',
                 ],
+                'qrCode' => QrCode::size(100)->generate('/batata')
             ];
         });
 

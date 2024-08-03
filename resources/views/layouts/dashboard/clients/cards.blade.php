@@ -34,7 +34,7 @@
                             <span>{{ $item['cards']['name'] }}</span>
                             <span>{{ $item['expiry_date'] }}</span>
                             <span>
-                                -
+                                {{ $item['qrCode'] }}
                             </span>
                         </div>
                     @endforeach

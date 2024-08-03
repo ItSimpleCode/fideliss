@@ -30,6 +30,7 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/admins', [AdminController::class, 'index'])->name('admins');
     Route::get('/dashboard/admins/add', [AdminController::class, 'showAddForm'])->name('admins.add.show');
     Route::post('/dashboard/admins/add', [AdminController::class, 'create'])->name('admins.add.store');
+    Route::get('/dashboard/admins/edite/{id}', [BranchController::class, 'edite'])->name('admins.edite.show');
 
     Route::get('/dashboard/branchs', [BranchController::class, 'index'])->name('branchs');
     Route::get('/dashboard/branchs/add', [BranchController::class, 'showAddForm'])->name('branchs.add.show');
@@ -40,6 +41,7 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/staffs', [StaffController::class, 'index'])->name('staffs');
     Route::get('/dashboard/staffs/add', [StaffController::class, 'showAddForm'])->name('staffs.add.show');
     Route::post('/dashboard/staffs/add', [StaffController::class, 'create'])->name('staffs.add.store');
+    Route::get('/dashboard/staffs/edite/{id}', [BranchController::class, 'edite'])->name('staffs.edite.show');
 
     Route::get('/dashboard/clients', [ClientController::class, 'index'])->name('clients');
     Route::get('/dashboard/clients/add', [ClientController::class, 'showAddForm'])->name('clients.add.show');
@@ -48,8 +50,9 @@ Route::middleware(['user.auth'])->group(function () {
     Route::post('/dashboard/clients/edite/{id}', [ClientController::class, 'edite'])->name('clients.edite.store');
 
     Route::get('/dashboard/cards', [CardController::class, 'index'])->name('cards');
-    Route::get('/dashboard/cards/add', [CardController::class, 'show'])->name('cards.add.show');
+    Route::get('/dashboard/cards/add', [CardController::class, 'showAddForm'])->name('cards.add.show');
     Route::post('/dashboard/cards/add', [CardController::class, 'create'])->name('cards.add.store');
+    Route::get('/dashboard/cards/edite/{id}', [CardController::class, 'showEditeForm'])->name('cards.edite.show');
 
 
     Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');
