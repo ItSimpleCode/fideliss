@@ -20,12 +20,14 @@
         </ul>
         <ul>
             <li>
-                <a href={{ route('admins') }}><i class="fa-solid fa-user-tie"></i><span class="text">admins</span></a>
+                <a href={{ route('branchs') }}>
+                    <i class="fa-solid fa-code-branch"></i><span class="text">branchs</span>
+                </a>
             </li>
             <li>
-                <a href={{ route('branchs') }}><i class="fa-solid fa-house-laptop"></i><span
-                        class="text">branchs</span></a>
+                <a href={{ route('admins') }}><i class="fa-solid fa-user-tie"></i><span class="text">admins</span></a>
             </li>
+
             <li>
                 <a href={{ route('staffs') }}><i class="fa-solid fa-users"></i><span class="text">staffs</span></a>
             </li>
@@ -35,8 +37,7 @@
         </ul>
         <ul>
             <li>
-                <a href="{{ Route('cards') }}"><i class="fa-regular fa-credit-card"></i><span
-                        class="text">cards</span></a>
+                <a href="{{ Route('cards') }}"><i class="fa-regular fa-credit-card"></i><span class="text">cards</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-ticket"></i><span class="text">rewords</span></a>
@@ -52,8 +53,7 @@
                 <a><i class="fa-regular fa-circle-user"></i><span class="text">profile</span></a>
             </li>
             <li>
-                <a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i><span class="text">log
-                        out</span></a>
+                <a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i><span class="text">log out</span></a>
             </li>
 
         </ul>
