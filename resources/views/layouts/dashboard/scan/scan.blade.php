@@ -1,7 +1,42 @@
 @extends('dashboard')
-@section('title','Scan')
+@section('title', 'Scan')
+@section('stylesheet', 'dist/css/scanner/scan.css')
 @section('content')
     <section class="dark-bg">
-        scan page
+        h1>QR Code Scanner</h1>
+        <div id="reader" style="width: 500px;"></div>
+        <div id="result"></div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const html5QrCode = new Html5Qrcode("reader");
+
+                const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+                    console.log(`Code matched = ${decodedText}`, decodedResult);
+                    document.getElementById('result').innerText = `QR Code detected: ${decodedText}`;
+                    html5QrCode.stop().then((ignore) => {
+                        
+                        // QR Code scanning is stopped.
+                    }).catch((err) => {
+                        // Stop failed, handle it.
+                        console.log(err);
+                    });
+                };
+
+                const config = {
+                    fps: 10,
+                    qrbox: 250
+                };
+
+                html5QrCode.start({
+                        facingMode: "environment"
+                    },
+                    config,
+                    qrCodeSuccessCallback
+                ).catch((err) => {
+                    // Start failed, handle it.
+                    console.log(err);
+                });
+            });
+        </script>
     </section>
 @endsection

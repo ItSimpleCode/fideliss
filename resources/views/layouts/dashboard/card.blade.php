@@ -1,4 +1,5 @@
 @extends('dashboard')
+@section('stylesheet', 'dist/css/cards.css')
 
 @section('content')
     <section class="dark-bg">

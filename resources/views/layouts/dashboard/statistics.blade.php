@@ -1,5 +1,5 @@
 @extends('dashboard')
-@section('title', 'Statistics')
+@section('stylesheet', 'dist/css/statistics.css')
 
 @section('content')
     <section class="statistics-cards">
