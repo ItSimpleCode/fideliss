@@ -6,6 +6,7 @@ use App\Mail\forgetPasswordMail;
 use App\Models\Admin;
 use App\Models\Branch;
 use App\Models\Client;
+use App\Models\ClientCards;
 use App\Models\Staff;
 use App\Models\Transaction;
 use Exception;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class AuthController extends Controller
 {
@@ -94,9 +96,5 @@ class AuthController extends Controller
         // return response()->json($transactions);
         return view('layouts.dashboard.statistics', ['transactions']);
     }
-    public function showScanPage()
-    {
-        return view('layouts.dashboard.scan.scan');
-    }
-
+   
 }
