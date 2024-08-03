@@ -1,7 +1,6 @@
 @extends('dashboard')
 @section('title', $client[1] . ' - cards')
 @section('content')
-@section('content')
     <section class="dark-bg">
         <div class="head">
             <div class="title">
@@ -48,5 +47,4 @@
         </div>
 
     </section>
-@endsection
 @endsection

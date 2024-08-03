@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CardController;
-
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,15 +26,30 @@ use Illuminate\Support\Facades\Route;
 // Private routes
 Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/statistics', [AuthController::class, 'showStatistics'])->name('statistics');
-    Route::get('/dashboard/admins', [AuthController::class, 'showAdmins'])->name('admins');
+
+    Route::get('/dashboard/admins', [AdminController::class, 'index'])->name('admins');
+    Route::get('/dashboard/admins/add', [AdminController::class, 'showAddForm'])->name('admins.add.show');
+    Route::post('/dashboard/admins/add', [AdminController::class, 'create'])->name('admins.add.store');
 
     Route::get('/dashboard/branchs', [BranchController::class, 'index'])->name('branchs');
+    Route::get('/dashboard/branchs/add', [BranchController::class, 'showAddForm'])->name('branchs.add.show');
+    Route::post('/dashboard/branchs/add', [BranchController::class, 'create'])->name('branchs.add.store');
+    Route::get('/dashboard/branchs/edite/{id}', [BranchController::class, 'showEditeForm'])->name('branchs.edite.show');
+    Route::post('/dashboard/branchs/edite/{id}', [BranchController::class, 'edite'])->name('branchs.edite.store');
+    
+    Route::get('/dashboard/staffs', [StaffController::class, 'index'])->name('staffs');
+    Route::get('/dashboard/staffs/add', [StaffController::class, 'showAddForm'])->name('staffs.add.show');
+    Route::post('/dashboard/staffs/add', [StaffController::class, 'create'])->name('staffs.add.store');
 
-    Route::get('/dashboard/staffs', [AuthController::class, 'showStaffs'])->name('staffs');
-
-    Route::get('/dashboard/clients', [AuthController::class, 'showClients'])->name('clients');
+    Route::get('/dashboard/clients', [ClientController::class, 'index'])->name('clients');
+    Route::get('/dashboard/clients/add', [ClientController::class, 'showAddForm'])->name('clients.add.show');
+    Route::post('/dashboard/clients/add', [ClientController::class, 'create'])->name('clients.add.store');
+    Route::get('/dashboard/clients/edite/{id}', [ClientController::class, 'showEditeForm'])->name('clients.edite.show');
+    Route::post('/dashboard/clients/edite/{id}', [ClientController::class, 'edite'])->name('clients.edite.store');
 
     Route::get('/dashboard/cards', [CardController::class, 'index'])->name('cards');
+    Route::get('/dashboard/cards/add', [CardController::class, 'show'])->name('cards.add.show');
+    Route::post('/dashboard/cards/add', [CardController::class, 'create'])->name('cards.add.store');
 
     Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');
     Route::get('/dashboard/client/{id}/cards/add', [CardController::class, 'showClientCardsAddForm'])->name('cards.create.show');
