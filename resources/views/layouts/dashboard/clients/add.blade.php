@@ -17,24 +17,60 @@
                 <span>Add client</span>
             </h1>
         </div>
+        <div class="form">
 
+            <form action="{{ route('clients.add.store') }}" method="POST">
+                @csrf
+                <div class="part">
+                    <div class="double-fields">
+                        <div class="field">
+                            <label for="first-name">first name</label>
+                            <input type="text" name="first_name" id="first-name">
+                        </div>
+                        <div class="field">
+                            <label for="last-name">last name</label>
+                            <input type="text" name="last_name" id="last-name">
+                        </div>
+                    </div>
+                    <div class="double-fields">
+                        <div class="field">
+                            <label for="email">email</label>
+                            <input type="text" name="email" id="email">
+                        </div>
+                        <div class="field">
+                            <label for="phone">phone number</label>
+                            <input type="text" name="phone_number" id="phone">
+                        </div>
+                    </div>
+                    <div class="selection-field">
+                        <div class="field">
+                            <label for="type">gender</label>
+                            <input type="text" name="gender" id="type">
+                            <i class="fa-solid fa-angle-down"></i>
+                        </div>
+                        <div class="options">
+                            @foreach (['male', 'female'] as $gender)
+                                <span class="option">{{ $gender }}</span>
+                            @endforeach
 
-        <form action={{ route('clients.add.store') }} method="POST">
-            @csrf
-            <input type="text" name="first_name">
-            <input type="text" name="last_name">
-            <input type="date" name="birth_date">
-            <input type="text" name="phone_number">
-            <select name="gender">
-                <option value="male">male</option>
-                <option value="female">female</option>
-            </select>
-            <input type="text" name="address">
-            <input type="email" name="email">
-            <input type="password" name="password">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="address">address</label>
+                        <input type="text" name="address" id="address">
+                    </div>
+                    <div class="field">
+                        <label for="birth_date">birth_date</label>
+                        <input type="text" name="birth_date" id="birth_date">
+                    </div>
+                </div>
 
-            <button type="submit">save</button>
-        </form>
+                <div class="part">
+                    <button type="submit"><i class="fa-regular fa-credit-card"></i><span>add client</span></button>
+                </div>
+
+            </form>
+        </div>
 
     </section>
 @endsection
