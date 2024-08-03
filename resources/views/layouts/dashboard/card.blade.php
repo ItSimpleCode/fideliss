@@ -5,7 +5,7 @@
     <section class="dark-bg">
         <div class="head">
             <div class="title">cards</div>
-            <a class="add" href="{{ Route('cards.create') }}"> <i class="fa-solid fa-plus"></i><span>add new card</span></a>
+            <a class="add" href=""> <i class="fa-solid fa-plus"></i><span>add new card</span></a>
         </div>
         <div class="cards">
             @for ($i = 0; $i < 15; $i++)

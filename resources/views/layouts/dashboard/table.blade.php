@@ -3,12 +3,9 @@
 
 @section('content')
     <section class="dark-bg users">
-
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
-            <button>
-                <a href={{ route($table . '.add.show') }}>Add</a>
-            </button>
+            <a class="add" href="{{ route($table . '.add.show') }}"> <i class="fa-solid fa-plus"></i><span>add new row</span></a>
         </div>
 
         <div class="main-table">
@@ -38,7 +35,7 @@
                                         <td>{{ $item[$field] }}</td>
                                     @endif
                                 @endforeach
-                                
+
                                 <td>
                                     <div class="actions">
                                         @if ($table == 'clients')
