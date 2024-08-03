@@ -106,7 +106,7 @@
                         data: {
                             labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
                             datasets: [{
-                                label: 'My First Dataset',
+                                label: 'transactions',
                                 data: [12, 19, 3, 5, 2, 3, 7],
                                 backgroundColor: 'rgba(75, 192, 192, 0.45)',
                                 borderColor: 'rgba(75, 192, 192, 1)',

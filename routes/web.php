@@ -25,15 +25,21 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/statistics', [AuthController::class, 'showStatistics'])->name('statistics');
     Route::get('/dashboard/admins', [AuthController::class, 'showAdmins'])->name('admins');
+
     Route::get('/dashboard/branchs', [BranchController::class, 'index'])->name('branchs');
+
     Route::get('/dashboard/staffs', [AuthController::class, 'showStaffs'])->name('staffs');
+
     Route::get('/dashboard/clients', [AuthController::class, 'showClients'])->name('clients');
-    Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');
+
     Route::get('/dashboard/cards', [CardController::class, 'index'])->name('cards');
-    Route::get('/dashboard/cards/new', fn ()  => view('layouts.dashboard.card_create'))->name('cards.create');
 
-    Route::get('/dashboard/clients_cards', fn ()  => view('layouts.dashboard.card'))->name('clients_cards');
 
+    Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');
+    Route::get('/dashboard/client/{id}/cards/add', [CardController::class, 'showClientCardsAddForm'])->name('cards.create.show');
+    Route::post('/dashboard/client/{id}/cards/add', [CardController::class, 'addCardToClient'])->name('cards.create.store');
+
+    // Route::get('/dashboard/clients_cards', fn ()  => view('layouts.dashboard.card'))->name('clients_cards');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
@@ -47,10 +53,7 @@ Route::post('/forgetPassword', [AuthController::class, 'SendPasswordInMail'])->n
 
 
 Route::fallback(function () {
-    return Auth::check()
+    return Auth::guard('admin')->check() || Auth::guard('staff')->check()
         ? redirect()->route('statistics')
         : redirect()->route('login.show');
 });
-
-// Route::get('addAdmin', [AuthController::class, 'addAdmin']);
-// Route::get('addStaf', [AuthController::class, 'addStaf']);

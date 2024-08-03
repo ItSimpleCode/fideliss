@@ -19,6 +19,7 @@
                                     <th>{{ $column }}</th>
                                 @endif
                             @endforeach
+
                             <th class="actions">Actions</th>
                         </tr>
                     </thead>
