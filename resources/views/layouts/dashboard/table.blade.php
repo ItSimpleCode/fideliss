@@ -1,15 +1,19 @@
 @extends('dashboard')
 @section('title', $table)
+
 @section('content')
     <section class="dark-bg users">
+
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
             <button>
-                <i class="fa-solid fa-ellipsis-vertical"></i>
+                <a href={{ route($table . '.add.show') }}>Add</a>
             </button>
         </div>
+
         <div class="main-table">
             @if ($data->count() > 0)
+
                 <table>
                     <thead>
                         <tr>
@@ -41,14 +45,23 @@
                                         <a href=""><i class="fa-solid fa-user-slash"></i><span>disactive</span></a>
                                     </div>
                                 </td>
+                                
+                                <span>
+                                      @if ($table == 'clients')
+                                          <a href="/dashboard/client/{{ $item['id'] }}/cards">cards</a>
+                                      @endif
+                                      <a href={{ route($table . '.edite.show', ['id' => $item['id']]) }}>cards</a>
+                                      <a>Desactivate</a>
+                                </span>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+
             @else
-                {{-- <div class="no_data">
+                <div class="no_data">
                     <p>no data exist</p>
-                </div> --}}
+                </div>
             @endif
         </div>
     </section>
