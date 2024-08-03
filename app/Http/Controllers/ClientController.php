@@ -39,7 +39,6 @@ class ClientController extends Controller
                 'gender' => 'required|max:255',
                 'address' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
-                'password' => 'required|min:8|max:255',
             ]);
 
             $client = new Client;
@@ -50,7 +49,7 @@ class ClientController extends Controller
             $client->gender = $request->gender;
             $client->address = $request->address;
             $client->email = $request->email;
-            $client->password = $request->password;
+            $client->password = '123456789';
             if (Auth::guard('admin')->check()) {
                 $client->id_creator = Auth::guard('admin')->user()->id;
                 $client->creator_type = 'admin';
@@ -88,7 +87,6 @@ class ClientController extends Controller
                 'gender' => 'required|max:255',
                 'address' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
-                'password' => 'required|min:8|max:255',
             ]);
 
             $client = Client::find($id);
@@ -99,7 +97,7 @@ class ClientController extends Controller
             $client->gender = $request->gender;
             $client->address = $request->address;
             $client->email = $request->email;
-            $client->password = $request->password;
+            $client->password = '123456789';
             if (Auth::guard('admin')->check()) {
                 $client->id_creator = Auth::guard('admin')->user()->id;
                 $client->creator_type = 'admin';

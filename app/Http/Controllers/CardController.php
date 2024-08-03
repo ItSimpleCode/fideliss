@@ -54,7 +54,7 @@ class CardController extends Controller
                     'duration' => $clientCard->cards ? $clientCard->cards->duration : 'N/A',
                     'active' => $clientCard->cards ? $clientCard->cards->active : 'N/A',
                 ],
-                'qrCode' => QrCode::size(100)->generate('/batata')
+                'qrCode' => QrCode::size(100)->generate($clientCard->card_serial)
             ];
         });
 
@@ -115,5 +115,51 @@ class CardController extends Controller
         } catch (Exception $e) {
             return back()->withErrors(['error' => 'something uncorrected ' . $e]);
         }
+    }
+
+    public function showScanPage()
+    {
+        return view('layouts.dashboard.scan.scan');
+    }
+    public function showAddPointsPage($card_serial)
+    {
+        $card = ClientCards::with('client', 'cards')
+            ->where('card_serial', $card_serial)
+            ->first();
+
+        if (!$card) {
+            return response()->json(['error' => 'Card not found'], 404);
+        }
+
+        $data = [
+            'id' => $card->id,
+            'card_serial' => $card->card_serial,
+            'wallet' => $card->wallet,
+            'expiry_date' => Carbon::parse($card->expiry_date)->format('m/d'),
+            'type' => $card->cards->name,
+            'client' => [
+                'name' => $card->client->first_name . ' ' . $card->client->last_name,
+                'birth_date' => $card->client->birth_date,
+                'phone_number' => $card->client->phone_number,
+                'gender' => $card->client->gender,
+                'address' => $card->client->address,
+                'email' => $card->client->email,
+            ],
+            'created_at' => $card->created_at->format('Y-m-d H:i:s'),
+        ];
+
+        // return response()->json($data);
+        return view('layouts.dashboard.scan.addPoints', compact('card'));
+    }
+
+    public function AddPointsToCard(Request $request, $id)
+    {
+        $request->validate([
+            'points' => 'required|numeric|max:255',
+        ]);
+        $card = ClientCards::find($id);
+        $card->wallet = $card->wallet + $request->points;
+        $card->update();
+        return response()->json('points upgrated sucssucfully');
     }
 }

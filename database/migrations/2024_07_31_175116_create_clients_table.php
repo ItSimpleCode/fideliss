@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('address');
             $table->string('email')->unique();
-            $table->string('password');
             $table->integer('id_creator');
             $table->enum('creator_type', ['admin', 'staff']);
             $table->timestamps();
