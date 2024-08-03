@@ -58,6 +58,8 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');
     Route::get('/dashboard/client/{id}/cards/add', [CardController::class, 'showClientCardsAddForm'])->name('cards.create.show');
     Route::post('/dashboard/client/{id}/cards/add', [CardController::class, 'addCardToClient'])->name('cards.create.store');
+    
+    Route::get('/dashboard/scan', [AuthController::class, 'showScanPage'])->name('scan.show');
 
     // Route::get('/dashboard/clients_cards', fn ()  => view('layouts.dashboard.card'))->name('clients_cards');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

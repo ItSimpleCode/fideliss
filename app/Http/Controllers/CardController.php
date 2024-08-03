@@ -115,9 +115,5 @@ class CardController extends Controller
         } catch (Exception $e) {
             return back()->withErrors(['error' => 'something uncorrected ' . $e]);
         }
-
-
-
-        return response()->json($request->all());
     }
 }

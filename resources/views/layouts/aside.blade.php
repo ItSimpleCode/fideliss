@@ -37,13 +37,14 @@
         </ul>
         <ul>
             <li>
-                <a href="{{ Route('cards') }}"><i class="fa-regular fa-credit-card"></i><span class="text">cards</span></a>
+                <a href="{{ Route('cards') }}"><i class="fa-regular fa-credit-card"></i><span
+                        class="text">cards</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-ticket"></i><span class="text">rewords</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa-solid fa-qrcode"></i><span class="text">scan</span></a>
+                <a href="{{ Route('scan.show') }}"><i class="fa-solid fa-qrcode"></i><span class="text">scan</span></a>
             </li>
         </ul>
     </div>
@@ -56,7 +57,8 @@
                 <a><i class="fa-regular fa-circle-user"></i><span class="text">profile</span></a>
             </li>
             <li>
-                <a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i><span class="text">log out</span></a>
+                <a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i><span class="text">log
+                        out</span></a>
             </li>
 
         </ul>

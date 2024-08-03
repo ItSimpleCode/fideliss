@@ -67,9 +67,6 @@ class AuthController extends Controller
     }
 
 
-
-
-
     //! --- logout traitement
     public function logout()
     {
@@ -96,6 +93,10 @@ class AuthController extends Controller
 
         // return response()->json($transactions);
         return view('layouts.dashboard.statistics', ['transactions']);
+    }
+    public function showScanPage()
+    {
+        return view('layouts.dashboard.scan.scan');
     }
 
 }
