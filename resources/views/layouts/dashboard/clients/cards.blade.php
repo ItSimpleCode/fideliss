@@ -9,62 +9,43 @@
                     <span>{{ $client[1] }}</span>
                 </a>
             </div>
-            <a class="add" href="/dashboard/client/{{ $client[0] }}/cards/add"><i class="fa-solid fa-plus"></i><span>add new row</span></a>
+            <a class="add" href="/dashboard/client/{{ $client[0] }}/cards/add"><i class="fa-solid fa-plus"></i><span>add
+                    new row</span></a>
         </div>
-{*//*}
+
 
         <div class="main-table">
-            @if ($data && $data->count() > 0)
-                <div class="table_columns">
-                    <span>#</span>
-                    <span>Card Serial</span>
-                    <span>Wallet</span>
-                    <span>Card Type</span>
-                    <span>Expiry Date</span>
-                    <span>Actions</span>
-                </div>
 
-                <div class="table_rows" data-scrollbar>
+            @if ($data && $data->count() > 0)
+                <div class="cards">
                     @foreach ($data as $index => $item)
-                        <div class="row">
-                            <span>{{ $index + 1 }}</span>
-                            <span>{{ $item['card_serial'] }}</span>
-                            <span>{{ $item['wallet'] }} dh</span>
-                            <span>{{ $item['cards']['name'] }}</span>
-                            <span>{{ $item['expiry_date'] }}</span>
-                            <span>
-                                {{ $item['qrCode'] }}
-                            </span>
-{*//*}
-        @if ($data && $data->count() > 0)
-            <div class="cards">
-                @foreach ($data as $index => $item)
-                    <div class="card">
-                        <img class="bg-img" src="{{ asset('img/card1.png') }}" alt="">
-                        <div class="info">
-                            <div>
-                                <div class="type-of-card">{{ $item['cards']['name'] }}</div>
-                                <img class="qr-code" src="{{ asset('img/qr_code.png') }}" alt="">
-                            </div>
-                            <div>
-                                <div class="client">
-                                    <div class="name">{{ $client[1] }}</div>
-                                    <div class="serial">{{ $item['card_serial'] }}</div>
+                        <div class="card">
+                            <img class="bg-img" src="{{ asset('img/card1.png') }}" alt="">
+                            <div class="info">
+                                <div>
+                                    <div class="type-of-card">{{ $item['cards']['name'] }}</div>
+                                    <div class="qr-code">
+                                        {{ $item['qrCode'] }}
+                                    </div>
                                 </div>
-                                <div class="expiry-date">
-                                    <div class="expiry">expiry</div>
-                                    <div class="date">{{ $item['expiry_date'] }}</div>
+                                <div>
+                                    <div class="client">
+                                        <div class="name">{{ $client[1] }}</div>
+                                        <div class="serial">{{ $item['card_serial'] }}</div>
+                                    </div>
+                                    <div class="expiry-date">
+                                        <div class="expiry">expiry</div>
+                                        <div class="date">{{ $item['expiry_date'] }}</div>
+                                    </div>
                                 </div>
                             </div>
-{*//*}
                         </div>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <div class="no_data">
-                <p>No data exist</p>
-            </div>
-        @endif
+                    @endforeach
+                </div>
+            @else
+                <div class="no_data">
+                    <p>No data exist</p>
+                </div>
+            @endif
     </section>
 @endsection
