@@ -42,6 +42,9 @@
             <li>
                 <a href="#"><i class="fa-solid fa-ticket"></i><span class="text">rewords</span></a>
             </li>
+            <li>
+                <a href="#"><i class="fa-solid fa-qrcode"></i><span class="text">scan</span></a>
+            </li>
         </ul>
     </div>
     <div class="list">

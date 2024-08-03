@@ -11,6 +11,31 @@
             </div>
             <a class="add" href="/dashboard/client/{{ $client[0] }}/cards/add"><i class="fa-solid fa-plus"></i><span>add new row</span></a>
         </div>
+{*//*}
+
+        <div class="main-table">
+            @if ($data && $data->count() > 0)
+                <div class="table_columns">
+                    <span>#</span>
+                    <span>Card Serial</span>
+                    <span>Wallet</span>
+                    <span>Card Type</span>
+                    <span>Expiry Date</span>
+                    <span>Actions</span>
+                </div>
+
+                <div class="table_rows" data-scrollbar>
+                    @foreach ($data as $index => $item)
+                        <div class="row">
+                            <span>{{ $index + 1 }}</span>
+                            <span>{{ $item['card_serial'] }}</span>
+                            <span>{{ $item['wallet'] }} dh</span>
+                            <span>{{ $item['cards']['name'] }}</span>
+                            <span>{{ $item['expiry_date'] }}</span>
+                            <span>
+                                {{ $item['qrCode'] }}
+                            </span>
+{*//*}
         @if ($data && $data->count() > 0)
             <div class="cards">
                 @foreach ($data as $index => $item)
@@ -31,6 +56,7 @@
                                     <div class="date">{{ $item['expiry_date'] }}</div>
                                 </div>
                             </div>
+{*//*}
                         </div>
                     </div>
                 @endforeach
