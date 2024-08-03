@@ -1,4 +1,4 @@
-@import "global";
+@import "../global";
 @import "../layouts/backgrounds";
 @import "../layouts/table";
 
@@ -26,16 +26,18 @@ main {
             flex-flow: column nowrap;
             justify-content: space-between;
 
-            & > div {
+            &>div {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
             }
+
             .up {
                 .number {
                     font-size: 24px;
                     font-weight: 900;
                 }
+
                 i {
                     width: 42px;
                     height: 42px;
@@ -46,12 +48,14 @@ main {
                     background-color: #fff;
                 }
             }
+
             .down {
                 .card-name {
                     font-size: 18px;
                     font-weight: 500;
                     text-transform: capitalize;
                 }
+
                 .percent {
                     font-size: 12px;
                     color: red;

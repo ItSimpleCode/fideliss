@@ -1,4 +1,4 @@
-@import "global";
+@import "../global";
 @import "../layouts/backgrounds";
 @import "../layouts/table";
 @import "../layouts/card";
@@ -34,6 +34,7 @@
         .card {
             width: 525px;
         }
+
         .back {
             .logo {
                 position: absolute;

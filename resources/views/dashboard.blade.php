@@ -12,22 +12,18 @@
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('img/logo.png') }}">
 
-    <link rel="preload" href="{{ asset('dist/css/all.min.css') }}" as="style">
 
-    <link rel="preload" href="{{ asset('fonts/SF-Pro-Rounded-Black.otf') }}" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('fonts/SF-Pro-Rounded-Bold.otf') }}" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('fonts/SF-Pro-Rounded-Heavy.otf') }}" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('fonts/SF-Pro-Rounded-Light.otf') }}" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('fonts/SF-Pro-Rounded-Medium.otf') }}" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('fonts/SF-Pro-Rounded-Regular.otf') }}" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('fonts/SF-Pro-Rounded-Semibold.otf') }}" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('fonts/SF-Pro-Rounded-Thin.otf') }}" as="font" type="font/otf" crossorigin="anonymous">
-    <link rel="preload" href="{{ asset('fonts/SF-Pro-Rounded-Thin.otf') }}" as="font" type="font/otf" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('dist/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/statistics.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/users.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/cards.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/cards_create.css') }}">
+
+    <link rel="stylesheet" href="{{ asset(View::yieldContent('stylesheet')) }}">
+
+
+
+    {{-- <link rel="stylesheet" href="{{ asset('dist/css/statistics.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('dist/css/users.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('dist/css/cards.css') }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('dist/css/cards_create.css') }}"> --}}
+
 </head>
 
 <body>
@@ -38,6 +34,7 @@
         @yield('content')
     </main>
 
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
     <script src="{{ asset('dist/js/smooth-scrollbar.js') }}"></script>
     <script src="{{ asset('dist/js/main.js') }}"></script>
 </body>

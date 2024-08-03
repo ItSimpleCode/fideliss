@@ -1,6 +1,8 @@
 @extends('dashboard')
 @section('title', 'add card to ' . $client['first_name'] . ' ' . $client['last_name'])
 
+@section('stylesheet', 'dist/css/cards_create.css')
+
 @section('content')
     <section class="dark-bg new-card">
         @error('error')

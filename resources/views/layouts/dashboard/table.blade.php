@@ -1,6 +1,8 @@
 @extends('dashboard')
 @section('title', $table)
 
+@section('stylesheet', 'dist/css/users.css')
+
 @section('content')
     <section class="dark-bg users">
         <div class="head">
