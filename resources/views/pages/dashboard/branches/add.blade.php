@@ -1,7 +1,10 @@
 @extends('dashboard')
+
 @section('title', 'add branch')
 
-@section('stylesheet', 'dist\css\pages\branches\add.css')
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('dist\css\pages\branches\add.css') }}">
+@endsection
 
 @section('content')
     <section class="dark-bg">

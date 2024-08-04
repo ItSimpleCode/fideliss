@@ -1,7 +1,10 @@
 @extends('dashboard')
+
 @section('title', $table)
 
-@section('stylesheet', 'dist/css/pages/staffs/staffs.css')
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/staffs/staffs.css') }}">
+@endsection
 
 @section('content')
     <section class="dark-bg users">

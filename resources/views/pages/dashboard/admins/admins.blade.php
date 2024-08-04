@@ -2,7 +2,9 @@
 
 @section('title', $table)
 
-@section('stylesheet', 'dist\css\pages\admins\admins.css')
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('dist\css\pages\admins\admins.css') }}">
+@endsection
 
 @section('content')
     <section class="dark-bg users">

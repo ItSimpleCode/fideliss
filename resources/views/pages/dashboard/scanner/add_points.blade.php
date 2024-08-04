@@ -1,5 +1,11 @@
 @extends('dashboard')
-@section('title', 'Scan')
+
+@section('title', 'add points')
+
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/scanner/add_points.css') }}">
+@endsection
+
 @section('content')
     <section class="dark-bg">
         <div class="head">

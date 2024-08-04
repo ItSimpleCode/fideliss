@@ -1,6 +1,10 @@
 @extends('dashboard')
-@section('title',$client['first_name'] . ' ' . $client['last_name'])
 
+@section('title', "#{$client['first_name']} #{$client['last_name']}")
+
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/clients/edit.css') }}">
+@endsection
 
 @section('content')
     <section class="dark-bg">

@@ -1,7 +1,10 @@
 @extends('dashboard')
-@section('title', 'add card to ' . $client['first_name'] . ' ' . $client['last_name'])
 
-@section('stylesheet', 'dist/css/pages/cards/add.css')
+@section('title', "add card to #{$client['first_name']} #{$client['last_name']}")
+
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/cards/add.css') }}">
+@endsection
 
 @section('content')
     <section class="dark-bg new-card">

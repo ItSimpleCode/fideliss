@@ -2,7 +2,9 @@
 
 @section('title', 'Statistics')
 
-@section('stylesheet', 'dist\css\pages\statistics\statistics.css')
+@section('stylesheet')
+    <link rel="stylesheet" href="{{ asset('dist\css\pages\statistics\statistics.css') }}">
+@endsection
 
 @section('content')
     <section class="statistics-cards">

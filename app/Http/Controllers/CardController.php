@@ -61,10 +61,8 @@ class CardController extends Controller
         $clientNameData = Client::select('first_name', 'last_name')
             ->where('id', $id)
             ->first();
-        $clientname = $clientNameData->first_name . ' ' . $clientNameData->last_name;
-        $client = [
-            $id, $clientname
-        ];
+        $client_name = $clientNameData->first_name . ' ' . $clientNameData->last_name;
+        $client = [$id, $client_name];
 
         return view('pages.dashboard.clients.cards', compact('data', 'client'));
     }
@@ -117,7 +115,7 @@ class CardController extends Controller
         }
     }
 
-    public function showScanPage()
+    public function showScannerPage()
     {
         return view('pages.dashboard.scanner.scanner');
     }
@@ -149,7 +147,7 @@ class CardController extends Controller
         ];
 
         // return response()->json($data);
-        return view('pages.dashboard.scanner.addPoints', compact('card'));
+        return view('pages.dashboard.scanner.add_points', compact('card'));
     }
 
     public function AddPointsToCard(Request $request, $id)
