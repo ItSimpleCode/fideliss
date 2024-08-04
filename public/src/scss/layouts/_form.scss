@@ -1,4 +1,8 @@
 form {
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 48px;
+
     .part {
         display: flex;
         flex-flow: column nowrap;
@@ -60,8 +64,6 @@ form {
 
     .selection-field {
         padding: 0;
-        .field {
-        }
 
         i {
             position: absolute;

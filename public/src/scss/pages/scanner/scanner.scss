@@ -1,0 +1,22 @@
+@import "../../layouts/global";
+@import "../../layouts/backgrounds";
+
+
+h1 {
+    color: #333;
+}
+
+#reader {
+    width: 500px;
+    max-width: 90%;
+    margin: 20px 0;
+    border: 2px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #228B22;
+}

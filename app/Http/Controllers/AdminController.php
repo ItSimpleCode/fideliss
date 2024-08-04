@@ -16,6 +16,6 @@ class AdminController extends Controller
             ->get();
 
         $table = 'admins';
-        return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
+        return view('pages.dashboard.admins.admins', compact('data', 'columns', 'fields', 'table'));
     }
 }

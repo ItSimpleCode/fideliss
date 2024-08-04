@@ -12,17 +12,10 @@
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('img/logo.png') }}">
 
+    <link rel="stylesheet" href="{{ asset('dist/css/fontAwesome/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/fontAwesome/solid.css') }}">
 
-    <link rel="stylesheet" href="{{ asset('dist/css/all.min.css') }}">
-
-    <link rel="stylesheet" href="{{ asset(View::yieldContent('stylesheet')) }}">
-
-
-
-    <link rel="stylesheet" href="{{ asset('dist/css/statistics.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/users.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/cards.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/cards_create.css') }}">
+    @yield('stylesheet')
 
 </head>
 
@@ -37,6 +30,8 @@
     <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
     <script src="{{ asset('dist/js/smooth-scrollbar.js') }}"></script>
     <script src="{{ asset('dist/js/main.js') }}"></script>
+
+    @yield('script')
 </body>
 
 </html>

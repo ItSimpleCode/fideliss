@@ -94,7 +94,6 @@ class AuthController extends Controller
         //     $data = 
 
         // return response()->json($transactions);
-        return view('layouts.dashboard.statistics', ['transactions']);
+        return view('pages.dashboard.statistics.statistics', ['transactions']);
     }
-   
 }

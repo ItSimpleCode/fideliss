@@ -21,12 +21,12 @@ class ClientController extends Controller
         });
 
         $table = 'clients';
-        return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
+        return view('pages.dashboard.clients.clients', compact('data', 'columns', 'fields', 'table'));
     }
 
     public function showAddForm()
     {
-        return view('layouts.dashboard.clients.add');
+        return view('pages.dashboard.clients.add');
     }
     public function create(Request $request)
     {
@@ -73,7 +73,7 @@ class ClientController extends Controller
             ->where('id', $id)
             ->first();
 
-        return view('layouts.dashboard.clients.edite', compact('client'));
+        return view('pages.dashboard.clients.edite', compact('client'));
     }
 
     public function edite(Request $request, $id)

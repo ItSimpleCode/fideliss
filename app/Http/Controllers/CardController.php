@@ -33,7 +33,7 @@ class CardController extends Controller
         });
 
         $table = 'cards';
-        return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
+        return view('pages.dashboard.cards.cards', compact('data', 'columns', 'fields', 'table'));
     }
 
     public function showClientCards($id)
@@ -61,12 +61,10 @@ class CardController extends Controller
         $clientNameData = Client::select('first_name', 'last_name')
             ->where('id', $id)
             ->first();
-        $clientname = $clientNameData->first_name . ' ' . $clientNameData->last_name;
-        $client = [
-            $id, $clientname
-        ];
+        $client_name = $clientNameData->first_name . ' ' . $clientNameData->last_name;
+        $client = [$id, $client_name];
 
-        return view('layouts.dashboard.clients.cards', compact('data', 'client'));
+        return view('pages.dashboard.clients.cards', compact('data', 'client'));
     }
 
     public function showClientCardsAddForm($id)
@@ -78,7 +76,7 @@ class CardController extends Controller
 
         $cards = Card::all();
         $clientCards = ClientCards::where('id_client', $id)->get();
-        return view('layouts.dashboard.clients.card_create', compact('client', 'cards', 'clientCards'));
+        return view('pages.dashboard.cards.add', compact('client', 'cards', 'clientCards'));
     }
 
     public function addCardToClient(Request $request, $id)
@@ -117,9 +115,9 @@ class CardController extends Controller
         }
     }
 
-    public function showScanPage()
+    public function showScannerPage()
     {
-        return view('layouts.dashboard.scan.scan');
+        return view('pages.dashboard.scanner.scanner');
     }
     public function showAddPointsPage($card_serial)
     {
@@ -149,7 +147,7 @@ class CardController extends Controller
         ];
 
         // return response()->json($data);
-        return view('layouts.dashboard.scan.addPoints', compact('card'));
+        return view('pages.dashboard.scanner.add_points', compact('card'));
     }
 
     public function AddPointsToCard(Request $request, $id)

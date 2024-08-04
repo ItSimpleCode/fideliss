@@ -12,8 +12,8 @@ class Staff extends Authenticatable
     {
         return $this->belongsTo(Admin::class, 'id_creator');
     }
-    public function branchs()
+    public function branches()
     {
-        return $this->belongsTo(Branch::class,'id_branch');
+        return $this->belongsTo(Branch::class, 'id_branch');
     }
 }

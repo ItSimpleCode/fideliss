@@ -1,4 +1,4 @@
-<aside class="aside" id="aside">
+<aside class="aside active" id="aside">
     <button id="aside_toggle" class="aside_toggle">
         <i class="fa-solid fa-bars-staggered"></i>
         <span class="text">dashboard</span>
@@ -20,7 +20,7 @@
         </ul>
         <ul>
             <li>
-                <a href={{ route('branchs') }}>
+                <a href={{ route('branches') }}>
                     <i class="fa-solid fa-code-branch"></i><span class="text">branchs</span>
                 </a>
             </li>
@@ -37,14 +37,13 @@
         </ul>
         <ul>
             <li>
-                <a href="{{ Route('cards') }}"><i class="fa-regular fa-credit-card"></i><span
-                        class="text">cards</span></a>
+                <a href="{{ Route('cards') }}"><i class="fa-regular fa-credit-card"></i><span class="text">cards</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa-solid fa-ticket"></i><span class="text">rewords</span></a>
             </li>
             <li>
-                <a href="{{ Route('scan.show') }}"><i class="fa-solid fa-qrcode"></i><span class="text">scan</span></a>
+                <a href="{{ Route('scanner.show') }}"><i class="fa-solid fa-qrcode"></i><span class="text">scan</span></a>
             </li>
         </ul>
     </div>
