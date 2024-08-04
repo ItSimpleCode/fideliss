@@ -13,7 +13,7 @@
         </div>
 
         <h1>current points - {{ $card['wallet'] }}</h1>
-        <form action={{ route('scan.addPoints.store', ['id' => $card['id']]) }} method="POST">
+        <form action={{ route('scanner.addPoints.store', ['id' => $card['id']]) }} method="POST">
             @csrf
             <label for="points">How much point You want to add</label>
             <input type="number" name="points" id="points">
