@@ -21,7 +21,9 @@ class ClientController extends Controller
         });
 
         $table = 'clients';
-        return view('pages.dashboard.clients.clients', compact('data', 'columns', 'fields', 'table'));
+        $btns = ['cards', 'desactive'];
+
+        return view('pages.dashboard.clients.clients', compact('data', 'columns', 'fields', 'table', 'btns'));
     }
 
     public function showAddForm()
@@ -67,13 +69,13 @@ class ClientController extends Controller
     }
 
 
-    public function showEditeForm($id)
+    public function showEditForm($id)
     {
         $client = Client::select('id', 'first_name', 'last_name', 'birth_date', 'phone_number', 'gender', 'address', 'email', 'password')
             ->where('id', $id)
             ->first();
 
-        return view('pages.dashboard.clients.edite', compact('client'));
+        return view('pages.dashboard.clients.edit', compact('client'));
     }
 
     public function edite(Request $request, $id)

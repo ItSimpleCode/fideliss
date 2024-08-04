@@ -24,7 +24,7 @@
             </h1>
         </div>
 
-        <form action={{ route('clients.edite.store', ['id' => $client['id']]) }} method="POST">
+        <form action={{ route('clients.edit.store', ['id' => $client['id']]) }} method="POST">
             @csrf
             <input type="text" name="first_name" value={{ $client['first_name'] }}>
             <input type="text" name="last_name" value={{ $client['last_name'] }}>
