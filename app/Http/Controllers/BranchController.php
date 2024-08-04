@@ -16,12 +16,12 @@ class BranchController extends Controller
             ->orderBy('created_at')
             ->get();
         $table = 'branches';
-        return view('layouts.dashboard.branches.branches', compact('data', 'columns', 'fields', 'table'));
+        return view('pages.dashboard.branches.branches', compact('data', 'columns', 'fields', 'table'));
     }
 
     public function showAddForm()
     {
-        return view('layouts.dashboard.branches.add');
+        return view('pages.dashboard.branches.add');
     }
 
     public function create(Request $request)
@@ -49,7 +49,7 @@ class BranchController extends Controller
             ->where('id', $id)
             ->first();
 
-        return view('layouts.dashboard.branches.edite', compact('branch'));
+        return view('pages.dashboard.branches.edit', compact('branch'));
     }
 
     public function edite(Request $request, $id)

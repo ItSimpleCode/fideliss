@@ -33,7 +33,7 @@ class CardController extends Controller
         });
 
         $table = 'cards';
-        return view('layouts.dashboard.cards.cards', compact('data', 'columns', 'fields', 'table'));
+        return view('pages.dashboard.cards.cards', compact('data', 'columns', 'fields', 'table'));
     }
 
     public function showClientCards($id)
@@ -66,7 +66,7 @@ class CardController extends Controller
             $id, $clientname
         ];
 
-        return view('layouts.dashboard.clients.cards', compact('data', 'client'));
+        return view('pages.dashboard.clients.cards', compact('data', 'client'));
     }
 
     public function showClientCardsAddForm($id)
@@ -78,7 +78,7 @@ class CardController extends Controller
 
         $cards = Card::all();
         $clientCards = ClientCards::where('id_client', $id)->get();
-        return view('layouts.dashboard.cards.add', compact('client', 'cards', 'clientCards'));
+        return view('pages.dashboard.cards.add', compact('client', 'cards', 'clientCards'));
     }
 
     public function addCardToClient(Request $request, $id)
@@ -119,7 +119,7 @@ class CardController extends Controller
 
     public function showScanPage()
     {
-        return view('layouts.dashboard.scanner.scanner');
+        return view('pages.dashboard.scanner.scanner');
     }
     public function showAddPointsPage($card_serial)
     {
@@ -149,7 +149,7 @@ class CardController extends Controller
         ];
 
         // return response()->json($data);
-        return view('layouts.dashboard.scanner.addPoints', compact('card'));
+        return view('pages.dashboard.scanner.addPoints', compact('card'));
     }
 
     public function AddPointsToCard(Request $request, $id)

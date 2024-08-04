@@ -29,6 +29,6 @@ class StaffController extends Controller
             ];
         });
         $table = 'staffs';
-        return view('layouts.dashboard.staffs.staffs', compact('data', 'columns', 'fields', 'table'));
+        return view('pages.dashboard.staffs.staffs', compact('data', 'columns', 'fields', 'table'));
     }
 }
