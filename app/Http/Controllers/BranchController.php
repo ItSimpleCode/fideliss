@@ -15,13 +15,13 @@ class BranchController extends Controller
         $data = Branch::select('id', 'name', 'address')
             ->orderBy('created_at')
             ->get();
-        $table = 'branchs';
-        return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
+        $table = 'branches';
+        return view('layouts.dashboard.branches.branches', compact('data', 'columns', 'fields', 'table'));
     }
 
     public function showAddForm()
     {
-        return view('layouts.dashboard.branchs.add');
+        return view('layouts.dashboard.branches.add');
     }
 
     public function create(Request $request)
@@ -37,7 +37,7 @@ class BranchController extends Controller
             $branch->address = $request->address;
             $branch->save();
 
-            return redirect()->route('branchs');
+            return redirect()->route('branches');
         } catch (Exception $e) {
             return back()->withErrors(['error' =>  $e->getMessage()]);
         }
@@ -49,7 +49,7 @@ class BranchController extends Controller
             ->where('id', $id)
             ->first();
 
-        return view('layouts.dashboard.branchs.edite', compact('branch'));
+        return view('layouts.dashboard.branches.edite', compact('branch'));
     }
 
     public function edite(Request $request, $id)
@@ -65,7 +65,7 @@ class BranchController extends Controller
             $branch->address = $request->address;
             $branch->update();
 
-            return redirect()->route('branchs');
+            return redirect()->route('branches');
         } catch (Exception $e) {
             return back()->withErrors(['error' =>  $e->getMessage()]);
         }

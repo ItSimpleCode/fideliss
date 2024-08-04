@@ -1,5 +1,8 @@
 @extends('dashboard')
 @section('title', 'add client')
+
+@section('stylesheet', 'dist\css\pages\clients\add.css')
+
 @section('content')
     <section class="dark-bg">
         @error('error')

@@ -7,7 +7,7 @@
     <section class="dark-bg users">
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
-            <a class="add" href="{{ route($table . '.add.show') }}"> <i class="fa-solid fa-plus"></i><span>add new row</span></a>
+            <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>add new row</span></a>
         </div>
 
         <div class="main-table">
@@ -46,7 +46,7 @@
                                                 <span>cards</span>
                                             </a>
                                         @endif
-                                        <a href={{ route($table . '.edite.show', ['id' => $item['id']]) }}>
+                                        <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>edit</span>
                                         </a>

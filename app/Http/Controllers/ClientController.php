@@ -21,7 +21,7 @@ class ClientController extends Controller
         });
 
         $table = 'clients';
-        return view('layouts.dashboard.table', compact('data', 'columns', 'fields', 'table'));
+        return view('layouts.dashboard.clients.clients', compact('data', 'columns', 'fields', 'table'));
     }
 
     public function showAddForm()

@@ -1,0 +1,44 @@
+@extends('dashboard')
+@section('title', 'add branch')
+
+@section('stylesheet', 'dist\css\pages\branches\add.css')
+
+@section('content')
+    <section class="dark-bg">
+        @error('error')
+            <div class="message">
+                <span>{{ $message }}</span>
+                <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        @enderror
+
+        <div class="head">
+            <h1 class="title">
+                <a href="{{ route('branches') }}">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+                <span>Add branch</span>
+            </h1>
+        </div>
+
+
+        <form action={{ route('branches.add.store') }} method="POST">
+            @csrf
+            <div class="part">
+                <div class="field">
+                    <label for="name">name</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div class="field">
+                    <label for="address">address</label>
+                    <input type="text" name="address" id="address">
+                </div>
+            </div>
+
+            <div class="part">
+                <button type="submit"><i class="fa-solid fa-code-branch"></i><span>add branch</span></button>
+            </div>
+        </form>
+
+    </section>
+@endsection

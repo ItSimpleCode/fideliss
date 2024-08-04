@@ -30,38 +30,38 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/admins', [AdminController::class, 'index'])->name('admins');
     Route::get('/dashboard/admins/add', [AdminController::class, 'showAddForm'])->name('admins.add.show');
     Route::post('/dashboard/admins/add', [AdminController::class, 'create'])->name('admins.add.store');
-    Route::get('/dashboard/admins/edite/{id}', [BranchController::class, 'edite'])->name('admins.edite.show');
+    Route::get('/dashboard/admins/edit/{id}', [BranchController::class, 'edit'])->name('admins.edit.show');
 
-    Route::get('/dashboard/branchs', [BranchController::class, 'index'])->name('branchs');
-    Route::get('/dashboard/branchs/add', [BranchController::class, 'showAddForm'])->name('branchs.add.show');
-    Route::post('/dashboard/branchs/add', [BranchController::class, 'create'])->name('branchs.add.store');
-    Route::get('/dashboard/branchs/edite/{id}', [BranchController::class, 'showEditeForm'])->name('branchs.edite.show');
-    Route::post('/dashboard/branchs/edite/{id}', [BranchController::class, 'edite'])->name('branchs.edite.store');
+    Route::get('/dashboard/branches', [BranchController::class, 'index'])->name('branches');
+    Route::get('/dashboard/branches/add', [BranchController::class, 'showAddForm'])->name('branches.add.show');
+    Route::post('/dashboard/branches/add', [BranchController::class, 'create'])->name('branches.add.store');
+    Route::get('/dashboard/branches/edit/{id}', [BranchController::class, 'showEditForm'])->name('branches.edit.show');
+    Route::post('/dashboard/branches/edit/{id}', [BranchController::class, 'edit'])->name('branches.edit.store');
 
     Route::get('/dashboard/staffs', [StaffController::class, 'index'])->name('staffs');
     Route::get('/dashboard/staffs/add', [StaffController::class, 'showAddForm'])->name('staffs.add.show');
     Route::post('/dashboard/staffs/add', [StaffController::class, 'create'])->name('staffs.add.store');
-    Route::get('/dashboard/staffs/edite/{id}', [BranchController::class, 'edite'])->name('staffs.edite.show');
+    Route::get('/dashboard/staffs/edit/{id}', [BranchController::class, 'edit'])->name('staffs.edit.show');
 
     Route::get('/dashboard/clients', [ClientController::class, 'index'])->name('clients');
     Route::get('/dashboard/clients/add', [ClientController::class, 'showAddForm'])->name('clients.add.show');
     Route::post('/dashboard/clients/add', [ClientController::class, 'create'])->name('clients.add.store');
-    Route::get('/dashboard/clients/edite/{id}', [ClientController::class, 'showEditeForm'])->name('clients.edite.show');
-    Route::post('/dashboard/clients/edite/{id}', [ClientController::class, 'edite'])->name('clients.edite.store');
+    Route::get('/dashboard/clients/edit/{id}', [ClientController::class, 'showEditForm'])->name('clients.edit.show');
+    Route::post('/dashboard/clients/edit/{id}', [ClientController::class, 'edit'])->name('clients.edit.store');
 
     Route::get('/dashboard/cards', [CardController::class, 'index'])->name('cards');
     Route::get('/dashboard/cards/add', [CardController::class, 'showAddForm'])->name('cards.add.show');
     Route::post('/dashboard/cards/add', [CardController::class, 'create'])->name('cards.add.store');
-    Route::get('/dashboard/cards/edite/{id}', [CardController::class, 'showEditeForm'])->name('cards.edite.show');
+    Route::get('/dashboard/cards/edit/{id}', [CardController::class, 'showEditForm'])->name('cards.edit.show');
 
 
     Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');
     Route::get('/dashboard/client/{id}/cards/add', [CardController::class, 'showClientCardsAddForm'])->name('cards.create.show');
     Route::post('/dashboard/client/{id}/cards/add', [CardController::class, 'addCardToClient'])->name('cards.create.store');
-    
-    Route::get('/dashboard/scan', [CardController::class, 'showScanPage'])->name('scan.show');
-    Route::get('/dashboard/addPoints/{cardsSerial}', [CardController::class, 'showAddPointsPage'])->name('scan.addPoints.show');
-    Route::post('/dashboard/addPoints/{id}', [CardController::class, 'AddPointsToCard'])->name('scan.addPoints.store');
+
+    Route::get('/dashboard/scanner', [CardController::class, 'showScannerPage'])->name('scanner.show');
+    Route::get('/dashboard/addPoints/{cardsSerial}', [CardController::class, 'showAddPointsPage'])->name('scanner.addPoints.show');
+    Route::post('/dashboard/addPoints/{id}', [CardController::class, 'AddPointsToCard'])->name('scanner.addPoints.store');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
