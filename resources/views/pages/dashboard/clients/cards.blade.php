@@ -2,7 +2,6 @@
 
 @section('title', "{$client[1]} - cards")
 
-@section('stylesheet', 'dist\css\pages\clients\cards.css')
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist\css\pages\clients\cards.css') }}">
 @endsection

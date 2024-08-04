@@ -9,8 +9,11 @@
     <link rel="icon" href="{{ asset('img/logo.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('img/logo.png') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/log_in.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('dist/css/fontAwesome/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/fontAwesome/solid.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/log_in/log_in.css') }}">
 </head>
 
 <body>

@@ -1,5 +1,5 @@
-@import "../variables/colors";
-@import "../variables/fonts";
+@import "../../variables/colors";
+@import "../../variables/fonts";
 
 body {
     font-family: "sf-pro-rounded";
@@ -86,7 +86,7 @@ body {
         flex-flow: column nowrap;
         row-gap: 24px;
 
-        & > div {
+        &>div {
             display: flex;
             flex-flow: column;
             align-items: start;
@@ -108,6 +108,7 @@ body {
             font-size: 16px;
             font-weight: 600;
         }
+
         button {
             height: 64px;
             background-color: #3e4afa;

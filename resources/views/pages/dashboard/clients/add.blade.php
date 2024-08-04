@@ -3,7 +3,7 @@
 @section('title', 'add client')
 
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('dist\css\pages\clients\clients.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist\css\pages\clients\add.css') }}">
 @endsection
 
 @section('content')
@@ -24,7 +24,6 @@
             </h1>
         </div>
         <div class="form">
-
             <form action="{{ route('clients.add.store') }}" method="POST">
                 @csrf
                 <div class="part">
