@@ -33,7 +33,7 @@
                     console.log(err);
                 });
 
-                window.location.href = `/dashboard/scanner/addPoints/${encodeURIComponent(decodedText)}`;
+                window.location.href = `/dashboard/addPoints/${encodeURIComponent(decodedText)}`;
             };
 
             const config = {
