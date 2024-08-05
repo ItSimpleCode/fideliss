@@ -46,7 +46,7 @@
                         <div class="selection-field">
                             <div class="field">
                                 <label for="pay-method">pay method</label>
-                                <input class="back" type="text" name="pay-method">
+                                <input class="back" type="hidden" name="pay-method">
                                 <input class="front" type="text" id="pay-method">
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
@@ -100,29 +100,36 @@
 
             </form>
             <div class="preview">
-                <div class="card front">
-                    <img class="bg-img" src="{{ asset('img/card1.png') }}" alt="">
-                    <div class="info">
-                        <div>
-                            <div class="type-of-card">Gold Card</div>
-                            <img class="qr-code" src="{{ asset('img/qr_code.png') }}" alt="">
+                <div class="card-2 front">
+                    <img class="bg-img" src="{{ asset('img/VIrus4 1.png') }}" alt="">
+                    <div class="info flex-column">
+                        <div class="up flex-column">
+                            <div class="flex-row">
+                                <div class="flex-row">
+                                    <span class="logo">
+                                        <img src="{{ asset('img/logo2.png') }}" alt="">
+                                    </span>
+                                    <span class="wallet">0</span>
+                                </div>
+                                <div class="qr-code"> <img src="{{ asset('img/qr_code.png') }}" alt=""> </div>
+                            </div>
+                            <div class="serial">xxxx xxxx xxxx xxxx</div>
                         </div>
-                        <div>
-                            <div class="client">
-                                <div class="name">youssef elqayedy</div>
-                                <div class="serial"><span>5195</span><span>1495</span><span>1989</span><span>1561</span>
+                        <div class="down flex-row">
+                            <div class="flex-column">
+                                <div class="type-of-card">Standard Membership Card</div>
+                                <div class="flex-row">
+                                    <div class="name">youssef elqayedy</div>
+                                    <div class="expiry">03/30</div>
                                 </div>
                             </div>
-                            <div class="expiry-date">
-                                <div class="expiry">expiry</div>
-                                <div class="date">07/30</div>
+                            <div class="paypass">
+                                <img src="{{ asset('img/paypass.png') }}" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card back">
-                    <img class="bg-img" src="{{ asset('img/card1.png') }}" alt="">
-                    <img class="logo" src="{{ asset('img/logo.png') }}" alt="">
+                <div class="card-2 back">
                 </div>
             </div>
         </div>

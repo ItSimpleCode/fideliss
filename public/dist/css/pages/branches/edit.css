@@ -682,6 +682,16 @@ form .field input {
   outline: none;
   background-color: transparent;
 }
+form .selection-field.disabled label,
+form .selection-field.disabled input,
+form .field.disabled label,
+form .field.disabled input {
+  color: rgba(255, 255, 255, 0.35);
+}
+form .selection-field.disabled input,
+form .field.disabled input {
+  border-color: rgba(255, 255, 255, 0.35);
+}
 form .selection-field {
   padding: 0;
 }

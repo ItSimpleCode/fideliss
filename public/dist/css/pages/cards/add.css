@@ -825,9 +825,17 @@ i {
   border-radius: 12px;
   padding: 12px;
 }
-.card-2 .qr-code svg {
+.card-2 .qr-code:has(img) {
+  padding: 3px;
+}
+.card-2 .qr-code svg,
+.card-2 .qr-code img {
   width: 100%;
   height: 100%;
+}
+.card-2 .qr-code img {
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
 }
 .card-2 .serial {
   font-size: 27px;
@@ -961,6 +969,16 @@ form .field input {
   outline: none;
   background-color: transparent;
 }
+form .selection-field.disabled label,
+form .selection-field.disabled input,
+form .field.disabled label,
+form .field.disabled input {
+  color: rgba(255, 255, 255, 0.35);
+}
+form .selection-field.disabled input,
+form .field.disabled input {
+  border-color: rgba(255, 255, 255, 0.35);
+}
 form .selection-field {
   padding: 0;
 }
@@ -1070,28 +1088,7 @@ form button[type=submit] {
           flex-flow: column nowrap;
   gap: 24px;
 }
-.form .preview {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  row-gap: 24px;
-}
-.form .preview .card {
-  width: 525px;
-}
-.form .preview .back .logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 300px;
+.form .preview .front {
+  width: 450px;
+  height: 282px;
 }
