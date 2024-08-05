@@ -15,11 +15,11 @@
         </div>
         <div class="form">
             <div id="reader" style="width: 500px;"></div>
-            <form action="">
+            <form action={{ route('scanner.addPoints.showv2') }}>
                 <div class="part">
                     <div class="field">
                         <label for="Identification_number">Identification number</label>
-                        <input type="text" id="Identification_number">
+                        <input type="text" id="Identification_number" name="card_serial">
                     </div>
                 </div>
                 <div class="part">
