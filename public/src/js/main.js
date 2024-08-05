@@ -29,7 +29,8 @@ window.addEventListener("load", function () {
 window.addEventListener("DOMContentLoaded", function () {
   var selectionCon = document.querySelectorAll(".selection-field");
   var selectionField = document.querySelectorAll(".selection-field .field");
-  var selectionFieldInput = document.querySelectorAll(".selection-field input");
+  var selectionFieldInputF = document.querySelectorAll(".selection-field .front");
+  var selectionFieldInputB = document.querySelectorAll(".selection-field .back");
   var selectionFieldOptions = document.querySelectorAll(".selection-field .options");
   selectionField.forEach(function (fie) {
     fie.addEventListener("click", function (e) {
@@ -44,9 +45,20 @@ window.addEventListener("DOMContentLoaded", function () {
     _toConsumableArray(opt.children).forEach(function (chi) {
       chi.onclick = function () {
         return selectionCon.forEach(function (con) {
-          con.contains(chi) && selectionFieldInput.forEach(function (inp) {
-            con.contains(inp) && (inp.value = chi.textContent) && opt.classList.remove("show");
-          });
+          if (con.contains(chi)) {
+            selectionFieldInputF.forEach(function (inp) {
+              // if (con.contains(inp)) inp.value = chi.textContent;
+            });
+            console.log(selectionFieldInputB);
+
+            // selectionFieldInputB.forEach((inp) => {
+            //     console.log(chi);
+            //     if (con.contains(inp)) {
+            //         inp.value = chi.getAttribute("hidden");
+            //     }
+            // });
+            opt.classList.remove("show");
+          }
         });
       };
     });

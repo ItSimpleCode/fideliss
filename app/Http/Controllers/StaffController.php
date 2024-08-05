@@ -39,6 +39,7 @@ class StaffController extends Controller
     {
         $branches = Branch::select('id', 'name')->get();
         return view('pages.dashboard.staffs.add', compact('branches'));
+
     }
 
 

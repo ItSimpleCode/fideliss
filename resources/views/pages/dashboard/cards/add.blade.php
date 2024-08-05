@@ -32,7 +32,8 @@
                         <div class="selection-field">
                             <div class="field">
                                 <label for="type">type of card</label>
-                                <input type="text" name="card_type" id="type">
+                                <input class="back" type="hidden" name="card_type">
+                                <input class="front" type="text" id="type">
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
@@ -45,14 +46,15 @@
                         <div class="selection-field">
                             <div class="field">
                                 <label for="pay-method">pay method</label>
-                                <input type="text" name="" id="pay-method">
+                                <input class="back" type="text" name="pay-method">
+                                <input class="front" type="text" id="pay-method">
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
                                 <span class="option">cash</span>
                                 <span class="option">card bank</span>
                                 @foreach ($clientCards as $card)
-                                    <span class="option">{{ $card['card_serial'] }}</span>
+                                    <span class="option" data-hidden="{{ $card['card_serial'] }}">{{ $card['card_serial'] }}</span>
                                 @endforeach
                             </div>
                         </div>
@@ -90,10 +92,6 @@
                             <input type="text" name="" id="phone"value={{ $client['phone_number'] }} disabled>
                         </div>
                     </div>
-                    {{-- <div class="field">
-                        <label for="address">adderss</label>
-                        <input type="text" name="" id="address">
-                    </div> --}}
                 </div>
 
                 <div class="part">
