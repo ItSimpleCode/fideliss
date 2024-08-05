@@ -33,7 +33,9 @@ class CardController extends Controller
         });
 
         $table = 'cards';
-        return view('pages.dashboard.cards.cards', compact('data', 'columns', 'fields', 'table'));
+
+        // return view('pages.dashboard.cards.cards', compact('data', 'columns', 'fields', 'table'));
+        return view('pages.dashboard.admins.admins', compact('data', 'columns', 'fields', 'table'));
     }
 
     public function showClientCards($id)
