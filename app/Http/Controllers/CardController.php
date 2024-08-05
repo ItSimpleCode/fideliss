@@ -16,16 +16,16 @@ class CardController extends Controller
 
     public function index()
     {
-        $columns = ['name', 'coast', 'period', 'status', 'creations date'];
-        $fields = ['name', 'coast', 'period', 'active', 'created_at'];
-        $cards = Card::select('id', 'name', 'coast', 'period', 'active', 'created_at')
+        $columns = ['name', 'cost', 'period', 'status', 'creations date'];
+        $fields = ['name', 'cost', 'period', 'active', 'created_at'];
+        $cards = Card::select('id', 'name', 'cost', 'period', 'active', 'created_at')
             ->orderBy('created_at')
             ->get();
         $data = $cards->map(function ($card) {
             return [
                 'id' => $card->id,
                 'name' => $card->name,
-                'coast' => $card->coast,
+                'cost' => $card->cost,
                 'period' => $card->period . ' days',
                 'active' => $card->active == 1 ? 'active' : 'desactive',
                 'created_at' => $card->created_at,

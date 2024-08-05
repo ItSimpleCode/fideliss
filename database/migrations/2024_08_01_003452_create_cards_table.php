@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('coast');
+            $table->decimal('cost');
             $table->integer('period');
             $table->boolean('active');
             $table->timestamps();

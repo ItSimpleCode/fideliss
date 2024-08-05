@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Branch;
 use App\Models\Staff;
 use Illuminate\Http\Request;
 
@@ -34,6 +35,7 @@ class StaffController extends Controller
 
     public function showAddForm()
     {
-        return view('pages.dashboard.staffs.add');
+        $branchs = Branch::select('id', 'name')->get();
+        return view('pages.dashboard.staffs.add', compact('branchs'));
     }
 }
