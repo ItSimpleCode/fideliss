@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\Staff;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StaffController extends Controller
 {
@@ -37,5 +39,40 @@ class StaffController extends Controller
     {
         $branches = Branch::select('id', 'name')->get();
         return view('pages.dashboard.staffs.add', compact('branches'));
+
+    }
+
+
+    public function create(Request $request)
+    {
+        try {
+            $request->validate([
+                'first_name' => 'required|max:255',
+                'last_name' => 'required|max:255',
+                'birth_date' => 'required|date',
+                'phone_number' => 'required|max:255',
+                'gender' => 'required|max:255',
+                'email' => 'required|email|max:255',
+                'password' => 'required|min:8|max:255',
+                'id_branch' => 'required',
+            ]);
+
+            $client = new Staff;
+            $client->first_name = $request->first_name;
+            $client->last_name = $request->last_name;
+            $client->birth_date = $request->birth_date;
+            $client->phone_number = $request->phone_number;
+            $client->gender = $request->gender;
+            $client->email = $request->email;
+            $client->password = $request->password;
+            $client->id_creator = Auth::guard('admin')->user()->id;
+            $client->id_branch = $request->id_branch;
+            $client->save();
+
+
+            return redirect()->route('staffs');
+        } catch (Exception $e) {
+            return back()->withErrors(['error' =>  $e->getMessage()]);
+        }
     }
 }

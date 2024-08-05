@@ -10,7 +10,7 @@
     <section class="dark-bg">
         <div class="head">
             <h1 class="title">
-                <a href=''>
+                <a href={{ route('staffs') }}>
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
                 <span>Add staff</span>
