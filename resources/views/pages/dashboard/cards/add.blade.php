@@ -38,9 +38,8 @@
                             </div>
                             <div class="options">
                                 @foreach ($cards as $card)
-                                    <span class="option">{{ $card['name'] }}</span>
+                                    <span class="option" data-hidden="{{ $card['id'] }}">{{ $card['name'] }}</span>
                                 @endforeach
-
                             </div>
                         </div>
                         <div class="selection-field">
@@ -51,10 +50,10 @@
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
-                                <span class="option">cash</span>
-                                <span class="option">card bank</span>
+                                <span class="option" data-hidden="cash">cash</span>
+                                <span class="option" data-hidden="card bank">card bank</span>
                                 @foreach ($clientCards as $card)
-                                    <span class="option" data-hidden="{{ $card['card_serial'] }}">{{ $card['card_serial'] }}</span>
+                                    <span class="option" data-hidden="{{ $card['id'] }}">{{ $card['card_serial'] }}</span>
                                 @endforeach
                             </div>
                         </div>

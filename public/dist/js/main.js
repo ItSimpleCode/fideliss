@@ -50,9 +50,7 @@ window.addEventListener("DOMContentLoaded", function () {
               if (con.contains(inp)) inp.value = chi.textContent;
             });
             selectionFieldInputB.forEach(function (inp) {
-              if (con.contains(inp)) {
-                inp.value = chi.dataset.hidden;
-              }
+              if (con.contains(inp)) inp.value = chi.dataset.hidden;
             });
             opt.classList.remove("show");
           }
