@@ -17,7 +17,7 @@
 
         <div class="head">
             <h1 class="title">
-                <a href="{{ route('branchs') }}">
+                <a href="{{ route('branches') }}">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
                 <span>{{ $branch['name'] }}</span>
@@ -25,12 +25,22 @@
         </div>
 
 
-        <form action={{ route('branchs.edite.store', ['id' => $branch['id']]) }} method="POST">
+        <form action={{ route('branches.edit.store', ['id' => $branch['id']]) }} method="POST">
             @csrf
-            <input type="text" name="name" value={{ $branch['name'] }}>
-            <input type="text" name="address" value={{ $branch['address'] }}>
+            <div class="part">
+                <div class="field">
+                    <label for="name">name</label>
+                    <input type="text" name="name" id="name" value={{ $branch['name'] }}>
+                </div>
+                <div class="field">
+                    <label for="address">address</label>
+                    <input type="text" name="address" id="address" value={{ $branch['address'] }}>
+                </div>
+            </div>
 
-            <button type="submit">save</button>
+            <div class="part">
+                <button type="submit"><i class="fa-solid fa-code-branch"></i><span>add branch</span></button>
+            </div>
         </form>
 
     </section>
