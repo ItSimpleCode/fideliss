@@ -76,7 +76,9 @@
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
-                                <span class="option">branch 1</span>
+                                @foreach ($branches as $branch)
+                                    <span class="option">{{ $branch['name'] }}</span>
+                                @endforeach
                             </div>
                         </div>
                         <div class="field">

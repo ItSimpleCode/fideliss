@@ -35,7 +35,7 @@ class StaffController extends Controller
 
     public function showAddForm()
     {
-        $branchs = Branch::select('id', 'name')->get();
-        return view('pages.dashboard.staffs.add', compact('branchs'));
+        $branches = Branch::select('id', 'name')->get();
+        return view('pages.dashboard.staffs.add', compact('branches'));
     }
 }
