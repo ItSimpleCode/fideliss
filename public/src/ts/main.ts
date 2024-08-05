@@ -22,8 +22,11 @@ window.addEventListener("load", () => {
 window.addEventListener("DOMContentLoaded", () => {
     const selectionCon = document.querySelectorAll(".selection-field");
     const selectionField = document.querySelectorAll(".selection-field .field");
-    const selectionFieldInput = document.querySelectorAll(
-        ".selection-field input"
+    const selectionFieldInputF = document.querySelectorAll(
+        ".selection-field .front"
+    );
+    const selectionFieldInputB = document.querySelectorAll(
+        ".selection-field .back"
     );
     const selectionFieldOptions = document.querySelectorAll(
         ".selection-field .options"
@@ -46,12 +49,17 @@ window.addEventListener("DOMContentLoaded", () => {
         [...opt.children].forEach((chi) => {
             chi.onclick = () =>
                 selectionCon.forEach((con) => {
-                    con.contains(chi) &&
-                        selectionFieldInput.forEach((inp) => {
-                            con.contains(inp) &&
-                                (inp.value = chi.textContent) &&
-                                opt.classList.remove("show");
+                    if (con.contains(chi)) {
+                        selectionFieldInputF.forEach((inp) => {
+                            if (con.contains(inp)) inp.value = chi.textContent;
                         });
+                        selectionFieldInputB.forEach((inp) => {
+                            if (con.contains(inp)) {
+                                inp.value = chi.dataset.hidden;
+                            }
+                        });
+                        opt.classList.remove("show");
+                    }
                 });
         });
     });

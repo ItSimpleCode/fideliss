@@ -50,7 +50,8 @@
                     <div class="selection-field">
                         <div class="field">
                             <label for="type">gender</label>
-                            <input type="text" name="gender" id="type">
+                            <input class="back" type="hidden" name="gender">
+                            <input class="front" type="text" id="type">
                             <i class="fa-solid fa-angle-down"></i>
                         </div>
                         <div class="options">

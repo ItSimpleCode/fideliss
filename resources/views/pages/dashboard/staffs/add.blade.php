@@ -45,7 +45,8 @@
                         <div class="selection-field">
                             <div class="field">
                                 <label for="type">gender</label>
-                                <input type="text" name="gender" id="type">
+                                <input class="back" type="hidden" name="gender">
+                                <input class="front" type="text" id="type">
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
@@ -72,12 +73,13 @@
                         <div class="selection-field">
                             <div class="field">
                                 <label for="branch">branch</label>
-                                <input type="text" name="branch" id="branch">
+                                <input class="back" type="hidden" name="id_branch">
+                                <input class="front" type="text" id="branch">
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
                                 @foreach ($branches as $branch)
-                                    <span class="option">{{ $branch['name'] }}</span>
+                                    <span class="option" data-hidden="{{ $branch['id'] }}">{{ $branch['name'] }}</span>
                                 @endforeach
                             </div>
                         </div>
