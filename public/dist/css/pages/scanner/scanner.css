@@ -604,21 +604,188 @@ i {
   font-size: 16px;
 }
 
-h1 {
-  color: #333;
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  row-gap: 48px;
+}
+form .part {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  gap: 24px;
+}
+form .title {
+  color: #fff;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+form .double-fields {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 24px;
+}
+form .double-fields .selection-field,
+form .double-fields .field {
+  -webkit-box-flex: 250px;
+      -ms-flex: 250px;
+          flex: 250px;
+}
+form .selection-field,
+form .field {
+  width: 100%;
+  height: 82px;
+  padding-top: 14px;
+  position: relative;
+}
+form .selection-field label,
+form .selection-field input,
+form .field label,
+form .field input {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+}
+form .selection-field label,
+form .field label {
+  text-transform: capitalize;
+  position: absolute;
+  top: 0;
+  left: 12px;
+  padding: 4px 8px;
+  background-color: #1a2431;
+}
+form .selection-field input,
+form .field input {
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #fff;
+  outline: none;
+  background-color: transparent;
+}
+form .selection-field {
+  padding: 0;
+}
+form .selection-field i {
+  position: absolute;
+  top: calc(50% + 7px);
+  right: 12px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: #fff;
+  font-size: 24px;
+}
+form .selection-field .options {
+  background-color: #fff;
+  width: 100%;
+  border-radius: 12px;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  z-index: 10;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+form .selection-field .options.show {
+  opacity: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+form .selection-field .options span {
+  font-size: 16px;
+  text-transform: capitalize;
+  padding: 12px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.1s;
+          transition-duration: 0.1s;
+}
+form .selection-field .options span:hover {
+  background-color: #3e4afa;
+  color: #fff;
+}
+form button[type=submit] {
+  background-color: #3e4afa;
+  padding: 24px 0;
+  border-radius: 12px;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  text-transform: capitalize;
+  font-weight: 700;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-column-gap: 12px;
+     -moz-column-gap: 12px;
+          column-gap: 12px;
+}
+
+.sacnner {
+  height: 100%;
+}
+.sacnner .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  row-gap: 24px;
+}
+.sacnner .form > * {
+  max-width: 500px;
+  width: 100%;
 }
 
 #reader {
-  width: 500px;
-  max-width: 90%;
-  margin: 20px 0;
   border: 2px solid #333;
   border-radius: 10px;
   overflow: hidden;
+  width: 500px;
+  height: 376px;
 }
-
-#result {
-  margin-top: 20px;
-  font-size: 18px;
-  color: #228B22;
+#reader video {
+  width: 100%;
+  height: 100%;
 }
