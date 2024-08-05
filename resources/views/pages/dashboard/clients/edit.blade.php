@@ -56,7 +56,7 @@
                     </div>
                     <div class="options">
                         @foreach (['male', 'female'] as $gender)
-                            <span class="option">{{ $gender }}</span>
+                            <span class="option" data-hidden="{{ $gender }}">{{ $gender }}</span>
                         @endforeach
                     </div>
                 </div>
