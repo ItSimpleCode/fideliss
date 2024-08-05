@@ -23,7 +23,7 @@
         @if ($data && $data->count() > 0)
             <div class="cards">
                 @foreach ($data as $index => $item)
-                    <div class="card-2">
+                    <a class="card-2">
                         <img class="bg-img" src="{{ asset('img/VIrus4 1.png') }}" alt="">
                         <div class="info flex-column">
                             <div class="up flex-column">
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         @else
