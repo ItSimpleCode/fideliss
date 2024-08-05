@@ -28,9 +28,7 @@
         <section class="dark-bg transactions">
             <div class="head">
                 <div class="title">transactions</div>
-                <button>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </button>
+
             </div>
             <div class="main-table">
                 <table>
@@ -61,9 +59,7 @@
         <section class="dark-bg rewards">
             <div class="head">
                 <div class="title">rewards</div>
-                <button>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </button>
+
             </div>
 
             <div class="main-table">
@@ -95,9 +91,7 @@
         <section class="dark-bg transactions-static">
             <div class="head">
                 <div class="title">transactions static</div>
-                <button>
-                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                </button>
+
             </div>
             <div class="chart">
                 <canvas id="myChart"></canvas>
