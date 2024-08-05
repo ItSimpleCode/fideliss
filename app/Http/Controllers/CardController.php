@@ -119,7 +119,7 @@ class CardController extends Controller
     {
         return view('pages.dashboard.scanner.scanner');
     }
-    public function showAddPointsPage($card_serial)
+    public function showAddPointsPageBySanning($card_serial)
     {
         $card = ClientCards::with('client', 'cards')
             ->where('card_serial', $card_serial)
@@ -136,7 +136,8 @@ class CardController extends Controller
             'expiry_date' => Carbon::parse($card->expiry_date)->format('m/d'),
             'type' => $card->cards->name,
             'client' => [
-                'name' => $card->client->first_name . ' ' . $card->client->last_name,
+                'first_name' => $card->client->first_name,
+                'last_name' => $card->client->last_name,
                 'birth_date' => $card->client->birth_date,
                 'phone_number' => $card->client->phone_number,
                 'gender' => $card->client->gender,
@@ -144,16 +145,51 @@ class CardController extends Controller
                 'email' => $card->client->email,
             ],
             'created_at' => $card->created_at->format('Y-m-d H:i:s'),
+            'qrCode' => QrCode::size(100)->generate($card->card_serial)
         ];
 
         // return response()->json($data);
-        return view('pages.dashboard.scanner.add_points', compact('card'));
+        return view('pages.dashboard.scanner.add_points', compact('data'));
+    }
+
+
+    public function showAddPointsPageByhand(Request $request)
+    {
+        $card = ClientCards::with('client', 'cards')
+            ->where('card_serial', $request->card_serial)
+            ->first();
+
+        if (!$card) {
+            return response()->json(['error' => 'Card not found'], 404);
+        }
+
+        $data = [
+            'id' => $card->id,
+            'card_serial' => $card->card_serial,
+            'wallet' => $card->wallet,
+            'expiry_date' => Carbon::parse($card->expiry_date)->format('m/d'),
+            'type' => $card->cards->name,
+            'client' => [
+                'first_name' => $card->client->first_name,
+                'last_name' => $card->client->last_name,
+                'birth_date' => $card->client->birth_date,
+                'phone_number' => $card->client->phone_number,
+                'gender' => $card->client->gender,
+                'address' => $card->client->address,
+                'email' => $card->client->email,
+            ],
+            'created_at' => $card->created_at->format('Y-m-d H:i:s'),
+            'qrCode' => QrCode::size(100)->generate($card->card_serial)
+        ];
+
+        // return response()->json($data);
+        return view('pages.dashboard.scanner.add_points', compact('data'));
     }
 
     public function AddPointsToCard(Request $request, $id)
     {
         $request->validate([
-            'points' => 'required|numeric|max:255',
+            'points' => 'required|numeric',
         ]);
         $card = ClientCards::find($id);
         $card->wallet = $card->wallet + $request->points;

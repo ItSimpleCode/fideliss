@@ -12,50 +12,47 @@
             <div class="title">Add Points</div>
         </div>
 
-        {{-- <label for="points">How much point You want to add</label>
-            <input type="number" name="points" id="points">
-            <button>Save</button> --}}
         <div class="form">
-            <form action="{{ route('scanner.addPoints.store', ['id' => $card['id']]) }}" method="POST">
+            <form action="{{ route('scanner.addPoints.store', ['id' => $data['id']]) }}" method="POST">
                 @csrf
                 <div class="part">
                     <div class="double-fields">
                         <div class="field">
                             <label for="first-name">first name</label>
-                            <input type="text" name="" id="first-name">
+                            <input type="text" id="first-name" value={{ $data['client']['first_name'] }} disabled>
                         </div>
                         <div class="field">
                             <label for="last-name">last name</label>
-                            <input type="text" name="" id="last-name">
+                            <input type="text" id="last-name" value={{ $data['client']['last_name'] }} disabled>
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field">
                             <label for="email">email</label>
-                            <input type="text" name="" id="email">
+                            <input type="text" id="email" value={{ $data['client']['email'] }} disabled>
                         </div>
                         <div class="field">
                             <label for="phone">phone number</label>
-                            <input type="text" name="" id="phone">
+                            <input type="text" id="phone" value={{ $data['client']['phone_number'] }} disabled>
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field">
                             <label for="pay">Card serial</label>
-                            <input type="text" name="card_serial" id="pay">
+                            <input type="text" id="pay" value={{ $data['card_serial'] }} disabled>
                         </div>
                         <div class="field">
                             <label for="expiry-date">expiry date</label>
-                            <input type="text" name="expiry-date" id="expiry-date">
+                            <input type="text" id="expiry-date" value={{ $data['expiry_date'] }} disabled>
                         </div>
                     </div>
                     <div class="field">
                         <label for="wallet">wallet</label>
-                        <input type="text" name="" id="wallet">
+                        <input type="text" id="wallet" value={{ $data['wallet'] }} disabled>
                     </div>
                     <div class="field">
                         <label for="add_points">add points</label>
-                        <input type="text" name="add_points" id="add_points">
+                        <input type="text" name="points" id="add_points" autofocus>
                     </div>
                     <div class="field">
                         <label for="description">description</label>
@@ -73,18 +70,21 @@
                     <img class="bg-img" src="{{ asset('img/card1.png') }}" alt="">
                     <div class="info">
                         <div>
-                            <div class="type-of-card">Gold Card</div>
-                            <img class="qr-code" src="{{ asset('img/qr_code.png') }}" alt="">
+                            <div class="type-of-card">{{ $data['type'] }}</div>
+                            <div class="qr-code">
+                                {{ $data['qrCode'] }}
+                            </div>
                         </div>
                         <div>
                             <div class="client">
-                                <div class="name">youssef elqayedy</div>
+                                <div class="name">{{ $data['client']['first_name'] }} {{ $data['client']['last_name'] }}
+                                </div>
                                 <div class="serial"><span>5195</span><span>1495</span><span>1989</span><span>1561</span>
                                 </div>
                             </div>
                             <div class="expiry-date">
                                 <div class="expiry">expiry</div>
-                                <div class="date">07/30</div>
+                                <div class="date">{{ $data['expiry_date'] }}</div>
                             </div>
                         </div>
                     </div>
