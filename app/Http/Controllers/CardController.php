@@ -194,6 +194,6 @@ class CardController extends Controller
         $card = ClientCards::find($id);
         $card->wallet = $card->wallet + $request->points;
         $card->update();
-        return response()->json('points upgrated sucssucfully');
+        return redirect()->route('client.cards', ['id' => $card->id_client]);
     }
 }

@@ -80,8 +80,8 @@ Route::post('/forgetPassword', [AuthController::class, 'SendPasswordInMail'])->n
 
 
 
-// Route::fallback(function () {
-//     return Auth::guard('admin')->check() || Auth::guard('staff')->check()
-//         ? redirect()->route('statistics')
-//         : redirect()->route('login.show');
-// });
+Route::fallback(function () {
+    return Auth::guard('admin')->check() || Auth::guard('staff')->check()
+        ? redirect()->route('statistics')
+        : redirect()->route('login.show');
+});
