@@ -15,7 +15,6 @@
 
         <div class="main-table">
             @if ($data->count() > 0)
-
                 <table>
                     <thead>
                         <tr>

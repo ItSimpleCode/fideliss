@@ -43,7 +43,7 @@ class BranchController extends Controller
         }
     }
 
-    public function showEditeForm($id)
+    public function showEditForm($id)
     {
         $branch = Branch::select('id', 'name', 'address')
             ->where('id', $id)
