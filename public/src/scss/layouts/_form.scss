@@ -60,6 +60,21 @@ form {
             outline: none;
             background-color: transparent;
         }
+
+        &.disabled {
+
+            label,
+            input {
+                color: transparentize($text_color_1, 0.65);
+
+            }
+
+            input {
+
+                border-color: transparentize($text_color_1, 0.65);
+
+            }
+        }
     }
 
     .selection-field {
