@@ -23,7 +23,7 @@
         @if ($data && $data->count() > 0)
             <div class="cards">
                 @foreach ($data as $index => $item)
-                    <a class="card-2">
+                    <a class="card-2" href={{ route('scanner.addPoints.show', ['cardsSerial' => $item['card_serial']]) }}>
                         <img class="bg-img" src="{{ asset('img/VIrus4 1.png') }}" alt="">
                         <div class="info flex-column">
                             <div class="up flex-column">
@@ -32,7 +32,7 @@
                                         <span class="logo">
                                             <img src="{{ asset('img/logo2.png') }}" alt="">
                                         </span>
-                                        <span class="wallet">1000</span>
+                                        <span class="wallet">{{$item['wallet']}}</span>
                                     </div>
                                     <div class="qr-code">{{ $item['qrCode'] }}</div>
                                 </div>
