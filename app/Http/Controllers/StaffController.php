@@ -31,4 +31,9 @@ class StaffController extends Controller
         $table = 'staffs';
         return view('pages.dashboard.staffs.staffs', compact('data', 'columns', 'fields', 'table'));
     }
+
+    public function showAddForm()
+    {
+        return view('pages.dashboard.staffs.add');
+    }
 }
