@@ -81,6 +81,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('dist/js/smooth-scrollbar.js') }}"></script>
     <script type="module" src="{{ asset('dist/js/main.js') }}"></script>
 @endsection

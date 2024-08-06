@@ -87,12 +87,14 @@
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-solid fa-users"></i><span>Modifier le membre du
-                            personnel</span></button>
+                    <button type="submit"><i class="fa-solid fa-users"></i><span>Modifier le membre du personnel</span></button>
                 </div>
 
             </form>
         </div>
-
     </section>
+@endsection
+
+@section('script')
+    <script type="module" src="{{ asset('dist/js/main.js') }}"></script>
 @endsection

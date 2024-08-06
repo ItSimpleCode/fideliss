@@ -134,3 +134,6 @@
         </div>
     </section>
 @endsection
+@section('script')
+    <script type="module" src="{{ asset('dist/js/main.js') }}"></script>
+@endsection
