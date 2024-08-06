@@ -35,7 +35,7 @@ class AuthController extends Controller
                 Auth::guard('admin')->login($admin);
                 $fullName = $admin['first_name'] . ' ' . $admin['last_name'];
                 $currentDateTime = Carbon::now()->format('Y-m-d H:i');
-                Mail::to($request->email)->send(new LoginMessageMail($fullName, $currentDateTime));
+                // Mail::to($request->email)->send(new LoginMessageMail($fullName, $currentDateTime));
                 return redirect()->route('statistics');
             } else {
                 $staff = Staff::where(['email' => $request->email, 'password' => $request->password])->first();
@@ -46,8 +46,8 @@ class AuthController extends Controller
                     Auth::guard('staff')->login($staff);
                     $fullName = $staff['first_name'] . ' ' . $staff['last_name'];
                     $currentDateTime = Carbon::now()->format('Y-m-d H:i');
-                    Mail::to($request->email)->send(new LoginMessageMail($fullName, $currentDateTime));
-                    return redirect()->route('dashboard');
+                    // Mail::to($request->email)->send(new LoginMessageMail($fullName, $currentDateTime));
+                    return redirect()->route('statistics');
                 }
             }
 

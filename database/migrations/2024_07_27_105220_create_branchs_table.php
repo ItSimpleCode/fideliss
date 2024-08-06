@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }
