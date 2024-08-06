@@ -12,7 +12,7 @@ class BranchController extends Controller
     {
         $columns = ['name', 'address'];
         $fields = ['name', 'address'];
-        $data = Branch::select('id', 'name', 'address')
+        $data = Branch::select('id', 'name', 'address','active')
             ->orderBy('created_at')
             ->get();
         $table = 'branches';
@@ -69,5 +69,13 @@ class BranchController extends Controller
         } catch (Exception $e) {
             return back()->withErrors(['error' =>  $e->getMessage()]);
         }
+    }
+
+    public function changeStatus($id)
+    {
+        $branch = Branch::find($id);
+        $branch->active = !$branch->active;
+        $branch->update();
+        return redirect()->route('branches');
     }
 }

@@ -37,6 +37,7 @@ Route::middleware(['user.auth'])->group(function () {
     Route::post('/dashboard/branches/add', [BranchController::class, 'create'])->name('branches.add.store');
     Route::get('/dashboard/branches/edit/{id}', [BranchController::class, 'showEditForm'])->name('branches.edit.show');
     Route::post('/dashboard/branches/edit/{id}', [BranchController::class, 'edit'])->name('branches.edit.store');
+    Route::get('/dashboard/branches/changeStatus/{id}', [BranchController::class, 'changeStatus'])->name('branches.edit.status');
 
     Route::get('/dashboard/staffs', [StaffController::class, 'index'])->name('staffs');
     Route::get('/dashboard/staffs/add', [StaffController::class, 'showAddForm'])->name('staffs.add.show');

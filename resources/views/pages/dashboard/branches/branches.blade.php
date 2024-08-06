@@ -47,7 +47,15 @@
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>edit</span>
                                         </a>
-                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>disactive</span></a>
+                                        {{-- <a href=""><i class="fa-solid fa-user-slash"></i><span>disactive</span></a> --}}
+
+                                        <a href={{ route('branches.edit.status', ['id' => $item['id']]) }}>
+                                            @if ($item['active'])
+                                                <i class="fa-solid fa-user-slash"></i><span>disactive</span>
+                                            @else
+                                                <i class="fa-solid fa-user"></i><span>active</span>
+                                            @endif
+                                        </a>
                                     </div>
                                 </td>
 
