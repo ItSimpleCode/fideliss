@@ -52,7 +52,7 @@ class BranchController extends Controller
         return view('pages.dashboard.branches.edit', compact('branch'));
     }
 
-    public function edite(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         try {
             $request->validate([

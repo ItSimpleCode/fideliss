@@ -39,7 +39,7 @@
             </div>
 
             <div class="part">
-                <button type="submit"><i class="fa-solid fa-code-branch"></i><span>add branch</span></button>
+                <button type="submit"><i class="fa-solid fa-code-branch"></i><span>Edit branch</span></button>
             </div>
         </form>
 
