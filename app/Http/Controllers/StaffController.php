@@ -83,4 +83,9 @@ class StaffController extends Controller
         $staff->update();
         return redirect()->route('staffs');
     }
+
+    public function showEditForm()
+    {
+        return view('pages.dashboard.staffs.edit');
+    }
 }
