@@ -40,7 +40,9 @@ class StaffController extends Controller
 
     public function showAddForm()
     {
-        $branches = Branch::select('id', 'name')->get();
+        $branches = Branch::select('id', 'name')
+            ->where('active', 1)
+            ->get();
         return view('pages.dashboard.staffs.add', compact('branches'));
     }
 
@@ -95,10 +97,13 @@ class StaffController extends Controller
 
     public function showEditForm()
     {
-        return view('pages.dashboard.staffs.edit');
+        $branches = Branch::select('id', 'name')
+            ->where('active', 1)
+            ->get();
+        return view('pages.dashboard.staffs.edit',compact('branches'));
     }
 
-    public function edite(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         try {
             $request->validate([
