@@ -10,7 +10,8 @@
     <section class="dark-bg users">
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
-            <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>add new row</span></a>
+            <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>add new
+                    row</span></a>
         </div>
         <div class="main-table">
             @if ($data->count() > 0)
@@ -49,7 +50,16 @@
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>edit</span>
                                         </a>
-                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>disactive</span></a>
+                                        <a href={{ route('staffs.edit.status', ['id' => $item['id']]) }}>
+                                            @if ($item['active'])
+                                                <i class="fa-solid fa-user-slash"></i><span>disactive</span>
+                                            @else
+                                                <i class="fa-solid fa-user"></i><span>active</span>
+                                            @endif
+                                        </a>
+
+
+
                                     </div>
                                 </td>
 

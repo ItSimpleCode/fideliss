@@ -29,6 +29,7 @@ class StaffController extends Controller
                 'created_at' => $staff->created_at,
                 'creator' => $staff->admins ? $staff->admins->first_name . ' ' .  $staff->admins->last_name : 'N/A',
                 'branch' => $staff->branches ? $staff->branches->name : 'N/A',
+                'active' => $staff->active
             ];
         });
         $table = 'staffs';
@@ -39,7 +40,6 @@ class StaffController extends Controller
     {
         $branches = Branch::select('id', 'name')->get();
         return view('pages.dashboard.staffs.add', compact('branches'));
-
     }
 
 
@@ -74,5 +74,13 @@ class StaffController extends Controller
         } catch (Exception $e) {
             return back()->withErrors(['error' =>  $e->getMessage()]);
         }
+    }
+
+    public function changeStatus($id)
+    {
+        $staff = Staff::find($id);
+        $staff->active = !$staff->active;
+        $staff->update();
+        return redirect()->route('staffs');
     }
 }

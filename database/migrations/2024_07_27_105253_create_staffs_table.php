@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->boolean('active')->default(1);
             $table->foreignId('id_creator')->nullable()->constrained('admins')->onDelete('set null');
             $table->foreignId('id_branch')->nullable()->constrained('branchs')->onDelete('set null');
             $table->timestamps();
