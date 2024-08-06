@@ -95,12 +95,14 @@ class StaffController extends Controller
         return redirect()->route('staffs');
     }
 
-    public function showEditForm()
+    public function showEditForm($id)
     {
         $branches = Branch::select('id', 'name')
             ->where('active', 1)
             ->get();
-        return view('pages.dashboard.staffs.edit',compact('branches'));
+
+        $staff = Staff::find($id);
+        return view('pages.dashboard.staffs.edit', compact('staff', 'branches'));
     }
 
     public function edit(Request $request, $id)
@@ -135,7 +137,6 @@ class StaffController extends Controller
             $staff->password = $request->password;
             $staff->id_branch = $request->id_branch;
             $staff->update();
-
 
             return redirect()->route('staffs');
         } catch (Exception $e) {

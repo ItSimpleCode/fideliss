@@ -17,7 +17,7 @@
             </h1>
         </div>
         <div class="form">
-            <form action='' method="POST">
+            <form action={{ route('staffs.edit.store', ['id' => $staff['id']]) }} method="POST">
                 @csrf
                 <div class="part">
                     <h2 class="title">informations sur le personnel</h2>
@@ -60,10 +60,6 @@
                             <input type="text" name="birth_date" id="birth_date">
                         </div>
                     </div>
-                    <div class="field">
-                        <label for="address">adresse</label>
-                        <input type="text" name="address" id="address">
-                    </div>
 
                 </div>
 
@@ -91,7 +87,8 @@
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-solid fa-users"></i><span>Modifier le membre du personnel</span></button>
+                    <button type="submit"><i class="fa-solid fa-users"></i><span>Modifier le membre du
+                            personnel</span></button>
                 </div>
 
             </form>
