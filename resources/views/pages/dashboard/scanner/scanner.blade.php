@@ -10,20 +10,20 @@
     <section class="dark-bg sacnner">
 
         <div class="head">
-            <div class="title">scanner</div>
-            {{-- <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>add new row</span></a> --}}
+            <div class="title">Scanner</div>
+            {{-- <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle ligne</span></a> --}}
         </div>
         <div class="form">
             <div id="reader" style="width: 500px;"></div>
             <form action={{ route('scanner.addPoints.showv2') }}>
                 <div class="part">
                     <div class="field">
-                        <label for="Identification_number">Identification number</label>
+                        <label for="Identification_number">Numéro d'identification</label>
                         <input type="text" id="Identification_number" name="card_serial">
                     </div>
                 </div>
                 <div class="part">
-                    <button type="submit"></i><span>go</span></button>
+                    <button type="submit"><span>Valider</span></button>
                 </div>
             </form>
         </div>

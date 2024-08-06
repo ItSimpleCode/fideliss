@@ -3,14 +3,14 @@
 @section('title', $table)
 
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('dist\css\pages\cards\cards.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/cards/cards.css') }}">
 @endsection
 
 @section('content')
     <section class="dark-bg">
         <div class="head">
-            <div class="title">cards</div>
-            <a class="add" href=""> <i class="fa-solid fa-plus"></i><span>add new card</span></a>
+            <div class="title">cartes</div>
+            <a class="add" href=""> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle carte</span></a>
         </div>
         <div class="main-table">
             @if ($data->count() > 0)
@@ -43,9 +43,9 @@
                                     <div class="actions btn-2">
                                         <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
                                             <i class="fa-regular fa-pen-to-square"></i>
-                                            <span>edit</span>
+                                            <span>modifier</span>
                                         </a>
-                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>disactive</span></a>
+                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>désactiver</span></a>
                                     </div>
                                 </td>
 
@@ -55,7 +55,7 @@
                 </table>
             @else
                 <div class="no_data">
-                    <p>no data exist</p>
+                    <p>aucune donnée disponible</p>
                 </div>
             @endif
         </div>

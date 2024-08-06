@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', "add card to #{$client['first_name']} #{$client['last_name']}")
+@section('title', "ajouter une carte pour #{$client['first_name']} #{$client['last_name']}")
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/cards/add.css') }}">
@@ -20,18 +20,18 @@
                 <a href="{{ route('client.cards', ['id' => $client['id']]) }}">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-                <span>Cards</span>
+                <span>Cartes</span>
             </h1>
         </div>
         <div class="form">
             <form action="{{ route('cards.create.store', ['id' => $client['id']]) }}" method="POST">
                 @csrf
                 <div class="part">
-                    <h2 class="title">card information</h2>
+                    <h2 class="title">Informations sur la carte</h2>
                     <div class="double-fields">
                         <div class="selection-field">
                             <div class="field">
-                                <label for="type">type of card</label>
+                                <label for="type">type de carte</label>
                                 <input class="back" type="hidden" name="card_type">
                                 <input class="front" type="text" id="type">
                                 <i class="fa-solid fa-angle-down"></i>
@@ -44,14 +44,14 @@
                         </div>
                         <div class="selection-field">
                             <div class="field">
-                                <label for="pay-method">pay method</label>
+                                <label for="pay-method">méthode de paiement</label>
                                 <input class="back" type="hidden" name="pay-method">
                                 <input class="front" type="text" id="pay-method">
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
-                                <span class="option" data-hidden="cash">cash</span>
-                                <span class="option" data-hidden="card bank">card bank</span>
+                                <span class="option" data-hidden="cash">espèces</span>
+                                <span class="option" data-hidden="card bank">carte bancaire</span>
                                 @foreach ($clientCards as $card)
                                     <span class="option" data-hidden="{{ $card['id'] }}">{{ $card['card_serial'] }}</span>
                                 @endforeach
@@ -60,41 +60,41 @@
                     </div>
                     <div class="double-fields">
                         <div class="field">
-                            <label for="pay">Card serial</label>
+                            <label for="pay">Numéro de carte</label>
                             <input type="text" name="card_serial" id="pay">
                         </div>
                         <div class="field">
-                            <label for="wallet">wallet</label>
+                            <label for="wallet">porte-monnaie</label>
                             <input type="text" name="wallet" id="wallet">
                         </div>
                     </div>
                 </div>
                 <div class="part">
-                    <h2 class="title">client information</h2>
+                    <h2 class="title">Informations sur le client</h2>
                     <div class="double-fields">
                         <div class="field disabled">
-                            <label for="first-name">first name</label>
-                            <input type="text" name="" id="first-name" value={{ $client['first_name'] }} disabled>
+                            <label for="first-name">prénom</label>
+                            <input type="text" name="" id="first-name" value="{{ $client['first_name'] }}" disabled>
                         </div>
                         <div class="field disabled">
-                            <label for="last-name">last name</label>
-                            <input type="text" name="" id="last-name"value={{ $client['last_name'] }} disabled>
+                            <label for="last-name">nom</label>
+                            <input type="text" name="" id="last-name" value="{{ $client['last_name'] }}" disabled>
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field disabled">
                             <label for="email">email</label>
-                            <input type="text" name="" id="email" value={{ $client['email'] }} disabled>
+                            <input type="text" name="" id="email" value="{{ $client['email'] }}" disabled>
                         </div>
                         <div class="field disabled">
-                            <label for="phone">phone number</label>
-                            <input type="text" name="" id="phone"value={{ $client['phone_number'] }} disabled>
+                            <label for="phone">numéro de téléphone</label>
+                            <input type="text" name="" id="phone" value="{{ $client['phone_number'] }}" disabled>
                         </div>
                     </div>
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-regular fa-credit-card"></i><span>add card</span></button>
+                    <button type="submit"><i class="fa-regular fa-credit-card"></i><span>ajouter une carte</span></button>
                 </div>
 
             </form>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="down flex-row">
                             <div class="flex-column">
-                                <div class="type-of-card">Standard Membership Card</div>
+                                <div class="type-of-card">Carte de membre standard</div>
                                 <div class="flex-row">
                                     <div class="name">youssef elqayedy</div>
                                     <div class="expiry">03/30</div>

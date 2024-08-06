@@ -24,22 +24,21 @@
             </h1>
         </div>
 
-
         <form action={{ route('branches.edit.store', ['id' => $branch['id']]) }} method="POST">
             @csrf
             <div class="part">
                 <div class="field">
-                    <label for="name">name</label>
+                    <label for="name">nom</label>
                     <input type="text" name="name" id="name" value={{ $branch['name'] }}>
                 </div>
                 <div class="field">
-                    <label for="address">address</label>
+                    <label for="address">adresse</label>
                     <input type="text" name="address" id="address" value={{ $branch['address'] }}>
                 </div>
             </div>
 
             <div class="part">
-                <button type="submit"><i class="fa-solid fa-code-branch"></i><span>Edit branch</span></button>
+                <button type="submit"><i class="fa-solid fa-code-branch"></i><span>Modifier la branche</span></button>
             </div>
         </form>
 

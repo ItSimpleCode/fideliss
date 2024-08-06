@@ -10,7 +10,7 @@
     <section class="dark-bg users">
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
-            <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>add new row</span></a>
+            <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle ligne</span></a>
         </div>
 
         <div class="main-table">
@@ -45,9 +45,9 @@
                                     <div class="actions btn-2">
                                         <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
                                             <i class="fa-regular fa-pen-to-square"></i>
-                                            <span>edit</span>
+                                            <span>éditer</span>
                                         </a>
-                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>disactive</span></a>
+                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>désactiver</span></a>
                                     </div>
                                 </td>
 
@@ -57,7 +57,7 @@
                 </table>
             @else
                 <div class="no_data">
-                    <p>no data exist</p>
+                    <p>aucune donnée n'existe</p>
                 </div>
             @endif
         </div>

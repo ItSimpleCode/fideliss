@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', 'add points')
+@section('title', 'Ajouter des points')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/scanner/add_points.css') }}">
@@ -9,7 +9,7 @@
 @section('content')
     <section class="dark-bg">
         <div class="head">
-            <div class="title">Add Points</div>
+            <div class="title">Ajouter des points</div>
         </div>
 
         <div class="form">
@@ -18,50 +18,50 @@
                 <div class="part">
                     <div class="double-fields">
                         <div class="field disabled">
-                            <label for="first-name">first name</label>
+                            <label for="first-name">Prénom</label>
                             <input type="text" id="first-name" value={{ $data['client']['first_name'] }} disabled>
                         </div>
                         <div class="field disabled">
-                            <label for="last-name">last name</label>
+                            <label for="last-name">Nom</label>
                             <input type="text" id="last-name" value={{ $data['client']['last_name'] }} disabled>
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field disabled">
-                            <label for="email">email</label>
+                            <label for="email">Email</label>
                             <input type="text" id="email" value={{ $data['client']['email'] }} disabled>
                         </div>
                         <div class="field disabled">
-                            <label for="phone">phone number</label>
+                            <label for="phone">Numéro de téléphone</label>
                             <input type="text" id="phone" value={{ $data['client']['phone_number'] }} disabled>
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field disabled">
-                            <label for="card_serial">Card serial</label>
+                            <label for="card_serial">Numéro de la carte</label>
                             <input type="text" id="card_serial" value={{ $data['card_serial'] }} disabled>
                         </div>
                         <div class="field disabled">
-                            <label for="expiry-date">expiry date</label>
+                            <label for="expiry-date">Date d'expiration</label>
                             <input type="text" id="expiry-date" value={{ $data['expiry_date'] }} disabled>
                         </div>
                     </div>
                     <div class="field disabled">
-                        <label for="wallet">wallet</label>
+                        <label for="wallet">Portefeuille</label>
                         <input type="text" id="wallet" value={{ $data['wallet'] }} disabled>
                     </div>
                     <div class="field">
-                        <label for="add_points">add points</label>
+                        <label for="add_points">Ajouter des points</label>
                         <input type="text" name="points" id="add_points" autofocus>
                     </div>
                     <div class="field">
-                        <label for="description">description</label>
+                        <label for="description">Description</label>
                         <input type="text" name="description" id="description">
                     </div>
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-regular fa-credit-card"></i><span>add points</span></button>
+                    <button type="submit"><i class="fa-regular fa-credit-card"></i><span>Ajouter des points</span></button>
                 </div>
 
             </form>

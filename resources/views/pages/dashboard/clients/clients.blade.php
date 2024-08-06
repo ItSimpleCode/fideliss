@@ -3,14 +3,14 @@
 @section('title', $table)
 
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('dist\css\pages\clients\clients.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/clients/clients.css') }}">
 @endsection
 
 @section('content')
     <section class="dark-bg users">
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
-            <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>add new row</span></a>
+            <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>Ajouter une nouvelle ligne</span></a>
         </div>
 
         <div class="main-table">
@@ -45,14 +45,14 @@
                                         @if ($table == 'clients')
                                             <a href="/dashboard/client/{{ $item['id'] }}/cards">
                                                 <i class="fa-regular fa-credit-card"></i>
-                                                <span>cards</span>
+                                                <span>Cartes</span>
                                             </a>
                                         @endif
                                         <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
                                             <i class="fa-regular fa-pen-to-square"></i>
-                                            <span>edit</span>
+                                            <span>Modifier</span>
                                         </a>
-                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>disactive</span></a>
+                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>Désactiver</span></a>
                                     </div>
                                 </td>
 
@@ -62,7 +62,7 @@
                 </table>
             @else
                 <div class="no_data">
-                    <p>no data exist</p>
+                    <p>Aucune donnée disponible</p>
                 </div>
             @endif
         </div>
