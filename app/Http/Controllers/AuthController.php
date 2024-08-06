@@ -40,6 +40,9 @@ class AuthController extends Controller
             } else {
                 $staff = Staff::where(['email' => $request->email, 'password' => $request->password])->first();
                 if ($staff) {
+                    if(!$staff->active){
+                        return back()->withErrors(['error' => 'Ce compte est desactiver']);
+                    }
                     Auth::guard('staff')->login($staff);
                     $fullName = $staff['first_name'] . ' ' . $staff['last_name'];
                     $currentDateTime = Carbon::now()->format('Y-m-d H:i');
