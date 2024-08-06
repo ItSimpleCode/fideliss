@@ -17,7 +17,7 @@
             </h1>
         </div>
         <div class="form">
-            <form action='' method="POST">
+            <form action={{ route('staffs.add.store') }} method="POST">
                 @csrf
                 <div class="part">
                     <h2 class="title">staff information</h2>
