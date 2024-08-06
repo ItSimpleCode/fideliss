@@ -1,9 +1,9 @@
 @extends('dashboard')
 
-@section('title', 'add staff')
+@section('title', 'edit staff')
 
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('dist\css\pages\staffs\add.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist\css\pages\staffs\edit.css') }}">
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
                 <a href={{ route('staffs') }}>
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-                <span>Add staff</span>
+                <span>edit staff</span>
             </h1>
         </div>
         <div class="form">
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-solid fa-users"></i><span>new staff</span></button>
+                    <button type="submit"><i class="fa-solid fa-users"></i><span>edit staff</span></button>
                 </div>
 
             </form>

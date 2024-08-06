@@ -97,7 +97,11 @@
                 padding: 0 12px;
                 border-radius: 6px;
 
-                &:has(.fa-user-slash) {
+                &.active {
+                    background-color: yellowgreen;
+                }
+
+                &.disactive {
                     background-color: #df2525;
                 }
             }

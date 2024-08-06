@@ -26,7 +26,7 @@
                                 @endif
                             @endforeach
 
-                            <th class="actions btn-1">Actions</th>
+                            {{-- <th class="actions btn-1">Actions</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -41,14 +41,14 @@
                                     @endif
                                 @endforeach
 
-                                <td>
+                                {{-- <td>
                                     <div class="actions btn-1">
                                         <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>edit</span>
                                         </a>
                                     </div>
-                                </td>
+                                </td> --}}
 
                             </tr>
                         @endforeach

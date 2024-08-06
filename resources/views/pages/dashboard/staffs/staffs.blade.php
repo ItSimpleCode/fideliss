@@ -40,26 +40,19 @@
                                 @endforeach
                                 <td>
                                     <div class="actions btn-2">
-                                        @if ($table == 'clients')
-                                            <a href="/dashboard/client/{{ $item['id'] }}/cards">
-                                                <i class="fa-regular fa-credit-card"></i>
-                                                <span>cards</span>
-                                            </a>
-                                        @endif
                                         <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>edit</span>
                                         </a>
-                                        <a href={{ route('staffs.edit.status', ['id' => $item['id']]) }}>
-                                            @if ($item['active'])
-                                                <i class="fa-solid fa-user-slash"></i><span>disactive</span>
-                                            @else
+                                        @if ($item['active'])
+                                            <a href={{ route('staffs.edit.status', ['id' => $item['id']]) }} class='active'>
                                                 <i class="fa-solid fa-user"></i><span>active</span>
-                                            @endif
-                                        </a>
-
-
-
+                                            </a>
+                                        @else
+                                            <a href={{ route('staffs.edit.status', ['id' => $item['id']]) }} class='disactive'>
+                                                <i class="fa-solid fa-user-slash"></i><span>disactive</span>
+                                            </a>
+                                        @endif
                                     </div>
                                 </td>
 
