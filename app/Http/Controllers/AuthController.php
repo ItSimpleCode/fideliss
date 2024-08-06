@@ -41,7 +41,7 @@ class AuthController extends Controller
                 $staff = Staff::where(['email' => $request->email, 'password' => $request->password])->first();
                 if ($staff) {
                     if(!$staff->active){
-                        return back()->withErrors(['error' => 'Ce compte est desactiver']);
+                        return back()->withErrors(['error' => 'ce compte est désactivé']);
                     }
                     Auth::guard('staff')->login($staff);
                     $fullName = $staff['first_name'] . ' ' . $staff['last_name'];
