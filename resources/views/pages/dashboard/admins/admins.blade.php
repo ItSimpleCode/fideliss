@@ -10,7 +10,6 @@
     <section class="dark-bg users">
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
-            {{-- <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>add new row</span></a> --}}
         </div>
 
         <div class="main-table">
@@ -25,8 +24,6 @@
                                     <th>{{ $column }}</th>
                                 @endif
                             @endforeach
-
-                            <th class="actions btn-1">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,23 +37,13 @@
                                         <td>{{ $item[$field] }}</td>
                                     @endif
                                 @endforeach
-
-                                <td>
-                                    <div class="actions btn-1">
-                                        <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                            <span>edit</span>
-                                        </a>
-                                    </div>
-                                </td>
-
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             @else
                 <div class="no_data">
-                    <p>no data exist</p>
+                    <p>aucune donnée n'existe</p>
                 </div>
             @endif
         </div>

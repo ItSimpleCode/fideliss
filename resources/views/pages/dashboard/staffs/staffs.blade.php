@@ -10,8 +10,7 @@
     <section class="dark-bg users">
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
-            <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>add new
-                    row</span></a>
+            <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle ligne</span></a>
         </div>
         <div class="main-table">
             @if ($data->count() > 0)
@@ -40,26 +39,19 @@
                                 @endforeach
                                 <td>
                                     <div class="actions btn-2">
-                                        @if ($table == 'clients')
-                                            <a href="/dashboard/client/{{ $item['id'] }}/cards">
-                                                <i class="fa-regular fa-credit-card"></i>
-                                                <span>cards</span>
-                                            </a>
-                                        @endif
                                         <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
                                             <i class="fa-regular fa-pen-to-square"></i>
-                                            <span>edit</span>
+                                            <span>modifier</span>
                                         </a>
-                                        <a href={{ route('staffs.edit.status', ['id' => $item['id']]) }}>
-                                            @if ($item['active'])
-                                                <i class="fa-solid fa-user-slash"></i><span>disactive</span>
-                                            @else
-                                                <i class="fa-solid fa-user"></i><span>active</span>
-                                            @endif
-                                        </a>
-
-
-
+                                        @if ($item['active'])
+                                            <a href={{ route('staffs.edit.status', ['id' => $item['id']]) }} class='active'>
+                                                <i class="fa-solid fa-user"></i><span>actif</span>
+                                            </a>
+                                        @else
+                                            <a href={{ route('staffs.edit.status', ['id' => $item['id']]) }} class='disactive'>
+                                                <i class="fa-solid fa-user-slash"></i><span>inactif</span>
+                                            </a>
+                                        @endif
                                     </div>
                                 </td>
 
@@ -69,7 +61,7 @@
                 </table>
             @else
                 <div class="no_data">
-                    <p>no data exist</p>
+                    <p>aucune donnée disponible</p>
                 </div>
             @endif
         </div>

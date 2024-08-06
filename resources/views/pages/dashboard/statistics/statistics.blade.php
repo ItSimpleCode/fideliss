@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', 'Statistics')
+@section('title', 'Statistiques')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist\css\pages\statistics\statistics.css') }}">
@@ -15,7 +15,7 @@
                     <div class="number">249k</div>
                 </div>
                 <div class="down">
-                    <span class="card-name">vists</span>
+                    <span class="card-name">visites</span>
                     <span class="percent">10% <i class="fa-solid fa-arrow-trend-down"></i></span>
                 </div>
             </div>
@@ -34,11 +34,11 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>creator</th>
-                            <th>offer</th>
-                            <th>cost</th>
-                            <th>duration</th>
-                            <th>reacts</th>
+                            <th>créateur</th>
+                            <th>offre</th>
+                            <th>coût</th>
+                            <th>durée</th>
+                            <th>réactions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -47,7 +47,7 @@
                                 <td>batata</td>
                                 <td>youssef elqayedy</td>
                                 <td>500</td>
-                                <td>2 years</td>
+                                <td>2 ans</td>
                                 <td>50k</td>
                             </tr>
                         @endfor
@@ -58,7 +58,7 @@
 
         <section class="dark-bg rewards">
             <div class="head">
-                <div class="title">rewards</div>
+                <div class="title">récompenses</div>
 
             </div>
 
@@ -66,11 +66,11 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>creator</th>
-                            <th>offer</th>
-                            <th>cost</th>
-                            <th>duration</th>
-                            <th>react</th>
+                            <th>créateur</th>
+                            <th>offre</th>
+                            <th>coût</th>
+                            <th>durée</th>
+                            <th>réaction</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,7 +79,7 @@
                                 <td>ad.youssef elqayedy</td>
                                 <td>batata</td>
                                 <td>500</td>
-                                <td>07/26/2024</td>
+                                <td>26/07/2024</td>
                                 <td>5127</td>
                             </tr>
                         @endfor
@@ -90,7 +90,7 @@
 
         <section class="dark-bg transactions-static">
             <div class="head">
-                <div class="title">transactions static</div>
+                <div class="title">statistiques des transactions</div>
 
             </div>
             <div class="chart">
@@ -101,9 +101,9 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
-                        type: 'line', // Change this to 'line', 'pie', etc. for different chart types
+                        type: 'line', // Changez ceci en 'line', 'pie', etc. pour différents types de graphiques
                         data: {
-                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                            labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jui', 'Juil'],
                             datasets: [{
                                 label: 'transactions',
                                 data: [12, 19, 3, 5, 2, 3, 7],

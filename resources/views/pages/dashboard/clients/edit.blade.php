@@ -29,28 +29,28 @@
             <div class="part">
                 <div class="double-fields">
                     <div class="field">
-                        <label for="first-name">first name</label>
-                        <input type="text" name="first_name" id="first-name" value={{ $client['first_name'] }}>
+                        <label for="first-name">prénom</label>
+                        <input type="text" name="first_name" id="first-name" value="{{ $client['first_name'] }}">
                     </div>
                     <div class="field">
-                        <label for="last-name">last name</label>
-                        <input type="text" name="last_name" id="last-name" value={{ $client['last_name'] }}>
+                        <label for="last-name">nom</label>
+                        <input type="text" name="last_name" id="last-name" value="{{ $client['last_name'] }}">
                     </div>
                 </div>
                 <div class="double-fields">
                     <div class="field">
                         <label for="email">email</label>
-                        <input type="email" name="email" value={{ $client['email'] }}>
+                        <input type="email" name="email" value="{{ $client['email'] }}">
                     </div>
                     <div class="field">
-                        <label for="phone">phone number</label>
-                        <input type="text" name="phone_number" id="phone">
+                        <label for="phone">numéro de téléphone</label>
+                        <input type="text" name="phone_number" id="phone" value="{{ $client['phone_number'] }}">
                     </div>
                 </div>
                 <div class="selection-field">
                     <div class="field">
-                        <label for="type">gender</label>
-                        <input class="back" type="hidden" name="gender">
+                        <label for="type">genre</label>
+                        <input class="back" type="hidden" name="gender" value="{{ $client['gender'] }}">
                         <input class="front" type="text" id="type" value="{{ $client['gender'] }}">
                         <i class="fa-solid fa-angle-down"></i>
                     </div>
@@ -61,22 +61,22 @@
                     </div>
                 </div>
                 <div class="field">
-                    <label for="birth_date">birth_date</label>
-                    <input type="birth_date" name="birth_date" value={{ $client['birth_date'] }}>
+                    <label for="birth_date">date de naissance</label>
+                    <input type="text" name="birth_date" value="{{ $client['birth_date'] }}">
                 </div>
                 <div class="field">
-                    <label for="address">address</label>
-                    <input type="text" name="address" id="address" value={{ $client['address'] }}>
+                    <label for="address">adresse</label>
+                    <input type="text" name="address" id="address" value="{{ $client['address'] }}">
                 </div>
 
                 <div class="field">
-                    <label for="password">password</label>
-                    <input type="password" name="password" value={{ $client['password'] }}>
+                    <label for="password">mot de passe</label>
+                    <input type="password" name="password" value="{{ $client['password'] }}">
                 </div>
             </div>
 
             <div class="part">
-                <button type="submit">edit</button>
+                <button type="submit">Modifier</button>
             </div>
         </form>
 

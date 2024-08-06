@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', 'add staffs')
+@section('title', 'ajouter un membre du personnel')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist\css\pages\staffs\add.css') }}">
@@ -13,21 +13,21 @@
                 <a href={{ route('staffs') }}>
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-                <span>Add staff</span>
+                <span>Ajouter un membre du personnel</span>
             </h1>
         </div>
         <div class="form">
             <form action={{ route('staffs.add.store') }} method="POST">
                 @csrf
                 <div class="part">
-                    <h2 class="title">staff information</h2>
+                    <h2 class="title">informations sur le personnel</h2>
                     <div class="double-fields">
                         <div class="field">
-                            <label for="first-name">first name</label>
+                            <label for="first-name">prénom</label>
                             <input type="text" name="first_name" id="first-name">
                         </div>
                         <div class="field">
-                            <label for="last-name">last name</label>
+                            <label for="last-name">nom de famille</label>
                             <input type="text" name="last_name" id="last-name">
                         </div>
                     </div>
@@ -37,14 +37,14 @@
                             <input type="text" name="email" id="email">
                         </div>
                         <div class="field">
-                            <label for="phone">phone number</label>
+                            <label for="phone">numéro de téléphone</label>
                             <input type="text" name="phone_number" id="phone">
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="selection-field">
                             <div class="field">
-                                <label for="type">gender</label>
+                                <label for="type">genre</label>
                                 <input class="back" type="hidden" name="gender">
                                 <input class="front" type="text" id="type">
                                 <i class="fa-solid fa-angle-down"></i>
@@ -56,23 +56,23 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label for="birth_date">birth_date</label>
+                            <label for="birth_date">date de naissance</label>
                             <input type="text" name="birth_date" id="birth_date">
                         </div>
                     </div>
                     <div class="field">
-                        <label for="address">address</label>
+                        <label for="address">adresse</label>
                         <input type="text" name="address" id="address">
                     </div>
 
                 </div>
 
                 <div class="part">
-                    <h2 class="title">work information</h2>
+                    <h2 class="title">informations sur le travail</h2>
                     <div class="double-fields">
                         <div class="selection-field">
                             <div class="field">
-                                <label for="branch">branch</label>
+                                <label for="branch">branche</label>
                                 <input class="back" type="hidden" name="id_branch">
                                 <input class="front" type="text" id="branch">
                                 <i class="fa-solid fa-angle-down"></i>
@@ -84,14 +84,14 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label for="password">password</label>
+                            <label for="password">mot de passe</label>
                             <input type="text" name="password" id="password">
                         </div>
                     </div>
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-solid fa-users"></i><span>new staff</span></button>
+                    <button type="submit"><i class="fa-solid fa-users"></i><span>nouveau membre du personnel</span></button>
                 </div>
 
             </form>

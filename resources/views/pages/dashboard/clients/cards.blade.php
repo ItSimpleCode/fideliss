@@ -1,9 +1,9 @@
 @extends('dashboard')
 
-@section('title', "{$client[1]} - cards")
+@section('title', "{$client[1]} - cartes")
 
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('dist\css\pages\clients\cards.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/clients/cards.css') }}">
 @endsection
 
 @section('content')
@@ -15,10 +15,9 @@
                     <span>{{ $client[1] }}</span>
                 </a>
             </div>
-            <a class="add" href="/dashboard/client/{{ $client[0] }}/cards/add"><i class="fa-solid fa-plus"></i><span>add
-                    new row</span></a>
+            <a class="add" href="/dashboard/client/{{ $client[0] }}/cards/add"><i class="fa-solid fa-plus"></i><span>Ajouter une nouvelle
+                    carte</span></a>
         </div>
-
 
         @if ($data && $data->count() > 0)
             <div class="cards">
@@ -32,7 +31,7 @@
                                         <span class="logo">
                                             <img src="{{ asset('img/logo2.png') }}" alt="">
                                         </span>
-                                        <span class="wallet">{{$item['wallet']}}</span>
+                                        <span class="wallet">{{ $item['wallet'] }}</span>
                                     </div>
                                     <div class="qr-code">{{ $item['qrCode'] }}</div>
                                 </div>
@@ -56,7 +55,7 @@
             </div>
         @else
             <div class="no_data">
-                <p>No data exist</p>
+                <p>Aucune donnée disponible</p>
             </div>
         @endif
     </section>

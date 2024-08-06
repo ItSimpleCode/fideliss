@@ -724,7 +724,10 @@ main {
   padding: 0 12px;
   border-radius: 6px;
 }
-.main-table tbody .actions a:has(.fa-user-slash) {
+.main-table tbody .actions a.active {
+  background-color: yellowgreen;
+}
+.main-table tbody .actions a.disactive {
   background-color: #df2525;
 }
 .main-table .actions:last-child {

@@ -1,14 +1,13 @@
 <nav class="main_nav">
     <div class="user">
-        <img src={{asset('img/no-user.jpg')}}
-            alt="user_pic" class="user_pic">
+        <img src={{ asset('img/no-user.jpg') }} alt="photo de profil" class="user_pic">
         <span class="user_name">
             <span class="gender">
                 {{ Auth::guard('admin')->check() && Auth::guard('admin')->user()->gender == 'male'
-                    ? 'Mr'
+                    ? 'M.'
                     : (Auth::guard('staff')->check() && Auth::guard('staff')->user()->gender == 'male'
-                        ? 'Mr'
-                        : 'Ms') }}</span>
+                        ? 'M.'
+                        : 'Mme') }}</span>
             .
             <span>
                 {{ Auth::guard('admin')->check()
@@ -18,12 +17,11 @@
                         : '') }}
             </span>
         </span>
-
     </div>
     <div class="search">
         <i class="fa-solid fa-magnifying-glass"></i>
         <span class="bar"></span>
-        <input type="text" name="" id="" placeholder="search">
+        <input type="text" name="" id="" placeholder="chercher">
     </div>
     <div class="nav-options">
         <button class="date">
