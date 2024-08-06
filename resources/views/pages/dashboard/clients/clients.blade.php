@@ -41,7 +41,7 @@
                                 @endforeach
 
                                 <td>
-                                    <div class="actions">
+                                    <div class="actions btn-3">
                                         @if ($table == 'clients')
                                             <a href="/dashboard/client/{{ $item['id'] }}/cards">
                                                 <i class="fa-regular fa-credit-card"></i>

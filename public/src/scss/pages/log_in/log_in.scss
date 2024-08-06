@@ -1,6 +1,13 @@
 @import "../../variables/colors";
 @import "../../variables/fonts";
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
 body {
     font-family: "sf-pro-rounded";
     height: 100vh;

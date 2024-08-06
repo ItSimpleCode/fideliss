@@ -72,21 +72,21 @@
                 <div class="part">
                     <h2 class="title">client information</h2>
                     <div class="double-fields">
-                        <div class="field">
+                        <div class="field disabled">
                             <label for="first-name">first name</label>
                             <input type="text" name="" id="first-name" value={{ $client['first_name'] }} disabled>
                         </div>
-                        <div class="field">
+                        <div class="field disabled">
                             <label for="last-name">last name</label>
                             <input type="text" name="" id="last-name"value={{ $client['last_name'] }} disabled>
                         </div>
                     </div>
                     <div class="double-fields">
-                        <div class="field">
+                        <div class="field disabled">
                             <label for="email">email</label>
                             <input type="text" name="" id="email" value={{ $client['email'] }} disabled>
                         </div>
-                        <div class="field">
+                        <div class="field disabled">
                             <label for="phone">phone number</label>
                             <input type="text" name="" id="phone"value={{ $client['phone_number'] }} disabled>
                         </div>

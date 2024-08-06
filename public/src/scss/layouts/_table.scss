@@ -12,6 +12,12 @@
     table {
         width: 100%;
         border-collapse: collapse;
+
+        @for $i from 1 through 3 {
+            .actions.btn-#{$i} {
+                width: (130px * $i + 6px * ($i - 1));
+            }
+        }
     }
 
     thead {
@@ -69,6 +75,10 @@
             display: inline-flex;
             flex-flow: row nowrap;
             column-gap: 6px;
+
+            &#{-1} {
+                width: 140px;
+            }
 
             a {
                 display: inline-block;

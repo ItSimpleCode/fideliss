@@ -26,7 +26,7 @@
                                 @endif
                             @endforeach
 
-                            <th class="actions">Actions</th>
+                            <th class="actions btn-1">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,18 +42,11 @@
                                 @endforeach
 
                                 <td>
-                                    <div class="actions">
-                                        @if ($table == 'clients')
-                                            <a href="/dashboard/client/{{ $item['id'] }}/cards">
-                                                <i class="fa-regular fa-credit-card"></i>
-                                                <span>cards</span>
-                                            </a>
-                                        @endif
+                                    <div class="actions btn-1">
                                         <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>edit</span>
                                         </a>
-                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>disactive</span></a>
                                     </div>
                                 </td>
 
