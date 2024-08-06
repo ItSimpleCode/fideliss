@@ -618,6 +618,15 @@ i {
   width: 100%;
   border-collapse: collapse;
 }
+.main-table table .actions.btn-1 {
+  width: 130px;
+}
+.main-table table .actions.btn-2 {
+  width: 266px;
+}
+.main-table table .actions.btn-3 {
+  width: 402px;
+}
 .main-table thead tr th {
   background-color: #3e4afa;
   color: #fff;
@@ -667,6 +676,9 @@ i {
   -webkit-column-gap: 6px;
      -moz-column-gap: 6px;
           column-gap: 6px;
+}
+.main-table tbody .actions-1 {
+  width: 140px;
 }
 .main-table tbody .actions a {
   display: inline-block;

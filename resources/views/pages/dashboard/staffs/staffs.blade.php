@@ -12,10 +12,8 @@
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
             <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>add new row</span></a>
         </div>
-
         <div class="main-table">
             @if ($data->count() > 0)
-
                 <table>
                     <thead>
                         <tr>
@@ -25,8 +23,7 @@
                                     <th>{{ $column }}</th>
                                 @endif
                             @endforeach
-
-                            <th class="actions">Actions</th>
+                            <th class="actions btn-2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,9 +37,8 @@
                                         <td>{{ $item[$field] }}</td>
                                     @endif
                                 @endforeach
-
                                 <td>
-                                    <div class="actions">
+                                    <div class="actions btn-2">
                                         @if ($table == 'clients')
                                             <a href="/dashboard/client/{{ $item['id'] }}/cards">
                                                 <i class="fa-regular fa-credit-card"></i>
