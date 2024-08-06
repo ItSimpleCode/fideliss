@@ -32,7 +32,7 @@
             @csrf
             <div>
                 <label for="email">email</label>
-                <input type="text" id="email" name="email" autofocus required value="y">
+                <input type="text" id="email" name="email" autofocus required value="fahmiyasser03@gmail.com">
             </div>
             <div>
                 <label for="password">password</label>
