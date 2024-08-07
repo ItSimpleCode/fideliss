@@ -44,8 +44,8 @@
                     <div class="selection-field">
                         <div class="field">
                             <label for="">Statut</label>
-                            <input class="back" type="hidden" name="pay-method" value="1">
-                            <input class="front" type="text" id="pay-method" value="Active">
+                            <input class="back" type="hidden" name="active" value={{$card['active']}}>
+                            <input class="front" type="text" id="pay-method" value={{$card['active']?'Actif':'Inactif'}}>
                             <i class="fa-solid fa-angle-down"></i>
                         </div>
                         <div class="options">
