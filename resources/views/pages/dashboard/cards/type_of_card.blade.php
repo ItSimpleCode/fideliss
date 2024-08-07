@@ -23,28 +23,29 @@
                 <span>Ajouter Une Nouvelle Carte</span>
             </h1>
         </div>
+
         <div class="form">
-            <form action="" method="POST">
+            <form action={{ route('cards.store.type.of.card') }} method="POST">
                 @csrf
                 <div class="part">
 
                     <div class="field">
                         <label for="">type de carte</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="name" id="">
                     </div>
                     <div class="field">
                         <label for="">Coût</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="cost" id="">
                     </div>
                     <div class="field">
                         <label for="">période ( En jours )</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="period" id="">
                     </div>
 
                     <div class="selection-field">
                         <div class="field">
                             <label for="">Statut</label>
-                            <input class="back" type="hidden" name="pay-method" value="1">
+                            <input class="back" type="hidden" name="active" value="1">
                             <input class="front" type="text" id="pay-method" value="Active">
                             <i class="fa-solid fa-angle-down"></i>
                         </div>

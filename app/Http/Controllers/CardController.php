@@ -18,7 +18,7 @@ class CardController extends Controller
     {
         $columns = ['name', 'cost', 'period', 'creations date'];
         $fields = ['name', 'cost', 'period', 'created_at'];
-        $cards = Card::select('id', 'name', 'cost', 'period', 'active', 'created_at','active')
+        $cards = Card::select('id', 'name', 'cost', 'period', 'active', 'created_at', 'active')
             ->orderBy('created_at')
             ->get();
         $data = $cards->map(function ($card) {
@@ -183,7 +183,6 @@ class CardController extends Controller
             'qrCode' => QrCode::size(100)->generate($card->card_serial)
         ];
 
-        // return response()->json($data);
         return view('pages.dashboard.scanner.add_points', compact('data'));
     }
 
@@ -198,7 +197,7 @@ class CardController extends Controller
         return redirect()->route('client.cards', ['id' => $card->id_client]);
     }
 
-    
+
     public function changeStatus($id)
     {
         $card = Card::find($id);
@@ -209,6 +208,26 @@ class CardController extends Controller
 
     public function showAddForm()
     {
-        return view('pages.dashboard.cards.add');
+        return view('pages.dashboard.cards.type_of_card');
+    }
+    public function create(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'cost' => 'required|numeric',
+                'period' => 'required|int',
+                'active' => 'required',
+            ]);
+            $card = new Card;
+            $card->name = $request->name;
+            $card->cost = $request->cost;
+            $card->period = $request->period;
+            $card->active = $request->active;
+            $card->save();
+            return redirect()->route('cards');
+        } catch (Exception $e) {
+            return back()->withErrors(['error' =>  $e->getMessage()]);
+        }
     }
 }
