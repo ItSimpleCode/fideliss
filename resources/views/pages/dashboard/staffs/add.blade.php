@@ -16,6 +16,9 @@
                 <span>Ajouter un membre du personnel</span>
             </h1>
         </div>
+        @error('error')
+            {{ $message }}
+        @enderror
         <div class="form">
             <form action={{ route('staffs.add.store') }} method="POST">
                 @csrf
@@ -91,7 +94,8 @@
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-solid fa-users"></i><span>nouveau membre du personnel</span></button>
+                    <button type="submit"><i class="fa-solid fa-users"></i><span>nouveau membre du
+                            personnel</span></button>
                 </div>
 
             </form>
