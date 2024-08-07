@@ -10,7 +10,8 @@
     <section class="dark-bg">
         <div class="head">
             <div class="title">cartes</div>
-            <a class="add" href=""> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle carte</span></a>
+            <a class="add" href={{ route('cards.add.show') }}> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle
+                    carte</span></a>
         </div>
         <div class="main-table">
             @if ($data->count() > 0)
@@ -45,7 +46,19 @@
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>modifier</span>
                                         </a>
-                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>désactiver</span></a>
+                                        {{-- <a href=""><i class="fa-solid fa-user-slash"></i><span>désactiver</span></a> --}}
+
+
+                                        @if ($item['active'])
+                                            <a href={{ route('cards.edit.status', ['id' => $item['id']]) }} class='active'>
+                                                <i class="fa-solid fa-user"></i><span>actif</span>
+                                            </a>
+                                        @else
+                                            <a href={{ route('cards.edit.status', ['id' => $item['id']]) }}
+                                                class='disactive'>
+                                                <i class="fa-solid fa-user-slash"></i><span>inactif</span>
+                                            </a>
+                                        @endif
                                     </div>
                                 </td>
 
