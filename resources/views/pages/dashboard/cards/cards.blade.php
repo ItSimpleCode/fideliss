@@ -10,8 +10,8 @@
     <section class="dark-bg">
         <div class="head">
             <div class="title">cartes</div>
-            <a class="add" href={{ route('cards.add.show') }}> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle
-                    carte</span></a>
+
+            <a class="add" href="{{ Route('cards.add.type.of.card') }}"> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle carte</span></a>
         </div>
         <div class="main-table">
             @if ($data->count() > 0)

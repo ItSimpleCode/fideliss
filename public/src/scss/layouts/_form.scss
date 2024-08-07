@@ -48,7 +48,7 @@ form {
             top: 0;
             left: 12px;
             padding: 4px 8px;
-            background-color: $bg_color_3;
+            background-color: $bg_color_0;
         }
 
         input {
@@ -59,6 +59,7 @@ form {
             border: 1px solid $text_color_1;
             outline: none;
             background-color: transparent;
+            font-weight: 700;
         }
 
         &.disabled {
@@ -91,7 +92,7 @@ form {
         }
 
         .options {
-            background-color: #fff;
+            background-color: $bg_color_0;
             width: 100%;
             border-radius: 12px;
 
@@ -120,7 +121,7 @@ form {
                 transition-duration: 0.1s;
 
                 &:hover {
-                    background-color: #3e4afa;
+                    background-color: $bg_color_4;
                     color: $text_color_1;
                 }
             }
@@ -128,11 +129,11 @@ form {
     }
 
     button[type="submit"] {
-        background-color: #3e4afa;
+        color: $bg_color_0;
+        background-color: $bg_color_4;
         padding: 24px 0;
         border-radius: 12px;
         border: none;
-        color: $text_color_1;
         font-size: 16px;
         text-transform: capitalize;
         font-weight: 700;
