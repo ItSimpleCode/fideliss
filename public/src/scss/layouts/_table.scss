@@ -23,7 +23,7 @@
     thead {
         tr {
             th {
-                background-color: #3e4afa;
+                background-color: $bg_color_2;
                 color: $text_color_1;
                 font-weight: 600;
                 text-transform: capitalize;
@@ -50,15 +50,16 @@
             transition-duration: 0.2s;
 
             &:hover td {
-                background-color: transparentize(#ffffff, 0.96);
-                color: #ffffff;
+                background-color: transparentize(#000, 0.96);
                 opacity: 1;
             }
         }
 
         td {
             height: 62px;
-            opacity: 0.45;
+            font-weight: 600;
+            text-transform: capitalize;
+            opacity: 0.75;
 
             &:first-child {
                 border-radius: 12px 0 0 12px;
@@ -85,8 +86,8 @@
                 width: 130px;
                 height: 30px;
 
-                color: #1a2431;
-                background-color: #ffffff;
+                color: $text_color_3;
+                background-color: $bg_color_0;
                 text-decoration: none;
 
                 display: flex;
@@ -98,11 +99,11 @@
                 border-radius: 6px;
 
                 &.active {
-                    background-color: yellowgreen;
+                    background-color: $btn_active;
                 }
 
                 &.disactive {
-                    background-color: #df2525;
+                    background-color: $btn_disactive;
                 }
             }
         }

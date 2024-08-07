@@ -1,6 +1,6 @@
 var Scrollbar = window.Scrollbar;
 
-Scrollbar.initAll();
+Scrollbar?.initAll();
 
 window.addEventListener("load", () => {
     let aside = document.getElementById("aside");
@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 con.contains(fie) &&
                     selectionFieldOptions.forEach((opt) => {
                         con.contains(opt)
-                            ? opt.classList.toggle("show")
+                            ? opt.classList.add("show")
                             : opt.classList.remove("show");
                     });
             });
@@ -69,7 +69,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const inputNumber = document.querySelectorAll("input[name=phone_number]");
     const inputEmail = document.querySelectorAll("input[name=email]");
     const inputDate = document.querySelectorAll("input[name=birth_date]");
-    const inputaddress = document.querySelectorAll("input[name=address]");
+    const inputAddress = document.querySelectorAll("input[name=address]");
 
     inputName.forEach((inp) => {
         inp.addEventListener(
@@ -92,15 +92,26 @@ window.addEventListener("DOMContentLoaded", () => {
     inputDate.forEach((inp) => {
         inp.addEventListener("input", () => {
             let value = inp.value;
+
+            // Remove any character that is not a digit or a hyphen
             value = value.replace(/[^\d-]/g, "");
+
+            // Limit the value to 10 characters to match the YYYY-MM-DD format
             if (value.length > 10) value = value.slice(0, 10);
-            if (value.length > 2 && value[2] !== "-")
-                value = value.slice(0, 2) + "-" + value.slice(2);
-            if (value.length > 5 && value[5] !== "-")
-                value = value.slice(0, 5) + "-" + value.slice(5);
+
+            // Insert hyphen after the fourth character if not present
+            if (value.length > 4 && value[4] !== "-")
+                value = value.slice(0, 4) + "-" + value.slice(4);
+
+            // Insert hyphen after the seventh character if not present
+            if (value.length > 7 && value[7] !== "-")
+                value = value.slice(0, 7) + "-" + value.slice(7);
+
+            // Update the input field value
             inp.value = value;
         });
     });
+
     inputAddress.forEach((inp) => {
         inp.addEventListener("input", function () {
             let value = inp.value;

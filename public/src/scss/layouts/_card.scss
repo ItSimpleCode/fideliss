@@ -205,6 +205,7 @@
         font-size: 27px;
         font-weight: 700;
         text-align: center;
+        color: $text_color_0;
         text-shadow: 0 0 4px #000;
     }
 
@@ -238,6 +239,7 @@
     }
 
     .type-of-card {
+        color: $text_color_0;
         font-size: 16px;
         font-weight: 600;
         text-transform: uppercase;
@@ -245,6 +247,7 @@
 
     .name,
     .expiry {
+        color: $text_color_0;
         font-size: 13px;
         font-weight: 600;
         text-transform: capitalize;

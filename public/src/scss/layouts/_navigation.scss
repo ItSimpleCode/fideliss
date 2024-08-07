@@ -28,6 +28,7 @@
         object-fit: cover;
         object-position: center center;
     }
+
     .user_name {
         color: $text_color_1;
         text-transform: capitalize;
@@ -49,6 +50,7 @@
             transform: translateY(-50%);
             color: transparentize($text_color_1, 0.65);
         }
+
         .bar {
             position: absolute;
             top: 50%;
@@ -59,10 +61,11 @@
             background-color: transparentize($text_color_1, 0.65);
             border-radius: 1.25px;
         }
+
         input {
             width: 100%;
             height: 100%;
-            background-color: #1a2431;
+            background-color: $bg_color_3;
             border: none;
             outline: none;
             padding-left: 84px;
@@ -94,7 +97,7 @@
         .date {
             height: 48px;
             border-radius: 24px;
-            background-color: #1a2431;
+            background-color: $bg_color_3;
             column-gap: 12px;
             padding: 0 12px;
 
@@ -109,6 +112,7 @@
                 }
             }
         }
+
         .square-btn {
             background-color: transparent;
             flex-flow: column nowrap;
@@ -117,7 +121,7 @@
                 width: 24px;
                 height: 14px;
                 background-color: yellow;
-                color: #1a2431;
+                color: $text_color_3;
                 font-weight: bold;
                 display: flex;
                 justify-content: center;

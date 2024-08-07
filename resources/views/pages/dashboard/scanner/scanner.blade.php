@@ -31,7 +31,7 @@
 @endsection
 
 @section('script')
-    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
     <script>
         const html5QrCode = new Html5Qrcode("reader");
 
