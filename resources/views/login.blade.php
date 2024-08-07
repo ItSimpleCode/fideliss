@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fidelis - Login</title>
+    <title>Fidelis - Connexion</title>
     <link rel="icon" href="{{ asset('img/logo.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('img/logo.png') }}">
@@ -25,8 +25,8 @@
     @enderror
     <div class="log_in">
         <div class="head">
-            <img class="logo" src="{{ asset('img/logo.png') }}" alt="fediles logo">
-            <h1>Log in</h1>
+            <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo de Fidelis">
+            <h1>Connexion</h1>
         </div>
         <form class="form" action={{ route('login') }} method="POST">
             @csrf
@@ -35,11 +35,11 @@
                 <input type="text" id="email" name="email" autofocus required value="y">
             </div>
             <div>
-                <label for="password">password</label>
+                <label for="password">mot de passe</label>
                 <input type="password" id="password" name="password" required value="y">
             </div>
-            <button>connect</button>
-            {{-- <a href={{ route('forgetPassword.show') }}>forget password</a> --}}
+            <button>se connecter</button>
+            {{-- <a href={{ route('forgetPassword.show') }}>mot de passe oublié</a> --}}
         </form>
     </div>
 
