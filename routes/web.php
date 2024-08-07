@@ -56,6 +56,7 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/cards/addTypeOfCard',  [CardController::class, 'showAddForm'])->name('cards.add.type.of.card');
     Route::post('/dashboard/cards/add', [CardController::class, 'create'])->name('cards.store.type.of.card');
     Route::get('/dashboard/cards/edit/{id}', [CardController::class, 'showEditForm'])->name('cards.edit.show');
+    Route::post('/dashboard/cards/edit/{id}', [CardController::class, 'edit'])->name('cards.edit.store');
     Route::get('/dashboard/cards/changeStatus/{id}', [CardController::class, 'changeStatus'])->name('cards.edit.status');
 
     Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');

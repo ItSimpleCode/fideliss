@@ -24,21 +24,21 @@
             </h1>
         </div>
         <div class="form">
-            <form action="" method="POST">
+            <form action={{ route('cards.edit.store', ['id' => $card['id']]) }} method="POST">
                 @csrf
                 <div class="part">
 
                     <div class="field">
                         <label for="">type de carte</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="name" value={{ $card['name'] }}>
                     </div>
                     <div class="field">
                         <label for="">Coût</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="cost" value={{ $card['cost'] }}>
                     </div>
                     <div class="field">
                         <label for="">période ( En jours )</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="period" value={{ $card['period'] }}>
                     </div>
 
                     <div class="selection-field">

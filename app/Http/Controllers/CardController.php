@@ -210,6 +210,7 @@ class CardController extends Controller
     {
         return view('pages.dashboard.cards.type_of_card');
     }
+
     public function create(Request $request)
     {
         try {
@@ -225,6 +226,33 @@ class CardController extends Controller
             $card->period = $request->period;
             $card->active = $request->active;
             $card->save();
+            return redirect()->route('cards');
+        } catch (Exception $e) {
+            return back()->withErrors(['error' =>  $e->getMessage()]);
+        }
+    }
+
+
+    public function showEditForm($id)
+    {
+        $card = Card::find($id);
+        return view('pages.dashboard.cards.edit_type_of_card', compact('card'));
+    }
+    public function edit(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'cost' => 'required|numeric',
+                'period' => 'required|int',
+                'active' => 'required',
+            ]);
+            $card = Card::find($id);
+            $card->name = $request->name;
+            $card->cost = $request->cost;
+            $card->period = $request->period;
+            $card->active = $request->active;
+            $card->update();
             return redirect()->route('cards');
         } catch (Exception $e) {
             return back()->withErrors(['error' =>  $e->getMessage()]);
