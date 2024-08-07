@@ -41,7 +41,7 @@ class StaffController extends Controller
     public function showAddForm()
     {
         $branches = Branch::select('id', 'name')
-            ->where('active', 1)
+            ->where(['active' => 1])
             ->get();
         return view('pages.dashboard.staffs.add', compact('branches'));
     }
@@ -53,9 +53,9 @@ class StaffController extends Controller
             $request->validate([
                 'first_name' => 'required|max:255',
                 'last_name' => 'required|max:255',
-                'birth_date' => 'required|date',
-                'phone_number' => 'required|max:255',
-                'gender' => 'required|max:255',
+                // 'birth_date' => 'required|date',
+                'phone_number' => 'required',
+                'gender' => 'required',
                 'email' => 'required|email|max:255',
                 'password' => 'required|min:8|max:255',
                 'id_branch' => 'required',
@@ -64,7 +64,8 @@ class StaffController extends Controller
             $client = new Staff;
             $client->first_name = $request->first_name;
             $client->last_name = $request->last_name;
-            $client->birth_date = $request->birth_date;
+            $client->birth_date = '1999-12-31';
+            // $client->birth_date = $request->birth_date;
             $client->phone_number = $request->phone_number;
             $client->gender = $request->gender;
             if (

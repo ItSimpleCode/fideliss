@@ -16,9 +16,9 @@ class CardController extends Controller
 
     public function index()
     {
-        $columns = ['name', 'cost', 'period', 'status', 'creations date'];
-        $fields = ['name', 'cost', 'period', 'active', 'created_at'];
-        $cards = Card::select('id', 'name', 'cost', 'period', 'active', 'created_at')
+        $columns = ['name', 'cost', 'period', 'creations date'];
+        $fields = ['name', 'cost', 'period', 'created_at'];
+        $cards = Card::select('id', 'name', 'cost', 'period', 'active', 'created_at','active')
             ->orderBy('created_at')
             ->get();
         $data = $cards->map(function ($card) {
@@ -27,7 +27,7 @@ class CardController extends Controller
                 'name' => $card->name,
                 'cost' => $card->cost,
                 'period' => $card->period . ' days',
-                'active' => $card->active == 1 ? 'active' : 'desactive',
+                'active' => $card->active,
                 'created_at' => $card->created_at,
             ];
         });
@@ -196,5 +196,19 @@ class CardController extends Controller
         $card->wallet = $card->wallet + $request->points;
         $card->update();
         return redirect()->route('client.cards', ['id' => $card->id_client]);
+    }
+
+    
+    public function changeStatus($id)
+    {
+        $card = Card::find($id);
+        $card->active = !$card->active;
+        $card->update();
+        return redirect()->route('cards');
+    }
+
+    public function showAddForm()
+    {
+        return view('pages.dashboard.cards.add');
     }
 }
