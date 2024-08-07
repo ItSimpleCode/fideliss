@@ -24,29 +24,29 @@
                     <div class="double-fields">
                         <div class="field">
                             <label for="first-name">prénom</label>
-                            <input type="text" name="first_name" id="first-name">
+                            <input type="text" name="first_name" id="first-name" value="{{ $staff['first_name'] }}">
                         </div>
                         <div class="field">
                             <label for="last-name">nom de famille</label>
-                            <input type="text" name="last_name" id="last-name">
+                            <input type="text" name="last_name" id="last-name" value="{{ $staff['last_name'] }}">
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field">
                             <label for="email">email</label>
-                            <input type="text" name="email" id="email">
+                            <input type="text" name="email" id="email" value="{{ $staff['email'] }}">
                         </div>
                         <div class="field">
                             <label for="phone">numéro de téléphone</label>
-                            <input type="text" name="phone_number" id="phone">
+                            <input type="text" name="phone_number" id="phone" value="{{ $staff['phone_number'] }}">
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="selection-field">
                             <div class="field">
                                 <label for="type">genre</label>
-                                <input class="back" type="hidden" name="gender">
-                                <input class="front" type="text" id="type">
+                                <input class="back" type="hidden" name="gender" value="{{ $staff['gender'] }}">
+                                <input class="front" type="text" id="type" value="{{ $staff['gender'] }}">
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
@@ -57,7 +57,7 @@
                         </div>
                         <div class="field">
                             <label for="birth_date">date de naissance</label>
-                            <input type="text" name="birth_date" id="birth_date">
+                            <input type="text" name="birth_date" id="birth_date" value="{{ $staff['birth_date'] }}">
                         </div>
                     </div>
 
@@ -67,10 +67,13 @@
                     <h2 class="title">informations sur le travail</h2>
                     <div class="double-fields">
                         <div class="selection-field">
+                            @php
+                                $b = collect($branches)->firstWhere('id', $staff['id_branch']);
+                            @endphp
                             <div class="field">
                                 <label for="branch">branche</label>
-                                <input class="back" type="hidden" name="id_branch">
-                                <input class="front" type="text" id="branch">
+                                <input class="back" type="hidden" name="id_branch" value="{{ $b['id'] }}">
+                                <input class="front" type="text" id="branch" value="{{ $b['name'] }}">
                                 <i class="fa-solid fa-angle-down"></i>
                             </div>
                             <div class="options">
@@ -81,7 +84,7 @@
                         </div>
                         <div class="field">
                             <label for="password">mot de passe</label>
-                            <input type="text" name="password" id="password">
+                            <input type="text" name="password" id="password" value="{{ $staff['password'] }}">
                         </div>
                     </div>
                 </div>
