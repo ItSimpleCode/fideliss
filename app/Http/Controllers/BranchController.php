@@ -80,7 +80,7 @@ class BranchController extends Controller
 
         if ($staffCount > 0) {
             return response()->json([
-                'message' => "The branch is not empty. It contains $staffCount staff member(s).",
+                'message' => "La branche n'est pas vide. Elle contient $staffCount membre(s) du personnel.",
             ]);
         }
 
