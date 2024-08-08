@@ -52,7 +52,15 @@
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>Modifier</span>
                                         </a>
-                                        <a href=""><i class="fa-solid fa-user-slash"></i><span>Désactiver</span></a>
+                                        @if ($item['active'])
+                                            <a href={{ route('clients.edit.status', ['id' => $item['id']]) }} class='active'>
+                                                <i class="fa-solid fa-user"></i><span>actif</span>
+                                            </a>
+                                        @else
+                                            <a href={{ route('clients.edit.status', ['id' => $item['id']]) }} class='disactive'>
+                                                <i class="fa-solid fa-user-slash"></i><span>inactif</span>
+                                            </a>
+                                        @endif
                                     </div>
                                 </td>
 
