@@ -76,8 +76,12 @@ class BranchController extends Controller
     public function changeStatus($id)
     {
         $branch = Branch::find($id);
-        if (Staff::where('id_branch', $id)->exists()) {
-            return back()->withErrors(['error' =>  'The branch is not empty. It contains staff members.']);
+        $staffCount = Staff::where('id_branch', $id)->count();
+
+        if ($staffCount > 0) {
+            return response()->json([
+                'message' => "The branch is not empty. It contains $staffCount staff member(s).",
+            ]);
         }
 
         $branch->active = !$branch->active;
