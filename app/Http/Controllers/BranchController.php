@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Branch;
+use App\Models\Client;
+use App\Models\Staff;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,7 @@ class BranchController extends Controller
     {
         $columns = ['name', 'address'];
         $fields = ['name', 'address'];
-        $data = Branch::select('id', 'name', 'address','active')
+        $data = Branch::select('id', 'name', 'address', 'active')
             ->orderBy('created_at')
             ->get();
         $table = 'branches';
@@ -74,8 +76,13 @@ class BranchController extends Controller
     public function changeStatus($id)
     {
         $branch = Branch::find($id);
+        if (Staff::where('id_branch', $id)->exists()) {
+            return back()->withErrors(['error' =>  'The branch is not empty. It contains staff members.']);
+        }
+
         $branch->active = !$branch->active;
-        $branch->update();
+        $branch->save();
+
         return redirect()->route('branches');
     }
 }
