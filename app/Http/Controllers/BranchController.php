@@ -12,9 +12,10 @@ class BranchController extends Controller
 {
     public function index()
     {
-        $columns = ["Nom", "Adresse"];
-        $fields = ['name', 'address'];
+        $columns = ["Nom", "Adresse",'nombre de staff'];
+        $fields = ['name', 'address','staffs_count'];
         $data = Branch::select('id', 'name', 'address', 'active')
+            ->withCount(['staffs'])
             ->orderBy('created_at')
             ->get();
         $table = 'branches';
