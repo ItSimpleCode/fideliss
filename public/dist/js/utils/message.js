@@ -1,0 +1,1 @@
+"use strict";window.addEventListener("load",(function(){var o=document.querySelectorAll(".error"),r=document.querySelectorAll(".error .close_error");o.forEach((function(o){return null==o?void 0:o.classList.add("show")})),r.forEach((function(r){r.onclick=function(){o.forEach((function(o){o.contains(r)&&o.remove()}))}}))}));

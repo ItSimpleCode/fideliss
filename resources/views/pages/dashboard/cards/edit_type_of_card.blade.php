@@ -8,13 +8,6 @@
 
 @section('content')
     <section class="dark-bg new-card">
-        @error('error')
-            <div class="message">
-                <span>{{ $message }}</span>
-                <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-        @enderror
-
         <div class="head">
             <h1 class="title">
                 <a href="{{ Route('cards') }}">
@@ -44,8 +37,10 @@
                     <div class="selection-field">
                         <div class="field">
                             <label for="">Statut</label>
-                            <input class="back" type="hidden" name="active" value={{$card['active']}}>
-                            <input class="front" type="text" id="pay-method" value={{$card['active']?'Actif':'Inactif'}}>
+
+                            <input class="back" type="hidden" name="active" value={{ $card['active'] }}>
+                            <input class="front" type="text" id="pay-method" value={{ $card['active'] ? 'Actif' : 'Inactif' }}>
+
                             <i class="fa-solid fa-angle-down"></i>
                         </div>
                         <div class="options">

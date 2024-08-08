@@ -17,8 +17,6 @@ window.addEventListener("load", () => {
     });
 });
 
-// Selection field
-
 window.addEventListener("DOMContentLoaded", () => {
     /* selection input */
     const selectionCon = document.querySelectorAll(".selection-field");

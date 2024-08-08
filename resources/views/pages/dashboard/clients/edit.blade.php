@@ -8,13 +8,6 @@
 
 @section('content')
     <section class="dark-bg">
-        @error('error')
-            <div class="message">
-                <span>{{ $message }}</span>
-                <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-        @enderror
-
         <div class="head">
             <h1 class="title">
                 <a href="{{ route('clients') }}">

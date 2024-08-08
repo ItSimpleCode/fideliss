@@ -16,9 +16,6 @@
                 <span>Ajouter un membre du personnel</span>
             </h1>
         </div>
-        @error('error')
-            {{ $message }}
-        @enderror
         <div class="form">
             <form action={{ route('staffs.add.store') }} method="POST">
                 @csrf

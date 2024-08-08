@@ -10,7 +10,6 @@
     <section class="dark-bg">
         <div class="head">
             <div class="title">cartes</div>
-
             <a class="add" href="{{ Route('cards.add.type.of.card') }}"> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle carte</span></a>
         </div>
         <div class="main-table">
@@ -54,8 +53,7 @@
                                                 <i class="fa-solid fa-user"></i><span>actif</span>
                                             </a>
                                         @else
-                                            <a href={{ route('cards.edit.status', ['id' => $item['id']]) }}
-                                                class='disactive'>
+                                            <a href={{ route('cards.edit.status', ['id' => $item['id']]) }} class='disactive'>
                                                 <i class="fa-solid fa-user-slash"></i><span>inactif</span>
                                             </a>
                                         @endif

@@ -18,8 +18,8 @@
 
 <body>
     @error('error')
-        <div class="message">
-            <span>{{ $message }}</span>
+        <div class="error">
+            <span class="message">{{ $message }}</span>
             <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
         </div>
     @enderror
@@ -43,26 +43,7 @@
         </form>
     </div>
 
-    <script>
-        window.addEventListener('load', () => {
-            const messages = document.querySelectorAll('.message');
-            const messagesCloseError = document.querySelectorAll('.message .close_error');
-
-            messages.forEach(e => (e?.classList.add('show'), console.log(e)));
-
-            messagesCloseError.forEach(btn => {
-                btn.onclick = () => {
-                    messages.forEach(parent => {
-
-                        if (parent.contains(btn)) parent.classList.remove('show');
-
-                    })
-                };
-
-            });;
-        });
-    </script>
-
+    <script src="{{ asset('dist/js/utils/message.js') }}"></script>
 </body>
 
 </html>
