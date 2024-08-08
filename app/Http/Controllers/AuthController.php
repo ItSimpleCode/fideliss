@@ -40,7 +40,7 @@ class AuthController extends Controller
             } else {
                 $staff = Staff::where(['email' => $request->email, 'password' => $request->password])->first();
                 if ($staff) {
-                    if(!$staff->active){
+                    if (!$staff->active) {
                         return back()->withErrors(['error' => 'ce compte est désactivé']);
                     }
                     Auth::guard('staff')->login($staff);
@@ -51,9 +51,9 @@ class AuthController extends Controller
                 }
             }
 
-            return back()->withErrors(['error' => 'Email or password are incorrect']);
+            return back()->withErrors(['error' => 'email ou mot de passe incorrect']);
         } catch (Exception $e) {
-            return back()->withErrors(['error' => 'something uncorrected']);
+            return back()->withErrors(['error' => 'Quelque chose ne tourne pas rond']);
         }
     }
 

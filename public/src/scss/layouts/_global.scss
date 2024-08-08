@@ -1,8 +1,9 @@
 @import "../variables/colors";
 @import "../variables/fonts";
-@import "aside";
-@import "navigation";
-@import "main";
+@import "./message";
+@import "./aside";
+@import "./navigation";
+@import "./main";
 
 * {
     box-sizing: border-box;

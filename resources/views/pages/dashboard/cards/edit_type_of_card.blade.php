@@ -8,13 +8,6 @@
 
 @section('content')
     <section class="dark-bg new-card">
-        @error('error')
-            <div class="message">
-                <span>{{ $message }}</span>
-                <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-        @enderror
-
         <div class="head">
             <h1 class="title">
                 <a href="{{ Route('cards') }}">
@@ -24,28 +17,28 @@
             </h1>
         </div>
         <div class="form">
-            <form action="" method="POST">
+            <form action={{ route('cards.edit.store', ['id' => $card['id']]) }} method="POST">
                 @csrf
                 <div class="part">
 
                     <div class="field">
                         <label for="">type de carte</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="name" value={{ $card['name'] }}>
                     </div>
                     <div class="field">
                         <label for="">Coût</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="cost" value={{ $card['cost'] }}>
                     </div>
                     <div class="field">
                         <label for="">période ( En jours )</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="period" value={{ $card['period'] }}>
                     </div>
 
                     <div class="selection-field">
                         <div class="field">
                             <label for="">Statut</label>
-                            <input class="back" type="hidden" name="pay-method" value="1">
-                            <input class="front" type="text" id="pay-method" value="Active">
+                            <input class="back" type="hidden" name="active" value={{ $card['active'] }}>
+                            <input class="front" type="text" id="pay-method" value={{ $card['active'] ? 'Actif' : 'Inactif' }}>
                             <i class="fa-solid fa-angle-down"></i>
                         </div>
                         <div class="options">

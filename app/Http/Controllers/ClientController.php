@@ -13,7 +13,7 @@ class ClientController extends Controller
     {
         $columns = ['First name', 'Last name', 'phone number', 'gender', 'email', 'joining date', 'cards'];
         $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'cards_number'];
-        $clients = Client::select('id', 'first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at')->get();
+        $clients = Client::select('id', 'first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'active')->get();
 
         $data = $clients->map(function ($client) {
             $client->cards_number = $client->clientCards()->count();
@@ -78,7 +78,7 @@ class ClientController extends Controller
         return view('pages.dashboard.clients.edit', compact('client'));
     }
 
-    public function edite(Request $request, $id)
+    public function edit(Request $request, $id)
     {
         try {
             $request->validate([
@@ -89,6 +89,7 @@ class ClientController extends Controller
                 'gender' => 'required|max:255',
                 'address' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
+                'active' => 'required',
             ]);
 
             $client = Client::find($id);
@@ -100,13 +101,7 @@ class ClientController extends Controller
             $client->address = $request->address;
             $client->email = $request->email;
             $client->password = '123456789';
-            if (Auth::guard('admin')->check()) {
-                $client->id_creator = Auth::guard('admin')->user()->id;
-                $client->creator_type = 'admin';
-            } else if (Auth::guard('staff')->check()) {
-                $client->id_creator = Auth::guard('staff')->user()->id;
-                $client->creator_type = 'staff';
-            }
+            $client->active = $request->active;
             $client->update();
 
 
@@ -114,5 +109,13 @@ class ClientController extends Controller
         } catch (Exception $e) {
             return back()->withErrors(['error' =>  $e->getMessage()]);
         }
+    }
+
+    public function changeStatus($id)
+    {
+        $client = Client::find($id);
+        $client->active = !$client->active;
+        $client->update();
+        return redirect()->route('clients');
     }
 }

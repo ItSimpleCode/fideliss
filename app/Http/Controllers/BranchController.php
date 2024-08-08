@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Branch;
+use App\Models\Client;
+use App\Models\Staff;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,7 @@ class BranchController extends Controller
     {
         $columns = ['name', 'address'];
         $fields = ['name', 'address'];
-        $data = Branch::select('id', 'name', 'address','active')
+        $data = Branch::select('id', 'name', 'address', 'active')
             ->orderBy('created_at')
             ->get();
         $table = 'branches';
@@ -74,8 +76,15 @@ class BranchController extends Controller
     public function changeStatus($id)
     {
         $branch = Branch::find($id);
+        $staffCount = Staff::where('id_branch', $id)->count();
+
+        if ($staffCount > 0) {
+            return back()->withErrors(['error' =>  "La branche n'est pas vide. Elle contient $staffCount membre(s) du personnel."]);
+        }
+
         $branch->active = !$branch->active;
-        $branch->update();
+        $branch->save();
+
         return redirect()->route('branches');
     }
 }

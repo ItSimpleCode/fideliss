@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->integer('id_creator');
             $table->enum('creator_type', ['admin', 'staff']);
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

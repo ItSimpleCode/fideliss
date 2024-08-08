@@ -24,10 +24,17 @@
 
     <main>
         @include('layouts.navigation')
+        @error('error')
+            <div class="error">
+                <span class="message">{{ $message }}</span>
+                <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        @enderror
         @yield('content')
     </main>
 
 
+    <script src="{{ asset('dist/js/utils/message.js') }}"></script>
     <script src="{{ asset('dist/js/main.js') }}"></script>
     @yield('script')
 </body>

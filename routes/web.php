@@ -51,12 +51,13 @@ Route::middleware(['user.auth'])->group(function () {
     Route::post('/dashboard/clients/add', [ClientController::class, 'create'])->name('clients.add.store');
     Route::get('/dashboard/clients/edit/{id}', [ClientController::class, 'showEditForm'])->name('clients.edit.show');
     Route::post('/dashboard/clients/edit/{id}', [ClientController::class, 'edit'])->name('clients.edit.store');
+    Route::get('/dashboard/clients/changeStatus/{id}', [ClientController::class, 'changeStatus'])->name('clients.edit.status');
 
     Route::get('/dashboard/cards', [CardController::class, 'index'])->name('cards');
-    Route::get('/dashboard/cards/add', [CardController::class, 'showAddForm'])->name('cards.add.show');
-    Route::get('/dashboard/cards/addTypeOfCard', fn () => view('pages.dashboard.cards.type_of_card'))->name('cards.add.type.of.card');
-    Route::post('/dashboard/cards/add', [CardController::class, 'create'])->name('cards.add.store');
+    Route::get('/dashboard/cards/addTypeOfCard',  [CardController::class, 'showAddForm'])->name('cards.add.type.of.card');
+    Route::post('/dashboard/cards/add', [CardController::class, 'create'])->name('cards.store.type.of.card');
     Route::get('/dashboard/cards/edit/{id}', [CardController::class, 'showEditForm'])->name('cards.edit.show');
+    Route::post('/dashboard/cards/edit/{id}', [CardController::class, 'edit'])->name('cards.edit.store');
     Route::get('/dashboard/cards/changeStatus/{id}', [CardController::class, 'changeStatus'])->name('cards.edit.status');
 
     Route::get('/dashboard/client/{id}/cards', [CardController::class, 'showClientCards'])->name('client.cards');
