@@ -16,7 +16,7 @@ class CardController extends Controller
 
     public function index()
     {
-        $columns = ['name', 'cost', 'period', 'creations date'];
+        $columns = ["Nom", "Coût", "Période", "Date de création"];
         $fields = ['name', 'cost', 'period', 'created_at'];
         $cards = Card::select('id', 'name', 'cost', 'period', 'active', 'created_at', 'active')
             ->orderBy('created_at')

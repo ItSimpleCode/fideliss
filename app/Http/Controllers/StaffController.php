@@ -14,7 +14,7 @@ class StaffController extends Controller
 {
     public function index()
     {
-        $columns = ['First name', 'Last name', 'phone number', 'gender', 'email', 'joining date', 'creator', 'branch'];
+        $columns = ["Prénom", "Nom de famille", "Numéro de téléphone", "Sexe", "Email", "Date d'adhésion", "Créateur", "Succursale"];
         $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'creator', 'branch'];
         $staffs = Staff::with(['admins', 'branches'])
             ->orderBy('created_at')
