@@ -6,6 +6,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\StatistiqueController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 // Private routes
 Route::middleware(['user.auth'])->group(function () {
-    Route::get('/dashboard/statistics', [AuthController::class, 'showStatistics'])->name('statistics');
+    Route::get('/dashboard/statistics', [StatistiqueController::class, 'showStatistics'])->name('statistics');
 
     Route::get('/dashboard/admins', [AdminController::class, 'index'])->name('admins');
     Route::get('/dashboard/admins/add', [AdminController::class, 'showAddForm'])->name('admins.add.show');

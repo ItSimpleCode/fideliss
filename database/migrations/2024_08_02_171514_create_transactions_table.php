@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_client_card')->constrained('client_cards')->onDelete('cascade');
+            $table->foreignId('id_client_card')->constrained('client_cards')->onDelete('set null');
             $table->integer('points');
             $table->integer('id_money_converter');
             $table->enum('type_money_converter', ['admin', 'staff']);

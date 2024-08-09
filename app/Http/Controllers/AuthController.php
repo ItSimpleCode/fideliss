@@ -89,17 +89,4 @@ class AuthController extends Controller
         return redirect()->route('login.show');
     }
 
-    //! --- statistics traitement
-    public function showStatistics()
-    {
-        // $transactions = Transaction::with([
-        //     'clientCards' => ['cards']
-        // ])
-        //     ->orderBy('created_at')
-        //     ->get();
-        //     $data = 
-
-        // return response()->json($transactions);
-        return view('pages.dashboard.statistics.statistics', ['transactions']);
-    }
 }
