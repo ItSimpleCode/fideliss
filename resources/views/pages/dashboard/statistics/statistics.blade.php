@@ -8,18 +8,56 @@
 
 @section('content')
     <section class="statistics-cards">
-        @for ($i = 0; $i < 5; $i++)
-            <div class="card">
-                <div class="up">
-                    <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                    <div class="number">249k</div>
-                </div>
-                <div class="down">
-                    <span class="card-name">visites</span>
-                    <span class="percent">10% <i class="fa-solid fa-arrow-trend-down"></i></span>
-                </div>
+        <div class="card">
+            <div class="up">
+                <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                <div class="number">249k</div>
             </div>
-        @endfor
+            <div class="down">
+                <span class="card-name">clients</span>
+                <span class="percent">10% <i class="fa-solid fa-arrow-trend-down"></i></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="up">
+                <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                <div class="number">249k</div>
+            </div>
+            <div class="down">
+                <span class="card-name">cards</span>
+                <span class="percent">10% <i class="fa-solid fa-arrow-trend-down"></i></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="up">
+                <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                <div class="number">249k</div>
+            </div>
+            <div class="down">
+                <span class="card-name">visites</span>
+                <span class="percent">10% <i class="fa-solid fa-arrow-trend-down"></i></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="up">
+                <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                <div class="number">249k</div>
+            </div>
+            <div class="down">
+                <span class="card-name">visites</span>
+                <span class="percent">10% <i class="fa-solid fa-arrow-trend-down"></i></span>
+            </div>
+        </div>
+        <div class="card">
+            <div class="up">
+                <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                <div class="number">249k</div>
+            </div>
+            <div class="down">
+                <span class="card-name">visites</span>
+                <span class="percent">10% <i class="fa-solid fa-arrow-trend-down"></i></span>
+            </div>
+        </div>
     </section>
 
 

@@ -26,7 +26,7 @@ class CardController extends Controller
                 'id' => $card->id,
                 'name' => $card->name,
                 'cost' => $card->cost,
-                'period' => $card->period . ' days',
+                'period' => "Il y a $card->period jours",
                 'active' => $card->active,
                 'created_at' => $card->created_at,
             ];

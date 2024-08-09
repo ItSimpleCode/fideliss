@@ -84,6 +84,11 @@ Route::get('/forgetPassword', [AuthController::class, 'showForgetPassword'])->na
 Route::post('/forgetPassword', [AuthController::class, 'SendPasswordInMail'])->name('forgetPassword.sendPassword');
 
 
+// Clients Space routes
+Route::get('/clients_space', function () {
+    return view('./clients_space');
+});
+
 
 Route::fallback(function () {
     return Auth::guard('admin')->check() || Auth::guard('staff')->check()

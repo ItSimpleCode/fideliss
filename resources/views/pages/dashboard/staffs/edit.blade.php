@@ -99,5 +99,5 @@
 @endsection
 
 @section('script')
-    <script type="module" src="{{ asset('dist/js/main.js') }}"></script>
+    <script src="{{ asset('dist/js/utils/form.js') }}"></script>
 @endsection
