@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class StatistiqueController extends Controller
 {
-    public function showStatistics()
+    public function index()
     {
 
         $columns = ['serie de carte','client','converter','type converter','points'];

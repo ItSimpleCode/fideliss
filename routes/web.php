@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActionsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BranchController;
@@ -27,7 +28,8 @@ use Illuminate\Support\Facades\Route;
 
 // Private routes
 Route::middleware(['user.auth'])->group(function () {
-    Route::get('/dashboard/statistics', [StatistiqueController::class, 'showStatistics'])->name('statistics');
+    Route::get('/dashboard/statistics', [StatistiqueController::class, 'index'])->name('statistics');
+    Route::get('/dashboard/actions', [ActionsController::class, 'index'])->name('actions');
 
     Route::get('/dashboard/admins', [AdminController::class, 'index'])->name('admins');
     Route::get('/dashboard/admins/add', [AdminController::class, 'showAddForm'])->name('admins.add.show');
