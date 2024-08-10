@@ -3,9 +3,12 @@
         <img src={{ asset('img/no-user.jpg') }} alt="photo de profil" class="user_pic">
         <span class="user_name">
             <span class="gender">
-                @if (Auth::guard('admin')->check() || Auth::guard('staff')->check())
+                @if (Auth::guard('admin')->check())
                     <span>{{ Auth::guard('admin')->user()->gender == 'male' ? 'mr.' : 'mme.' }}</span>
                     <span>{{ Auth::guard('admin')->user()->first_name }} {{ Auth::guard('admin')->user()->last_name }}</span>
+                @elseif(Auth::guard('staff')->check())
+                    <span>{{ Auth::guard('staff')->user()->gender == 'male' ? 'mr.' : 'mme.' }}</span>
+                    <span>{{ Auth::guard('staff')->user()->first_name }} {{ Auth::guard('staff')->user()->last_name }}</span>
                 @endif
             </span>
         </span>
