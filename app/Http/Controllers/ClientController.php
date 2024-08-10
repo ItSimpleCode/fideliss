@@ -51,7 +51,6 @@ class ClientController extends Controller
             $client->gender = $request->gender;
             $client->address = $request->address;
             $client->email = $request->email;
-            $client->password = '123456789';
             if (Auth::guard('admin')->check()) {
                 $client->id_creator = Auth::guard('admin')->user()->id;
                 $client->creator_type = 'admin';
@@ -100,7 +99,6 @@ class ClientController extends Controller
             $client->gender = $request->gender;
             $client->address = $request->address;
             $client->email = $request->email;
-            $client->password = '123456789';
             $client->active = $request->active;
             $client->update();
 

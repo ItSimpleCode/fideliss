@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class TransactionController extends Controller
-{
+
+class TransactionController extends Authenticatable {
+    
 }

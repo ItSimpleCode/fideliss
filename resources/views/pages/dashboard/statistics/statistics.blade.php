@@ -72,23 +72,23 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>créateur</th>
-                            <th>offre</th>
-                            <th>coût</th>
-                            <th>durée</th>
-                            <th>réactions</th>
+                            <th>#</th>
+                            @foreach ($columns as $column)
+                                @if ($column !== '-')
+                                    <th>{{ $column }}</th>
+                                @endif
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody>
-                        @for ($i = 0; $i < 15; $i++)
+                        @foreach ($data as $index => $item)
                             <tr>
-                                <td>batata</td>
-                                <td>youssef elqayedy</td>
-                                <td>500</td>
-                                <td>2 ans</td>
-                                <td>50k</td>
+                                <td scope="row">{{ $index + 1 }}</td>
+                                @foreach ($fields as $field)
+                                    <td>{{ $item[$field] }}</td>
+                                @endforeach
                             </tr>
-                        @endfor
+                        @endforeach
                     </tbody>
                 </table>
             </div>

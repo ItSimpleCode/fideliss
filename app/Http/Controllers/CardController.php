@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Card;
 use App\Models\Client;
 use App\Models\ClientCards;
+use App\Models\Transaction;
+use App\Models\TransactionDemande;
 use Exception;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -190,10 +192,39 @@ class CardController extends Controller
     {
         $request->validate([
             'points' => 'required|numeric',
+            'description' => 'required',
         ]);
         $card = ClientCards::find($id);
+
+        if (Auth::guard('staff')->check()) {
+            $demande = new TransactionDemande;
+            $demande->id_client_card = $card->id;
+            $demande->points = $request->points;
+            $demande->id_money_converter = Auth::guard('staff')->user()->id;
+            $demande->description = $request->description;
+            $demande->status = 'Waiting';
+            $demande->save();
+            return redirect()->route('transaction.demande');
+        }
+
         $card->wallet = $card->wallet + $request->points;
         $card->update();
+
+
+        $transaction = new Transaction;
+        $transaction->id_client_card = $card->id;
+        $transaction->points = $request->points;
+        $transaction->id_money_converter = $request->points;
+        if (Auth::guard('admin')->check()) {
+            $transaction->id_money_converter = Auth::guard('admin')->user()->id;
+            $transaction->type_money_converter = 'admin';
+        } else if (Auth::guard('staff')->check()) {
+            $transaction->id_money_converter = Auth::guard('staff')->user()->id;
+            $transaction->type_money_converter = 'staff';
+        }
+        $transaction->description = $request->description;
+        $transaction->save();
+
         return redirect()->route('client.cards', ['id' => $card->id_client]);
     }
 
