@@ -72,3 +72,8 @@
         </div>
     </section>
 @endsection
+
+
+@section('script')
+    <script src="{{ asset('dist/js/utils/table.js') }}"></script>
+@endsection

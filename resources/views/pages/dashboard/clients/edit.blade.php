@@ -75,3 +75,7 @@
 
     </section>
 @endsection
+
+@section('script')
+    <script src="{{ asset('dist/js/utils/form.js') }}"></script>
+@endsection

@@ -1,4 +1,4 @@
-<aside class="aside " id="aside">
+<aside class="aside active" id="aside">
 
     <button id="aside_toggle" class="aside_toggle">
         <i class="fa-solid fa-bars-staggered"></i>
@@ -85,12 +85,12 @@
 
     <div class="list">
         <ul>
-            <li>
+            {{-- <li>
                 <a><i class="fa-solid fa-gear"></i><span class="text">options</span></a>
             </li>
             <li>
                 <a><i class="fa-regular fa-circle-user"></i><span class="text">profil</span></a>
-            </li>
+            </li> --}}
             <li>
                 <a href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i><span
                         class="text">déconnexion</span></a>

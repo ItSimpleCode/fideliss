@@ -38,8 +38,7 @@ form {
         label,
         input {
             color: $text_color_1;
-            font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         label {
@@ -56,9 +55,10 @@ form {
             height: 100%;
             padding: 12px;
             border-radius: 12px;
-            border: 1px solid $text_color_1;
+            border: 2.5px solid $text_color_1;
             outline: none;
             background-color: transparent;
+            font-size: 18px;
             font-weight: 700;
         }
 
@@ -92,7 +92,7 @@ form {
         }
 
         .options {
-            background-color: $bg_color_0;
+            background-color: $bg_color_3;
             width: 100%;
             border-radius: 12px;
 
