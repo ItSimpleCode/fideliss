@@ -7,6 +7,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StatistiqueController;
+use App\Http\Controllers\TransactionDemandeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -69,10 +70,8 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/addPoints/{cardsSerial}', [CardController::class, 'showAddPointsPageBySanning'])->name('scanner.addPoints.show');
     Route::get('/dashboard/addPoints', [CardController::class, 'showAddPointsPageByhand'])->name('scanner.addPoints.showv2');
     Route::post('/dashboard/addPoints/{id}', [CardController::class, 'AddPointsToCard'])->name('scanner.addPoints.store');
-
-    // Route::get('/dashboard/scan', [CardController::class, 'showScanPage'])->name('scan.show');
-    // Route::get('/dashboard/addPoints/{cardsSerial}', [CardController::class, 'showAddPointsPage'])->name('scan.addPoints.show');
-    // Route::post('/dashboard/addPoints/{id}', [CardController::class, 'AddPointsToCard'])->name('scan.addPoints.store');
+    
+    Route::get('/dashboard/transactionDemandes', [TransactionDemandeController::class, 'showByIdStaff'])->name('transaction.demande');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

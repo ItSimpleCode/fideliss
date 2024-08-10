@@ -6,6 +6,7 @@ use App\Models\Card;
 use App\Models\Client;
 use App\Models\ClientCards;
 use App\Models\Transaction;
+use App\Models\TransactionDemande;
 use Exception;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -191,12 +192,25 @@ class CardController extends Controller
     {
         $request->validate([
             'points' => 'required|numeric',
+            'description' => 'required',
         ]);
         $card = ClientCards::find($id);
+
+        if (Auth::guard('staff')->check()) {
+            $demande = new TransactionDemande;
+            $demande->id_client_card = $card->id;
+            $demande->points = $request->points;
+            $demande->id_money_converter = Auth::guard('staff')->user()->id;
+            $demande->description = $request->description;
+            $demande->status = 'Waiting';
+            $demande->save();
+            return redirect()->route('transaction.demande');
+        }
+
         $card->wallet = $card->wallet + $request->points;
         $card->update();
 
-        
+
         $transaction = new Transaction;
         $transaction->id_client_card = $card->id;
         $transaction->points = $request->points;

@@ -32,11 +32,11 @@
             @csrf
             <div>
                 <label for="email">email</label>
-                <input type="text" id="email" name="email" autofocus required value="y">
+                <input type="text" id="email" name="email" autofocus required value="rydudy@mailinator.com">
             </div>
             <div>
                 <label for="password">mot de passe</label>
-                <input type="password" id="password" name="password" required value="y">
+                <input type="password" id="password" name="password" required value="12345678">
             </div>
             <button>se connecter</button>
             {{-- <a href={{ route('forgetPassword.show') }}>mot de passe oublié</a> --}}

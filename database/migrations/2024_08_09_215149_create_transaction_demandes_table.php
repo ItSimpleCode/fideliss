@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('transaction_demandes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_client_card')->nullable()->constrained('client_cards')->onDelete('set null');
             $table->integer('points');
-            $table->integer('id_money_converter');
-            $table->enum('type_money_converter', ['admin', 'staff']);
+            $table->foreignId('id_money_converter')->nullable()->constrained('staffs')->onDelete('set null');
             $table->string('description');
+            $table->enum('status', ['Waiting', 'Done', 'Refused']);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('transaction_demandes');
     }
 };
