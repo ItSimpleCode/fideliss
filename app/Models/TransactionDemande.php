@@ -10,4 +10,8 @@ class TransactionDemande extends Authenticatable
     {
         return $this->belongsTo(ClientCards::class, 'id_client_card');
     }
+    public function staffs()
+    {
+        return $this->belongsTo(Staff::class, 'id_money_converter');
+    }
 }

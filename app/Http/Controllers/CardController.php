@@ -86,12 +86,12 @@ class CardController extends Controller
     {
         try {
             $request->validate([
-                'card_type' => 'required|max:255',
-                'card_serial' => 'required|string|max:255',
+                'card_type' => 'required',
+                'card_serial' => 'required|string',
                 'wallet' => 'required|numeric',
             ]);
 
-            $cardSelected = Card::where('name', $request->card_type)->first();
+            $cardSelected = Card::find($request->card_type);
             if ($cardSelected) {
                 $clientCard = new ClientCards;
                 $clientCard->id_client = $request->id;
@@ -110,7 +110,6 @@ class CardController extends Controller
                 $clientCard->save();
                 return redirect()->route('client.cards', ['id' => $id]);
             }
-
 
             return back()->withErrors(['error' => 'You type an invalide data']);
         } catch (Exception $e) {
