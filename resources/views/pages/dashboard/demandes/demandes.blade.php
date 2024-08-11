@@ -22,7 +22,7 @@
                                     <th>{{ $column }}</th>
                                 @endif
                             @endforeach
-                            {{-- <th class="actions btn-2">Actions</th> --}}
+                            <th class="actions btn-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,20 +30,24 @@
                             <tr>
                                 <td scope="row">{{ $index + 1 }}</td>
                                 @foreach ($fields as $field)
-                                    @if ($field == 'status')
-                                        <td class="{{ $field }}">{{ $item[$field] }}</td>
-                                    @else
-                                        <td>{{ $item[$field] }}</td>
-                                    @endif
+                                    <td>{{ $item[$field] }}</td>
                                 @endforeach
-                                {{-- <td>
-                                    <div class="actions btn-2">
-                                        <a href=''>
+                                <td>
+                                    <div class="actions btn-3">
+                                        <a href='' class="send">
+                                            <i class="fa-regular fa-paper-plane"></i>
+                                            <span>renvoyer</span>
+                                        </a>
+                                        <a href='' class="edit">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>modifier</span>
                                         </a>
+                                        <a href='' class="annulation">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                            <span>annulation</span>
+                                        </a>
                                     </div>
-                                </td> --}}
+                                </td>
 
                             </tr>
                         @endforeach

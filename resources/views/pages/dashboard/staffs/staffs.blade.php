@@ -39,7 +39,7 @@
                                 @endforeach
                                 <td>
                                     <div class="actions btn-2">
-                                        <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
+                                        <a href={{ route("$table.edit.show", ['id' => $item['id']]) }} class="edit">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>modifier</span>
                                         </a>

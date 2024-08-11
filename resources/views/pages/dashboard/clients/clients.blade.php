@@ -48,7 +48,7 @@
                                                 <span>Cartes</span>
                                             </a>
                                         @endif
-                                        <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
+                                        <a href={{ route("$table.edit.show", ['id' => $item['id']]) }} cless="edit">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>Modifier</span>
                                         </a>
