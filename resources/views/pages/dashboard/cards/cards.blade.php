@@ -41,13 +41,10 @@
 
                                 <td>
                                     <div class="actions btn-2">
-                                        <a href={{ route("$table.edit.show", ['id' => $item['id']]) }}>
+                                        <a href={{ route("$table.edit.show", ['id' => $item['id']]) }} class='edit'>
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>modifier</span>
                                         </a>
-                                        {{-- <a href=""><i class="fa-solid fa-user-slash"></i><span>désactiver</span></a> --}}
-
-
                                         @if ($item['active'])
                                             <a href={{ route('cards.edit.status', ['id' => $item['id']]) }} class='active'>
                                                 <i class="fa-solid fa-user"></i><span>actif</span>
