@@ -22,7 +22,7 @@
                                     <th>{{ $column }}</th>
                                 @endif
                             @endforeach
-                            <th class="actions btn-2">Actions</th>
+                            <th class="actions btn-3">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,7 +33,11 @@
                                     <td>{{ $item[$field] }}</td>
                                 @endforeach
                                 <td>
-                                    <div class="actions btn-2">
+                                    <div class="actions btn-3">
+                                        <a href='' class="send">
+                                            <i class="fa-regular fa-paper-plane"></i>
+                                            <span>renvoyer</span>
+                                        </a>
                                         <a href='' class="edit">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                             <span>modifier</span>
