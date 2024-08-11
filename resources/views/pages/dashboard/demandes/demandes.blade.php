@@ -3,7 +3,7 @@
 @section('title', $table)
 
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('dist/css/pages/staffs/staffs.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/demandes/demandes.css') }}">
 @endsection
 
 @section('content')

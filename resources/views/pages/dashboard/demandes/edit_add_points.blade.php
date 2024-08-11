@@ -3,7 +3,7 @@
 @section('title', 'Ajouter des points')
 
 @section('stylesheet')
-    <link rel="stylesheet" href="{{ asset('dist/css/pages/scanner/edit_add_points.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/pages/demandes/edit_add_points.css') }}">
 @endsection
 
 @section('content')
