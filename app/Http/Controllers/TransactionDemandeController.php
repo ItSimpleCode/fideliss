@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\TransactionDemande;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class TransactionDemandeController extends Controller
 {
@@ -43,7 +45,31 @@ class TransactionDemandeController extends Controller
     }
     public function showEditDemandePage($id)
     {
-        $data = TransactionDemande::find($id);
+        $data = TransactionDemande::with([
+            'clientCards' => [
+                'client',
+                'cards'
+            ]
+        ])
+            ->where('id', $id)
+            ->first();
+
+        $data =  [
+            'id' => $data->id,
+            'first_name' => $data->clientCards->client->first_name,
+            'last_name' => $data->clientCards->client->last_name,
+            'email' => $data->clientCards->client->email,
+            'phone_number' => $data->clientCards->client->phone_number,
+            'card_serial' => $data->clientCards->card_serial,
+            'expiry_date' => Carbon::parse($data->clientCards->expiry_date)->format('m/d'),
+            'wallet' => $data->clientCards->wallet,
+            'type_card' => $data->clientCards->cards->name,
+            'qrCode' => QrCode::size(100)->generate($data->clientCards->card_serial),
+            'points' => $data->points,
+            'description' => $data->description
+        ];
+
+        // return $data;
         return view('pages.dashboard.demandes.edit', compact('data'));
     }
 }

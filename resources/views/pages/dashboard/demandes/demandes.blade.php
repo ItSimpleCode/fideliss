@@ -18,9 +18,7 @@
                         <tr>
                             <th>#</th>
                             @foreach ($columns as $column)
-                                @if ($column !== '-')
-                                    <th>{{ $column }}</th>
-                                @endif
+                                <th>{{ $column }}</th>
                             @endforeach
                             <th class="actions btn-3">Actions</th>
                         </tr>
