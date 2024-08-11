@@ -78,7 +78,9 @@ Route::middleware(['user.auth'])->group(function () {
 
     Route::get('/dashboard/transactionDemandes', [TransactionDemandeController::class, 'showByIdStaff'])->name('transaction.demande');
     Route::get('/dashboard/transactionDemandes/annuler/{id}', [TransactionDemandeController::class, 'annulerDemande'])->name('transaction.demande.annuler');
+    Route::get('/dashboard/transactionDemandes/resend/{id}', [TransactionDemandeController::class, 'resendDemande'])->name('transaction.demande.resend');
     Route::get('/dashboard/transactionDemandes/edit/{id}', [TransactionDemandeController::class, 'showEditDemandePage'])->name('transaction.demande.edit.show');
+    Route::post('/dashboard/transactionDemandes/edit/{id}', [TransactionDemandeController::class, 'EditDemande'])->name('transaction.demande.edit.store');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

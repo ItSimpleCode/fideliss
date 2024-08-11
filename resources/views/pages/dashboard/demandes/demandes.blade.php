@@ -38,7 +38,8 @@
                                     @if ($item['status'] != 'Done')
                                         <div class="actions btn-3">
                                             @if ($item['status'] != 'Waiting')
-                                                <a href='' class="send">
+                                                <a href={{ route('transaction.demande.resend', ['id' => $item['id']]) }}
+                                                    class="send">
                                                     <i class="fa-regular fa-paper-plane"></i>
                                                     <span>renvoyer</span>
                                                 </a>

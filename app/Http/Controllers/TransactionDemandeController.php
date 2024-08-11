@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TransactionDemande;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -43,6 +44,13 @@ class TransactionDemandeController extends Controller
         TransactionDemande::find($id)->delete();
         return redirect()->route('transaction.demande');
     }
+    public function resendDemande($id)
+    {
+        $demande = TransactionDemande::find($id);
+        $demande->status = 'Waiting';
+        $demande->update();
+        return redirect()->route('transaction.demande');
+    }
     public function showEditDemandePage($id)
     {
         $data = TransactionDemande::with([
@@ -68,8 +76,24 @@ class TransactionDemandeController extends Controller
             'points' => $data->points,
             'description' => $data->description
         ];
-
-        // return $data;
         return view('pages.dashboard.demandes.edit', compact('data'));
+    }
+    public function EditDemande(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'points' => 'required',
+                'description' => 'required|max:255',
+            ]);
+
+            $demande = TransactionDemande::find($id);
+            $demande->points = $request->points;
+            $demande->description = $request->description;
+            $demande->update();
+
+            return redirect()->route('transaction.demande');
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => 'something uncorrected']);
+        }
     }
 }
