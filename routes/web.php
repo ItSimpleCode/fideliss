@@ -75,8 +75,10 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/addPoints/{cardsSerial}', [CardController::class, 'showAddPointsPageBySanning'])->name('scanner.addPoints.show');
     Route::get('/dashboard/addPoints', [CardController::class, 'showAddPointsPageByhand'])->name('scanner.addPoints.showv2');
     Route::post('/dashboard/addPoints/{id}', [CardController::class, 'AddPointsToCard'])->name('scanner.addPoints.store');
-    
+
     Route::get('/dashboard/transactionDemandes', [TransactionDemandeController::class, 'showByIdStaff'])->name('transaction.demande');
+    Route::get('/dashboard/transactionDemandes/annuler/{id}', [TransactionDemandeController::class, 'annulerDemande'])->name('transaction.demande.annuler');
+    Route::get('/dashboard/transactionDemandes/edit/{id}', [TransactionDemandeController::class, 'showEditDemandePage'])->name('transaction.demande.edit.show');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
@@ -96,7 +98,11 @@ Route::get('/clients_space', function () {
 
 
 Route::fallback(function () {
-    return Auth::guard('admin')->check() || Auth::guard('staff')->check()
-        ? redirect()->route('statistics')
-        : redirect()->route('login.show');
+    if (Auth::guard('admin')->check()) {
+        return redirect()->route('statistics');
+    } elseif (Auth::guard('staff')->check()) {
+        return redirect()->route('transaction.demande');
+    } else {
+        return redirect()->route('login.show');
+    }
 });

@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', 'Ajouter des points')
+@section('title', 'Editer une demande')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/scanner/edit_add_points.css') }}">
@@ -9,7 +9,7 @@
 @section('content')
     <section class="dark-bg">
         <div class="head">
-            <div class="title">Ajouter des points</div>
+            <div class="title">Edite cette domande</div>
         </div>
 
         <div class="form">
@@ -66,7 +66,7 @@
 
             </form>
             <div class="preview">
-                <div class="card-2 front">
+                {{-- <div class="card-2 front">
                     <img class="bg-img" src="{{ asset('img/VIrus4 1.png') }}" alt="">
                     <div class="info flex-column">
                         <div class="up flex-column">
@@ -94,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 

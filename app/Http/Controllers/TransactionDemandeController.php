@@ -35,4 +35,15 @@ class TransactionDemandeController extends Controller
 
         return view('pages.dashboard.demandes.demandes', compact('data', 'columns', 'fields', 'table'));
     }
+
+    public function annulerDemande($id)
+    {
+        TransactionDemande::find($id)->delete();
+        return redirect()->route('transaction.demande');
+    }
+    public function showEditDemandePage($id)
+    {
+        $data = TransactionDemande::find($id);
+        return view('pages.dashboard.demandes.edit', compact('data'));
+    }
 }

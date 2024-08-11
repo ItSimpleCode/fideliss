@@ -7,6 +7,7 @@ use App\Mail\LoginMessageMail;
 use App\Models\Admin;
 use App\Models\Staff;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -47,7 +48,7 @@ class AuthController extends Controller
                     $fullName = $staff['first_name'] . ' ' . $staff['last_name'];
                     $currentDateTime = Carbon::now()->format('Y-m-d H:i');
                     // Mail::to($request->email)->send(new LoginMessageMail($fullName, $currentDateTime));
-                    return redirect()->route('statistics');
+                    return redirect()->route('transaction.demande');
                 }
             }
 

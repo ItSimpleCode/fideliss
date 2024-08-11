@@ -30,25 +30,36 @@
                             <tr>
                                 <td scope="row">{{ $index + 1 }}</td>
                                 @foreach ($fields as $field)
-                                    <td>{{ $item[$field] }}</td>
+                                    @if ($field == 'status')
+                                        <td class={{ $item[$field] }}>{{ $item[$field] }}</td>
+                                    @else
+                                        <td>{{ $item[$field] }}</td>
+                                    @endif
                                 @endforeach
                                 <td>
-                                    <div class="actions btn-3">
-                                        <a href='' class="send">
-                                            <i class="fa-regular fa-paper-plane"></i>
-                                            <span>renvoyer</span>
-                                        </a>
-                                        <a href='' class="edit">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                            <span>modifier</span>
-                                        </a>
-                                        <a href='' class="annulation">
-                                            <i class="fa-regular fa-trash-can"></i>
-                                            <span>annulation</span>
-                                        </a>
-                                    </div>
+                                    @if ($item['status'] != 'Done')
+                                        <div class="actions btn-3">
+                                            @if ($item['status'] != 'Waiting')
+                                                <a href='' class="send">
+                                                    <i class="fa-regular fa-paper-plane"></i>
+                                                    <span>renvoyer</span>
+                                                </a>
+                                            @endif
+                                            <a href={{ route('transaction.demande.edit.show', ['id' => $item['id']]) }}
+                                                class="edit">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                                <span>modifier</span>
+                                            </a>
+                                            <a href={{ route('transaction.demande.annuler', ['id' => $item['id']]) }}
+                                                class="annulation">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                                <span>annulation</span>
+                                            </a>
+                                        </div>
+                                    @else
+                                        -
+                                    @endif
                                 </td>
-
                             </tr>
                         @endforeach
                     </tbody>
