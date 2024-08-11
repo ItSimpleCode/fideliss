@@ -19,44 +19,44 @@
                     <div class="double-fields">
                         <div class="field disabled">
                             <label for="first-name">Prénom</label>
-                            <input type="text" id="first-name">
+                            <input type="text" id="first-name" value="" disabled>
                         </div>
                         <div class="field disabled">
                             <label for="last-name">Nom</label>
-                            <input type="text" id="last-name">
+                            <input type="text" id="last-name" value="" disabled>
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field disabled">
                             <label for="email">Email</label>
-                            <input type="text" id="email">
+                            <input type="text" id="email" value="" disabled>
                         </div>
                         <div class="field disabled">
                             <label for="phone">Numéro de téléphone</label>
-                            <input type="text" id="phone">
+                            <input type="text" id="phone" value="" disabled>
                         </div>
                     </div>
                     <div class="double-fields">
                         <div class="field disabled">
                             <label for="card_serial">Numéro de la carte</label>
-                            <input type="text" id="card_serial">
+                            <input type="text" id="card_serial" value="" disabled>
                         </div>
                         <div class="field disabled">
                             <label for="expiry-date">Date d'expiration</label>
-                            <input type="text" id="expiry-date">
+                            <input type="text" id="expiry-date" value="" disabled>
                         </div>
                     </div>
                     <div class="field disabled">
                         <label for="wallet">Portefeuille</label>
-                        <input type="text" id="wallet">
+                        <input type="text" id="wallet" value="" disabled>
                     </div>
                     <div class="field">
                         <label for="add_points">Ajouter des points</label>
-                        <input type="text" name="points" id="add_points">
+                        <input type="text" name="points" id="add_points" value="">
                     </div>
                     <div class="field">
                         <label for="description">Description</label>
-                        <input type="text" name="description" id="description">
+                        <input type="text" name="description" id="description" value="">
                     </div>
                 </div>
 
