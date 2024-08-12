@@ -11,7 +11,7 @@ main {
 
         .card {
             flex: 200px;
-            background: linear-gradient(45deg, #f4baeb, #6bd3db);
+            // background: linear-gradient(45deg, #f4baeb, #6bd3db);
             padding: 24px;
             border-radius: 24px;
             color: $bg_color_2;
@@ -19,6 +19,10 @@ main {
             display: flex;
             flex-flow: column nowrap;
             justify-content: space-between;
+
+            background-color: #b7e0fd38;
+            border: 4px solid #b7e0fd38;
+
 
             $color-pairs: (
                 (#A6CFF0, #B9E3FF),
@@ -31,14 +35,14 @@ main {
 
 
 
-        @for $i from 1 through length($color-pairs) {
-            &:nth-child(#{$i}) {
-                $colors: nth($color-pairs, $i);
-                background-image: linear-gradient(45deg,
-                        nth($colors, 1),
-                        nth($colors, 2));
-            }
-        }
+        // @for $i from 1 through length($color-pairs) {
+        //     &:nth-child(#{$i}) {
+        //         $colors: nth($color-pairs, $i);
+        //         background-image: linear-gradient(45deg,
+        //                 nth($colors, 1),
+        //                 nth($colors, 2));
+        //     }
+        // }
 
         &>div {
             display: flex;
@@ -94,8 +98,8 @@ main {
     .transactions,
     .transactions-static,
     .rewards {
-        box-shadow: 0 0 12px 6px rgb(128 128 128 / 8%);
-        border: 4px solid #eee;
+        // box-shadow: 0 0 12px 6px rgb(128 128 128 / 8%);
+        // border: 4px solid #eee;
         background-color: #fff;
 
         thead th {

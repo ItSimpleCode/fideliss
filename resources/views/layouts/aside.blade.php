@@ -1,5 +1,6 @@
 <aside class="aside active" id="aside">
 
+
     <button id="aside_toggle" class="aside_toggle">
         <i class="fa-solid fa-bars-staggered"></i>
         <span class="text">dashboard</span>

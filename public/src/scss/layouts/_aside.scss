@@ -21,7 +21,14 @@ ul {
     flex-flow: column nowrap;
     align-items: flex-start;
 
-    background-color: $bg_color_1;
+    font-family: "Sora", sans-serif;
+
+
+
+    // background-color: $bg_color_1;
+    // background: linear-gradient(124deg, rgba(0, 0, 0, 0.95) 1.8%, rgb(0, 55, 79) 31.8%, rgb(9, 93, 134) 56.2%, rgb(15, 155, 217) 89%);
+    // background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/twcomponents/header.webp');
+    background: linear-gradient(170deg, transparentize(#0575E6, 0.15), transparentize(#02298A, 0.15), transparentize(#021B79, 0.15));
     color: $text_color_0;
     text-transform: capitalize;
     height: 100%;
@@ -102,7 +109,8 @@ ul {
             background-color: transparent;
             transition-duration: var(--duration);
             overflow: hidden;
-            opacity: 0.75;
+            // opacity: 0.75;
+
             padding: 0 7px;
 
             &.unclickable {
