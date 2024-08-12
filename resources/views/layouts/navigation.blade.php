@@ -19,12 +19,26 @@
         <input type="text" id="nav-searcher" placeholder="chercher">
     </div>
     <div class="nav-options">
-        <button class="date">
+        <form class="date">
             <i class="fa-regular fa-calendar"></i>
-            <span class="range">26/06/2024 - 26/07/2024 <i class="fa-solid fa-angle-down"></i></span>
-        </button>
+            <input type="date" value="20-08-2024" onfocus="this.showPicker();">
+            <input type="date" value="20-07-2024" onfocus="this.showPicker();">
+            <button type="submit"><i class="fa-solid fa-angle-right"></i></button>
+        </form>
         <button class="square-btn"><span>99</span><i class="fa-regular fa-bell"></i></button>
         {{-- <button class="square-btn"><span>99</span><i class="fa-regular fa-message"></i></button> --}}
         <button class="square-btn"><i class="fa-regular fa-lightbulb"></i></button>
     </div>
 </nav>
+
+{{-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementById('date1').value = today;
+
+        var lastMonth = new Date(today.setMonth(today.getMonth() - 1)).toISOString().split('T')[0];
+        document.getElementById('dateInput').value = lastMonth;
+
+    });
+</script> --}}

@@ -30,7 +30,7 @@
     <div class="log_in">
         <div class="head">
             <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo de Fidelis">
-            <h1>Login into your account</h1>
+            <h1>Connectez-vous à votre compte</h1>
         </div>
         <form class="form" action={{ route('login') }} method="POST">
             @csrf
