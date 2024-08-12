@@ -32,12 +32,18 @@
                 </div>
                 <div class="double-fields">
                     <div class="field">
-                        <label for="email">email</label>
-                        <input type="email" name="email" value="{{ $client['email'] }}">
+                        <label for="email">CIN</label>
+                        <input type="text" name="cin" id="cin" value="{{ $client['cin'] }}">
                     </div>
                     <div class="field">
                         <label for="phone">numéro de téléphone</label>
                         <input type="text" name="phone_number" id="phone" value="{{ $client['phone_number'] }}">
+                    </div>
+                </div>
+                <div class="double-fields">
+                    <div class="field">
+                        <label for="email">email</label>
+                        <input type="email" name="email" value="{{ $client['email'] }}">
                     </div>
                 </div>
                 <div class="selection-field">
@@ -60,11 +66,6 @@
                 <div class="field">
                     <label for="address">adresse</label>
                     <input type="text" name="address" id="address" value="{{ $client['address'] }}">
-                </div>
-
-                <div class="field">
-                    <label for="password">mot de passe</label>
-                    <input type="password" name="password" value="{{ $client['password'] }}">
                 </div>
             </div>
 

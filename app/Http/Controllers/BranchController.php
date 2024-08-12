@@ -12,11 +12,11 @@ class BranchController extends Controller
 {
     public function index()
     {
-        $columns = ["Nom", "Adresse",'staffs'];
-        $fields = ['name', 'address','staffs_count'];
+        $columns = ["Nom", "Adresse", 'staffs'];
+        $fields = ['name', 'address', 'staffs_count'];
         $data = Branch::select('id', 'name', 'address', 'active')
             ->withCount(['staffs'])
-            ->orderBy('created_at')
+            ->orderBy('created_at', 'desc')
             ->get();
         $table = 'branches';
         return view('pages.dashboard.branches.branches', compact('data', 'columns', 'fields', 'table'));

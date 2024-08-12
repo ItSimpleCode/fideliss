@@ -12,16 +12,16 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $columns = ["Prénom", "Nom de famille", "Numéro de téléphone", "Sexe", "Email", "Date d'adhésion", "Cartes"];
-        $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'cards_number'];
+        $columns = ["Prénom", "Nom de famille", 'cin', "Numéro de téléphone", "Sexe", "Email", "Date d'adhésion", "Cartes"];
+        $fields = ['first_name', 'last_name', 'cin', 'phone_number', 'gender', 'email', 'created_at', 'cards_number'];
         if (Auth::guard('admin')->check()) {
-            $clients = Client::select('id', 'first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'active')
-            ->orderBy('created_at','desc')
-            ->get();
+            $clients = Client::select('id', 'first_name', 'last_name', 'cin', 'phone_number', 'gender', 'email', 'created_at', 'active')
+                ->orderBy('created_at', 'desc')
+                ->get();
         } else if (Auth::guard('staff')->check()) {
-            $clients = Client::select('id', 'first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'active')
+            $clients = Client::select('id', 'first_name', 'last_name', 'cin', 'phone_number', 'gender', 'email', 'created_at', 'active')
                 ->where('id_branch', Auth::guard('staff')->user()->id_branch)
-                ->orderBy('created_at','desc')
+                ->orderBy('created_at', 'desc')
                 ->get();
         }
 
@@ -48,6 +48,7 @@ class ClientController extends Controller
             $request->validate([
                 'first_name' => 'required|max:255',
                 'last_name' => 'required|max:255',
+                'cin' => 'required|max:255|unique',
                 'birth_date' => 'required|date',
                 'phone_number' => 'required',
                 'gender' => 'required|max:255',
@@ -62,6 +63,7 @@ class ClientController extends Controller
             $client = new Client;
             $client->first_name = $request->first_name;
             $client->last_name = $request->last_name;
+            $client->cin = $request->cin;
             $client->birth_date = $request->birth_date;
             $client->phone_number = $request->phone_number;
             $client->gender = $request->gender;
@@ -88,7 +90,7 @@ class ClientController extends Controller
 
     public function showEditForm($id)
     {
-        $client = Client::select('id', 'first_name', 'last_name', 'birth_date', 'phone_number', 'gender', 'address', 'email', 'password')
+        $client = Client::select('id', 'first_name', 'last_name','cin', 'birth_date', 'phone_number', 'gender', 'address', 'email')
             ->where('id', $id)
             ->first();
 

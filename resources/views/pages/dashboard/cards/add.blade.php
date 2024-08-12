@@ -35,7 +35,11 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="selection-field">
+                        <div class="field">
+                            <label for="wallet">porte-monnaie</label>
+                            <input type="text" name="wallet" id="wallet">
+                        </div>
+                        {{-- <div class="selection-field">
                             <div class="field">
                                 <label for="pay-method">méthode de paiement</label>
                                 <input class="back" type="hidden" name="pay-method">
@@ -49,9 +53,9 @@
                                     <span class="option" data-hidden="{{ $card['id'] }}">{{ $card['card_serial'] }}</span>
                                 @endforeach
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
-                    <div class="double-fields">
+                    {{-- <div class="double-fields">
                         <div class="field">
                             <label for="pay">Numéro de carte</label>
                             <input type="text" name="card_serial" id="pay">
@@ -60,14 +64,15 @@
                             <label for="wallet">porte-monnaie</label>
                             <input type="text" name="wallet" id="wallet">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="part">
                     <h2 class="title">Informations sur le client</h2>
                     <div class="double-fields">
                         <div class="field disabled">
                             <label for="first-name">prénom</label>
-                            <input type="text" name="" id="first-name" value="{{ $client['first_name'] }}" disabled>
+                            <input type="text" name="" id="first-name" value="{{ $client['first_name'] }}"
+                                disabled>
                         </div>
                         <div class="field disabled">
                             <label for="last-name">nom</label>
@@ -81,7 +86,8 @@
                         </div>
                         <div class="field disabled">
                             <label for="phone">numéro de téléphone</label>
-                            <input type="text" name="" id="phone" value="{{ $client['phone_number'] }}" disabled>
+                            <input type="text" name="" id="phone" value="{{ $client['phone_number'] }}"
+                                disabled>
                         </div>
                     </div>
                 </div>

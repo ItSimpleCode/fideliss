@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Str;
 
 class CardController extends Controller
 {
@@ -21,14 +22,14 @@ class CardController extends Controller
         $columns = ["Nom", "Coût", "Période", "Date de création"];
         $fields = ['name', 'cost', 'period', 'created_at'];
         $cards = Card::select('id', 'name', 'cost', 'period', 'active', 'created_at', 'active')
-            ->orderBy('created_at')
+            ->orderBy('created_at', 'desc')
             ->get();
         $data = $cards->map(function ($card) {
             return [
                 'id' => $card->id,
                 'name' => $card->name,
                 'cost' => $card->cost,
-                'period' => "Il y a $card->period jours",
+                'period' => "$card->period jours",
                 'active' => $card->active,
                 'created_at' => $card->created_at,
             ];
@@ -87,7 +88,6 @@ class CardController extends Controller
         try {
             $request->validate([
                 'card_type' => 'required',
-                'card_serial' => 'required|string',
                 'wallet' => 'required|numeric',
             ]);
 
@@ -96,8 +96,15 @@ class CardController extends Controller
                 $clientCard = new ClientCards;
                 $clientCard->id_client = $request->id;
                 $clientCard->id_card = $cardSelected->id;
-                $clientCard->card_serial = $request->card_serial;
+
+                // Generate a unique serial
+                do {
+                    $serial = mt_rand(0000000000000000, 9999999999999999);
+                } while (ClientCards::where('card_serial', $serial)->exists());
+
+                $clientCard->card_serial = $serial;
                 $clientCard->wallet = $request->wallet;
+
                 if (Auth::guard('admin')->check()) {
                     $clientCard->id_creator = Auth::guard('admin')->user()->id;
                     $clientCard->creator_type = 'admin';
@@ -105,6 +112,7 @@ class CardController extends Controller
                     $clientCard->id_creator = Auth::guard('staff')->user()->id;
                     $clientCard->creator_type = 'staff';
                 }
+
                 $expiryDate = Carbon::today()->addDays($cardSelected->period);
                 $clientCard->expiry_date = $expiryDate;
                 $clientCard->save();

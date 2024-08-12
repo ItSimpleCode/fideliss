@@ -17,7 +17,7 @@ class StaffController extends Controller
         $columns = ["Prénom", "Nom de famille", "Numéro de téléphone", "Sexe", "Email", "Date d'adhésion", "Créateur", "Succursale"];
         $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'creator', 'branch'];
         $staffs = Staff::with(['admins', 'branches'])
-            ->orderBy('created_at')
+            ->orderBy('created_at','desc')
             ->get();
 
         $data = $staffs->map(function ($staff) {

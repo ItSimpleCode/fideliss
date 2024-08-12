@@ -32,12 +32,18 @@
                     </div>
                     <div class="double-fields">
                         <div class="field">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" id="email">
+                            <label for="email">CIN</label>
+                            <input type="text" name="cin" id="cin">
                         </div>
                         <div class="field">
                             <label for="phone">Numéro de téléphone</label>
                             <input type="text" name="phone_number" id="phone">
+                        </div>
+                    </div>
+                    <div class="double-fields">
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email">
                         </div>
                     </div>
                     <div class="selection-field">
