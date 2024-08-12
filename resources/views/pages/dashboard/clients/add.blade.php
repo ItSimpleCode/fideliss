@@ -23,7 +23,7 @@
                     <div class="double-fields">
                         <div class="field">
                             <label for="first-name">Prénom</label>
-                            <input type="text" name="first_name" id="first-name">
+                            <input type="text" name="first_name" id="first-name" autofocus>
                         </div>
                         <div class="field">
                             <label for="last-name">Nom</label>
@@ -51,9 +51,24 @@
                             @foreach (['male', 'female'] as $gender)
                                 <span class="option" data-hidden="{{ $gender }}">{{ $gender }}</span>
                             @endforeach
-
                         </div>
                     </div>
+                    @if (Auth::guard('admin')->check())
+                        <div class="selection-field">
+                            <div class="field">
+                                <label for="type">Branch</label>
+                                <input class="back" type="hidden" name="id_branch">
+                                <input class="front" type="text" id="type">
+                                <i class="fa-solid fa-angle-down"></i>
+                            </div>
+                            <div class="options">
+                                @foreach ($branchs as $branch)
+                                    <span class="option" data-hidden="{{ $branch->id }}">{{ $branch->name }}</span>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="field">
                         <label for="address">Adresse</label>
                         <input type="text" name="address" id="address">

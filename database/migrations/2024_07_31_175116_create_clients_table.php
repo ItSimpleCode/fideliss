@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('id_creator');
             $table->enum('creator_type', ['admin', 'staff']);
             $table->boolean('active')->default(1);
+            $table->foreignId('id_branch')->nullable()->constrained('branchs')->onDelete('set null');
             $table->timestamps();
         });
     }
