@@ -16,7 +16,7 @@
     @yield('search')
     <div class="nav-options">
         @yield('date')
-        <button class="square-btn"><span>99</span><i class="fa-regular fa-bell"></i></button>
+        {{-- <button class="square-btn"><span>99</span><i class="fa-regular fa-bell"></i></button> --}}
         {{-- <button class="square-btn"><span>99</span><i class="fa-regular fa-message"></i></button> --}}
         <button class="square-btn"><i class="fa-regular fa-lightbulb"></i></button>
     </div>
