@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>clients space</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
@@ -13,10 +14,9 @@
 </head>
 
 <body>
-    <header class="card owl-carousel">
-        @for ($i = 0; $i < 5; $i++)
+    <div class="container">
+        <header class="card">
             <div class="card-2 front">
-                <img class="bg-img" src="{{ asset('img/VIrus4 1.png') }}" alt="">
                 <div class="info flex-column">
                     <div class="up flex-column">
                         <div class="flex-row">
@@ -24,7 +24,6 @@
                                 <span class="logo">
                                     <img src="{{ asset('img/logo2.png') }}" alt="">
                                 </span>
-                                <span class="wallet">0</span>
                             </div>
                             <div class="qr-code"> <img src="{{ asset('img/qr_code.png') }}" alt=""> </div>
                         </div>
@@ -44,44 +43,40 @@
                     </div>
                 </div>
             </div>
-        @endfor
-    </header>
+        </header>
 
-    <section class="body">
-        <div class="title">
-            <div class="text">portefeuille</div>
-            <div class="wallet">898,00 poins</div>
-        </div>
-        <div>
-            <div class="nav">
-                <ul>
-                    <li>rewords</li>
-                    <li>histoire</li>
-                </ul>
+        <section class="body">
+            <div class="title">
+                <div class="text">portefeuille</div>
+                <div class="wallet">{{ rand(1000, 5000) }} poins</div>
             </div>
-            <div class="data">
-                <ul>
-                    <li>
-                        <div>
-                            <img src="" alt="">
-                            <h2>xxxxxxxx</h2>
-                        </div>
-                        <div>1000 points</div>
-                    </li>
-                </ul>
+            <div class="list">
+                <div class="nav">
+                    <ul>
+                        <li><a class="selected" href="">rewords</a></li>
+                        <li><a href="">histoire</a></li>
+                    </ul>
+                </div>
+                <div class="data">
+                    <ul>
+                        @for ($i = 0; $i < 20; $i++)
+                            <li>
+                                <a href="">
+                                    <div class="service">
+                                        {{-- <img class="img" src="" alt="" width="50" height="50"> --}}
+                                        <div class="img"></div>
+                                        <span>xxxxxxxx</span>
+                                    </div>
+                                    <div class="cost">{{ rand(100, 1000) }} points</div>
+                                </a>
+                            </li>
+                        @endfor
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script>
-        $('.owl-carousel').owlCarousel({
-            center: true,
-            items: 1,
-            loop: true,
-        });
-    </script>
 
 </body>
 
