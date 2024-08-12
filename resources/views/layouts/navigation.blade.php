@@ -13,11 +13,7 @@
             </span>
         </span>
     </div>
-    <div class="search">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <span class="bar"></span>
-        <input type="text" id="nav-searcher" placeholder="chercher">
-    </div>
+    @yield('search')
     <div class="nav-options">
         <form class="date">
             <i class="fa-regular fa-calendar"></i>
@@ -30,15 +26,3 @@
         <button class="square-btn"><i class="fa-regular fa-lightbulb"></i></button>
     </div>
 </nav>
-
-{{-- <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        var today = new Date().toISOString().split('T')[0];
-        document.getElementById('date1').value = today;
-
-        var lastMonth = new Date(today.setMonth(today.getMonth() - 1)).toISOString().split('T')[0];
-        document.getElementById('dateInput').value = lastMonth;
-
-    });
-</script> --}}

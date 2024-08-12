@@ -6,6 +6,14 @@
     <link rel="stylesheet" href="{{ asset('dist/css/pages/actions/actions.css') }}">
 @endsection
 
+@section('search')
+    <div class="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span class="bar"></span>
+        <input type="text" id="nav-searcher" placeholder="chercher">
+    </div>
+@endsection
+
 @section('content')
     <section class="dark-bg users">
         <div class="head">
