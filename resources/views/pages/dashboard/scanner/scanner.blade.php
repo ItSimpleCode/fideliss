@@ -37,7 +37,8 @@
 
         const qrCodeSuccessCallback = (decodedText, decodedResult) => {
             html5QrCode.stop().then((ignore) => {}).catch((err) => console.log(err));
-            window.location.href = `/dashboard/addPoints/${encodeURIComponent(decodedText)}`;
+            window.location.href = `${decodeURIComponent(decodedText)}`;
+            // console.log(decodeURIComponent(decodedText))
         };
 
         const config = {

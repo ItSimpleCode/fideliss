@@ -72,7 +72,6 @@ Route::middleware(['user.auth'])->group(function () {
     Route::post('/dashboard/client/{id}/cards/add', [CardController::class, 'addCardToClient'])->name('cards.create.store');
 
     Route::get('/dashboard/scanner', [CardController::class, 'showScannerPage'])->name('scanner.show');
-    Route::get('/dashboard/addPoints/{cardsSerial}', [CardController::class, 'showAddPointsPageBySanning'])->name('scanner.addPoints.show');
     Route::get('/dashboard/addPoints', [CardController::class, 'showAddPointsPageByhand'])->name('scanner.addPoints.showv2');
     Route::post('/dashboard/addPoints/{id}', [CardController::class, 'AddPointsToCard'])->name('scanner.addPoints.store');
 
@@ -96,8 +95,10 @@ Route::post('/forgetPassword', [AuthController::class, 'SendPasswordInMail'])->n
 // Clients Space routes
 Route::get('/clients_space', function () {
     return view('./clients_space');
-});
+})->name('client.space');
 
+
+Route::middleware('scanner.auth')->get('/dashboard/addPoints/{cardsSerial}', [CardController::class, 'showAddPointsPageBySanning'])->name('scanner.addPoints.show');
 
 Route::fallback(function () {
     if (Auth::guard('admin')->check()) {

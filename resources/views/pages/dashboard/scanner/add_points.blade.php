@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="qr-code">{{ $data['qrCode'] }}</div>
                             </div>
-                            <div class="serial">xxxx xxxx xxxx xxxx</div>
+                            <div class="serial">{{$data['card_serial']}}</div>
                         </div>
                         <div class="down flex-row">
                             <div class="flex-column">

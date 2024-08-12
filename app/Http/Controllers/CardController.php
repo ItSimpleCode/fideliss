@@ -58,7 +58,7 @@ class CardController extends Controller
                     'duration' => $clientCard->cards ? $clientCard->cards->duration : 'N/A',
                     'active' => $clientCard->cards ? $clientCard->cards->active : 'N/A',
                 ],
-                'qrCode' => QrCode::size(100)->generate($clientCard->card_serial)
+                'qrCode' => QrCode::size(100)->generate('/dashboard/addPoints/' . $clientCard->card_serial)
             ];
         });
 
@@ -155,7 +155,7 @@ class CardController extends Controller
                 'email' => $card->client->email,
             ],
             'created_at' => $card->created_at->format('Y-m-d H:i:s'),
-            'qrCode' => QrCode::size(100)->generate($card->card_serial)
+            'qrCode' => QrCode::size(100)->generate('/dashboard/addPoints/' . $card->card_serial)
         ];
 
         // return response()->json($data);
@@ -189,7 +189,7 @@ class CardController extends Controller
                 'email' => $card->client->email,
             ],
             'created_at' => $card->created_at->format('Y-m-d H:i:s'),
-            'qrCode' => QrCode::size(100)->generate($card->card_serial)
+            'qrCode' => QrCode::size(100)->generate('/dashboard/addPoints/' . $card->card_serial)
         ];
 
         return view('pages.dashboard.scanner.add_points', compact('data'));
