@@ -6,6 +6,15 @@
     <link rel="stylesheet" href="{{ asset('dist\css\pages\statistics\statistics.css') }}">
 @endsection
 
+@section('date')
+    <form class="date">
+        <i class="fa-regular fa-calendar"></i>
+        <input type="date" name="dateStart" value="2024-07-20" onfocus="this.showPicker();">
+        <input type="date" name="dateEnd" value="2024-08-20" onfocus="this.showPicker();">
+        <button type="submit"><i class="fa-solid fa-angle-right"></i></button>
+    </form>
+@endsection
+
 @section('content')
     <section class="statistics-cards">
         <div class="card">
