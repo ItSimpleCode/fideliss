@@ -17,7 +17,7 @@ class StaffController extends Controller
         $columns = ["Prénom", "Nom de famille", "Numéro de téléphone", "Sexe", "Email", "Date d'adhésion", "Créateur", "Succursale"];
         $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'creator', 'branch'];
         $staffs = Staff::with(['admins', 'branches'])
-            ->orderBy('created_at','desc')
+            ->orderBy('created_at', 'desc')
             ->get();
 
         $data = $staffs->map(function ($staff) {
@@ -59,27 +59,43 @@ class StaffController extends Controller
                 'email' => 'required|email|max:255',
                 'password' => 'required|min:8|max:255',
                 'id_branch' => 'required',
+            ], [
+                'first_name.required' => 'Le prénom est requis.',
+                'first_name.max' => 'Le prénom ne peut pas dépasser 255 caractères.',
+                'last_name.required' => 'Le nom de famille est requis.',
+                'last_name.max' => 'Le nom de famille ne peut pas dépasser 255 caractères.',
+                // 'birth_date.required' => 'La date de naissance est requis.',
+                'phone_number.required' => 'Le numéro de téléphone est requis.',
+                'gender.required' => 'Le genre est requis.',
+                'email.required' => 'L\'adresse email est requise.',
+                'email.email' => 'L\'adresse email doit être valide.',
+                'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
+                'password.required' => 'Le mot de passe est requis.',
+                'password.min' => 'Le mot de passe doit comporter au moins 8 caractères.',
+                'password.max' => 'Le mot de passe ne peut pas dépasser 255 caractères.',
+                'id_branch.required' => 'La branche est requise.',
             ]);
 
-            $client = new Staff;
-            $client->first_name = $request->first_name;
-            $client->last_name = $request->last_name;
-            $client->birth_date = '1999-12-31';
-            // $client->birth_date = $request->birth_date;
-            $client->phone_number = $request->phone_number;
-            $client->gender = $request->gender;
+
+            $staff = new Staff;
+            $staff->first_name = $request->first_name;
+            $staff->last_name = $request->last_name;
+            $staff->birth_date = '1999-12-31';
+            // $staff->birth_date = $request->birth_date;
+            $staff->phone_number = $request->phone_number;
+            $staff->gender = $request->gender;
             if (
-                Admin::where('email', $client->email)->exists() ||
-                Staff::where('email', $client->email)->exists() ||
-                Client::where('email', $client->email)->exists()
+                Admin::where('email', $staff->email)->exists() ||
+                Staff::where('email', $staff->email)->exists() ||
+                Client::where('email', $staff->email)->exists()
             ) {
                 return back()->withErrors(['error' =>  'ce mail est deja utilisé']);
             }
-            $client->email = $request->email;
-            $client->password = $request->password;
-            $client->id_creator = Auth::guard('admin')->user()->id;
-            $client->id_branch = $request->id_branch;
-            $client->save();
+            $staff->email = $request->email;
+            $staff->password = $request->password;
+            $staff->id_creator = Auth::guard('admin')->user()->id;
+            $staff->id_branch = $request->id_branch;
+            $staff->save();
 
 
             return redirect()->route('staffs');
@@ -113,12 +129,29 @@ class StaffController extends Controller
                 'first_name' => 'required|max:255',
                 'last_name' => 'required|max:255',
                 'birth_date' => 'required|date',
-                'phone_number' => 'required|max:255',
-                'gender' => 'required|max:255',
+                'phone_number' => 'required',
+                'gender' => 'required',
                 'email' => 'required|email|max:255',
                 'password' => 'required|min:8|max:255',
                 'id_branch' => 'required',
+            ], [
+                'first_name.required' => 'Le prénom est requis.',
+                'first_name.max' => 'Le prénom ne peut pas dépasser 255 caractères.',
+                'last_name.required' => 'Le nom de famille est requis.',
+                'last_name.max' => 'Le nom de famille ne peut pas dépasser 255 caractères.',
+                'birth_date.required' => 'La date de naissance est requis.',
+                'phone_number.required' => 'Le numéro de téléphone est requis.',
+                'gender.required' => 'Le genre est requis.',
+                'email.required' => 'L\'adresse email est requise.',
+                'email.email' => 'L\'adresse email doit être valide.',
+                'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
+                'password.required' => 'Le mot de passe est requis.',
+                'password.min' => 'Le mot de passe doit comporter au moins 8 caractères.',
+                'password.max' => 'Le mot de passe ne peut pas dépasser 255 caractères.',
+                'id_branch.required' => 'La branche est requise.',
             ]);
+
+
 
             $staff = Staff::find($id);
             $staff->first_name = $request->first_name;

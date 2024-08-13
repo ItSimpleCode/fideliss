@@ -33,6 +33,11 @@ class BranchController extends Controller
             $request->validate([
                 'name' => 'required|max:255',
                 'address' => 'required|max:255',
+            ], [
+                'name.required' => 'Le nom de la branche est requis.',
+                'name.max' => 'Le nom de la branche ne peut pas dépasser 255 caractères.',
+                'address.required' => 'L\'adresse de la branche est requise.',
+                'address.max' => 'L\'adresse de la branche ne peut pas dépasser 255 caractères.',
             ]);
 
             $branch = new Branch;
@@ -61,6 +66,11 @@ class BranchController extends Controller
             $request->validate([
                 'name' => 'required|max:255',
                 'address' => 'required|max:255',
+            ], [
+                'name.required' => 'Le nom de la branche est requis.',
+                'name.max' => 'Le nom de la branche ne peut pas dépasser 255 caractères.',
+                'address.required' => 'L\'adresse de la branche est requise.',
+                'address.max' => 'L\'adresse de la branche ne peut pas dépasser 255 caractères.',
             ]);
 
             $branch = Branch::find($id);
