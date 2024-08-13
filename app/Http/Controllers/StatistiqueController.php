@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Staff;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StatistiqueController extends Controller
 {
@@ -13,8 +14,8 @@ class StatistiqueController extends Controller
     {
         // Set the date range
         $date = [
-            'dateStart' => empty($r->dateEnd) ? date('Y-m-d', strtotime('-30 days')) : date('Y-m-d', strtotime($r->dateEnd)),
-            'dateEnd' => empty($r->dateStart) ? date('Y-m-d') : date('Y-m-d', strtotime($r->dateStart)),
+            'dateStart' => empty($r->dateStart) ? date('Y-m-d', strtotime('-30 days')) : date('Y-m-d', strtotime($r->dateStart)),
+            'dateEnd' => empty($r->dateEnd) ? date('Y-m-d') : date('Y-m-d', strtotime($r->dateEnd)),
         ];
 
         // Define columns and fields
@@ -27,8 +28,10 @@ class StatistiqueController extends Controller
                 $query->with('client');
             }
         ])
-            ->whereBetween('created_at', [$date['dateStart'], $date['dateEnd']])
-            ->orderBy('created_at')
+            ->whereDate('created_at', '>=', $date['dateStart'])
+            ->whereDate('created_at', '<=', $date['dateEnd'])
+            // ->whereBetween('created_at', [$date['dateStart'], $date['dateEnd']])
+            ->orderBy('created_at', 'desc')
             ->get();
 
         // Map the data
@@ -46,7 +49,6 @@ class StatistiqueController extends Controller
                 'points' => $item->points
             ];
         });
-
         // Return the view with the filtered data, columns, fields, and date
         return view('pages.dashboard.statistics.statistics', compact('data', 'columns', 'fields', 'date'));
     }

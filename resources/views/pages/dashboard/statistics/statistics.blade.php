@@ -148,7 +148,7 @@
                 document.addEventListener('DOMContentLoaded', function() {
                     var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
-                        type: 'line', // Changez ceci en 'line', 'pie', etc. pour différents types de graphiques
+                        type: 'bar', // Changez ceci en 'line', 'pie', etc. pour différents types de graphiques
                         data: {
                             labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jui', 'Juil'],
                             datasets: [{
