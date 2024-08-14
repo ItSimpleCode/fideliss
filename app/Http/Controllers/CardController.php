@@ -89,7 +89,12 @@ class CardController extends Controller
             $request->validate([
                 'card_type' => 'required',
                 'wallet' => 'required|numeric',
+            ], [
+                'card_type.required' => 'Le type de carte est requis.',
+                'wallet.required' => 'Le montant du portefeuille est requis.',
+                'wallet.numeric' => 'Le montant du portefeuille doit être un nombre.',
             ]);
+            
 
             $cardSelected = Card::find($request->card_type);
             if ($cardSelected) {
@@ -119,9 +124,9 @@ class CardController extends Controller
                 return redirect()->route('client.cards', ['id' => $id]);
             }
 
-            return back()->withErrors(['error' => 'You type an invalide data']);
+            return back()->withErrors(['error' => 'Ooops, quelque chose s\'est mal passé. Veuillez réessayer dans quelques minutes.']);
         } catch (Exception $e) {
-            return back()->withErrors(['error' => 'something uncorrected ' . $e]);
+            return back()->withErrors(['error' =>  $e->getMessage()]);
         }
     }
 
@@ -136,7 +141,7 @@ class CardController extends Controller
             ->first();
 
         if (!$card) {
-            return response()->json(['error' => 'Card not found'], 404);
+            return back()->withErrors(['error' =>  'Ooops, quelque chose s\'est mal passé. Veuillez réessayer dans quelques minutes.']);
         }
 
         $data = [
@@ -170,7 +175,7 @@ class CardController extends Controller
             ->first();
 
         if (!$card) {
-            return response()->json(['error' => 'Card not found'], 404);
+            return back()->withErrors(['error' =>  'Ooops, quelque chose s\'est mal passé. Veuillez réessayer dans quelques minutes.']);
         }
 
         $data = [
@@ -200,7 +205,13 @@ class CardController extends Controller
         $request->validate([
             'points' => 'required|numeric',
             'description' => 'required',
+        ], [
+            'points.required' => 'Les points sont requis.',
+            'points.numeric' => 'Les points doivent être un nombre.',
+            'description.required' => 'La description est requise.',
         ]);
+
+        
         $card = ClientCards::find($id);
 
         if (Auth::guard('staff')->check()) {
@@ -257,7 +268,17 @@ class CardController extends Controller
                 'cost' => 'required|numeric',
                 'period' => 'required|int',
                 'active' => 'required',
+            ], [
+                'name.required' => 'Le nom est requis.',
+                'name.string' => 'Le nom doit être une chaîne de caractères.',
+                'cost.required' => 'Le coût est requis.',
+                'cost.numeric' => 'Le coût doit être un nombre.',
+                'period.required' => 'La période est requise.',
+                'period.int' => 'La période doit être un entier.',
+                'active.required' => 'Le statut est requis.',
             ]);
+            
+
             $card = new Card;
             $card->name = $request->name;
             $card->cost = $request->cost;
@@ -284,7 +305,17 @@ class CardController extends Controller
                 'cost' => 'required|numeric',
                 'period' => 'required|int',
                 'active' => 'required',
+            ], [
+                'name.required' => 'Le nom est requis.',
+                'name.string' => 'Le nom doit être une chaîne de caractères.',
+                'cost.required' => 'Le coût est requis.',
+                'cost.numeric' => 'Le coût doit être un nombre.',
+                'period.required' => 'La période est requise.',
+                'period.int' => 'La période doit être un entier.',
+                'active.required' => 'Le statut est requis.',
             ]);
+            
+
             $card = Card::find($id);
             $card->name = $request->name;
             $card->cost = $request->cost;

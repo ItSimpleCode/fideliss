@@ -8,6 +8,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StatistiqueController;
+use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\TransactionDemandeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,7 @@ Route::middleware(['user.auth'])->group(function () {
     Route::get('/dashboard/transactionDemandes/edit/{id}', [TransactionDemandeController::class, 'showEditDemandePage'])->name('transaction.demande.edit.show');
     Route::post('/dashboard/transactionDemandes/edit/{id}', [TransactionDemandeController::class, 'EditDemande'])->name('transaction.demande.edit.store');
 
+    Route::get('/set-theme/{theme}', [ThemeController::class, 'changeTheme'])->name('changeTheme');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 

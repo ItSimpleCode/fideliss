@@ -54,7 +54,28 @@ class ClientController extends Controller
                 'gender' => 'required|max:255',
                 'address' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
+            ], [
+                'first_name.required' => 'Le prénom est requis.',
+                'first_name.max' => 'Le prénom ne peut pas dépasser 255 caractères.',
+                'last_name.required' => 'Le nom de famille est requis.',
+                'last_name.max' => 'Le nom de famille ne peut pas dépasser 255 caractères.',
+                'cin.required' => 'Le CIN est requis.',
+                'cin.max' => 'Le CIN ne peut pas dépasser 255 caractères.',
+                'cin.unique' => 'Ce CIN est déjà utilisé.',
+                'birth_date.required' => 'La date de naissance est requise.',
+                'birth_date.date' => 'La date de naissance doit être une date valide.',
+                'phone_number.required' => 'Le numéro de téléphone est requis.',
+                'gender.required' => 'Le genre est requis.',
+                'gender.max' => 'Le genre ne peut pas dépasser 255 caractères.',
+                'address.required' => 'L\'adresse est requise.',
+                'address.string' => 'L\'adresse doit être une chaîne de caractères.',
+                'address.max' => 'L\'adresse ne peut pas dépasser 255 caractères.',
+                'email.required' => 'L\'adresse email est requise.',
+                'email.email' => 'L\'adresse email doit être valide.',
+                'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
             ]);
+            
+
             if (Auth::guard('admin')->check()) {
                 $request->validate([
                     'id_branch' => 'required',
@@ -109,7 +130,26 @@ class ClientController extends Controller
                 'address' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
                 'active' => 'required',
+            ], [
+                'first_name.required' => 'Le prénom est requis.',
+                'first_name.max' => 'Le prénom ne peut pas dépasser 255 caractères.',
+                'last_name.required' => 'Le nom de famille est requis.',
+                'last_name.max' => 'Le nom de famille ne peut pas dépasser 255 caractères.',
+                'birth_date.required' => 'La date de naissance est requise.',
+                'birth_date.date' => 'La date de naissance doit être une date valide.',
+                'phone_number.required' => 'Le numéro de téléphone est requis.',
+                'phone_number.max' => 'Le numéro de téléphone ne peut pas dépasser 255 caractères.',
+                'gender.required' => 'Le genre est requis.',
+                'gender.max' => 'Le genre ne peut pas dépasser 255 caractères.',
+                'address.required' => 'L\'adresse est requise.',
+                'address.string' => 'L\'adresse doit être une chaîne de caractères.',
+                'address.max' => 'L\'adresse ne peut pas dépasser 255 caractères.',
+                'email.required' => 'L\'adresse email est requise.',
+                'email.email' => 'L\'adresse email doit être valide.',
+                'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
+                'active.required' => 'Le statut actif est requis.',
             ]);
+            
 
             $client = Client::find($id);
             $client->first_name = $request->first_name;
