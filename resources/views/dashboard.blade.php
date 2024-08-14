@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fidelis - @yield('title')</title>
-    <!-- Chart.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <link rel="icon" href="{{ asset('img/logo.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('img/logo.png') }}" type="image/png">
     <link rel="apple-touch-icon" href="{{ asset('img/logo.png') }}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
@@ -23,19 +23,23 @@
 </head>
 
 <body>
-    @include('layouts.aside')
+    @include('layouts.navigation')
 
     <main>
-        @include('layouts.navigation')
-        @error('error')
-            <div class="error">
-                <span class="message">{{ $message }}</span>
-                <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-        @enderror
-        @yield('content')
+        @include('layouts.aside')
+        <section class="content">
+            @error('error')
+                <div class="error">
+                    <span class="message">{{ $message }}</span>
+                    <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            @enderror
+            @yield('content')
+        </section>
     </main>
 
+    <!-- Chart.js CDN -->
+    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
 
     <script src="{{ asset('dist/js/utils/message.js') }}"></script>
     <script src="{{ asset('dist/js/main.js') }}"></script>

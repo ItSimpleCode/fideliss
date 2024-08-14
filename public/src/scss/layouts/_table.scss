@@ -2,12 +2,7 @@
     position: relative;
     width: 100%;
 
-    color: $text_color_1;
     overflow-y: auto;
-
-    transition: scrollbar-color 0.5s, scrollbar-width 0.5s;
-    scrollbar-width: none;
-    scroll-behavior: smooth;
 
     table {
         width: 100%;
@@ -24,46 +19,51 @@
     thead {
         tr {
             th {
-                background-color: #f1f1f1;
-
-                color: $text_color_1;
-                font-weight: 600;
+                background-color: #ffffff;
+                color: #252C58;
+                font-weight: 500;
                 text-transform: capitalize;
+
+                span {
+                    display: block;
+                    height: 100%;
+                    border-bottom: 2px solid transparentize(#252C58, 0.92);
+                    padding-bottom: 12px;
+
+                    &:first-child {
+                        // padding-left: 12px;
+                        // border-radius: 12px 0 0 12px;
+                    }
+
+                    &:last-child {
+                        // padding-right: 12px;
+                        // border-radius: 0 12px 12px 0;
+                    }
+                }
 
                 position: sticky;
                 top: 0;
                 z-index: 1;
-
-                &:first-child {
-                    padding-left: 12px;
-                    border-radius: 12px 0 0 12px;
-                }
-
-                &:last-child {
-                    padding-right: 12px;
-                    border-radius: 0 12px 12px 0;
-                }
             }
         }
     }
 
     tbody {
         tr {
-            transition-duration: 0.2s;
+            transition-duration: 0.3s;
 
             &:hover td {
-                background-color: transparentize(#000, 0.96);
+                background-color: transparentize(#252C58, 0.98);
             }
         }
 
         td {
             height: 62px;
-            font-weight: 600;
+            font-weight: 300;
             text-transform: capitalize;
 
             &:first-child {
                 border-radius: 12px 0 0 12px;
-                padding-left: 12px;
             }
 
             &:last-child {
@@ -86,24 +86,32 @@
                 width: 130px;
                 height: 30px;
 
-                color: $text_color_3;
+                color: #252C58;
                 background-color: $bg_color_0;
+                font-weight: 500;
                 text-decoration: none;
 
-                display: flex;
                 flex-flow: row nowrap;
-                justify-content: center;
-                align-items: center;
                 column-gap: 6px;
                 padding: 0 12px;
                 border-radius: 6px;
 
+                &,
+                i {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                &.show,
                 &.send {
                     background-color: $btn_send;
+                    color: #ffffff;
                 }
 
                 &.edit {
                     background-color: $btn_edit;
+                    border: 2px solid #252C58;
                 }
 
                 &.active {
@@ -127,7 +135,6 @@
 
     th,
     td {
-        padding: 8px;
         text-align: left;
     }
 }

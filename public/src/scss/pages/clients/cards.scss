@@ -1,4 +1,14 @@
 @import "../../layouts/global";
 @import "../../layouts/backgrounds";
+@import "../../layouts/buttons";
+@import "../../layouts/classes";
 @import "../../layouts/card";
 
+.body {
+
+    &:has(.no-data) {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

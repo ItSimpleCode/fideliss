@@ -1,0 +1,21 @@
+.button-add {
+    background-color: #3354F4;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: capitalize;
+    padding: 12px;
+    border-radius: 12px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    column-gap: 12px;
+
+    i {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

@@ -1,16 +1,5 @@
 @import "../../layouts/global";
 @import "../../layouts/backgrounds";
-@import "../../layouts/main";
+@import "../../layouts/buttons";
 @import "../../layouts/table";
-
-body {
-    font-family: "sf-pro-rounded";
-    height: 100dvh;
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-
-.users {
-    height: calc(100% - 48px - 24px);
-}
+@import "../../layouts/classes";

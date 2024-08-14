@@ -1,18 +1,26 @@
-var Scrollbar = window.Scrollbar;
+const user = document.querySelector(".user");
+const userPic = document.querySelector(".user .user-pic");
+const userSubList = document.querySelector(".user .sub-list");
 
-Scrollbar?.initAll();
+const date = document.querySelector(".date");
+const dateBtn = document.querySelector(".date .date-btn");
+const subDate = document.querySelector(".date .sub-list");
 
-window.addEventListener("DOMContentLoaded", () => {
-    let aside = document.getElementById("aside");
-    let asideToggle = document.getElementById("aside_toggle");
-    let aside_texts = document.querySelectorAll(".text");
+userPic?.addEventListener("click", () => userSubList.classList.toggle("show"));
+dateBtn?.addEventListener("click", () => subDate.classList.toggle("show"));
 
-    asideToggle?.addEventListener("click", () => {
-        aside?.classList.toggle("active");
-        if (aside?.classList.contains("active"))
-            aside_texts.forEach((e, i) =>
-                setTimeout(() => e.classList.add("active"), 100 * (i + 1))
-            );
-        else aside_texts.forEach((e) => e.classList.remove("active"));
-    });
+window.addEventListener("click", (e) => {
+    [
+        {
+            area: user,
+            show: userSubList,
+        },
+        {
+            area: date,
+            show: subDate,
+        },
+    ].forEach(
+        (obj) =>
+            !obj.area.contains(e.target) && obj.show.classList.remove("show")
+    );
 });

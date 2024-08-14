@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded", () => {
     inputName.forEach((inp) => {
         inp.addEventListener(
             "input",
-            () => (inp.value = inp.value.replace(/[^a-z]/gi, ""))
+            () => (inp.value = inp.value.replace(/[^a-z\s]/gi, ""))
         );
     });
     inputNumber.forEach((inp) => {

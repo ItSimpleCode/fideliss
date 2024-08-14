@@ -15,44 +15,40 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg users">
+    <section class="outer-bg h-100">
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
         </div>
 
-        <div class="main-table">
-            @if ($data->count() > 0)
-
-                <table>
-                    <thead>
+        <div class="main-table body">
+            <table>
+                <thead>
+                    <tr>
+                        <th><span>#</span></th>
+                        @foreach ($columns as $column)
+                            @if ($column !== '-')
+                                <th><span>{{ $column }}</span></th>
+                            @endif
+                        @endforeach
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data as $index => $item)
                         <tr>
-                            <th>#</th>
-                            @foreach ($columns as $column)
-                                @if ($column !== '-')
-                                    <th>{{ $column }}</th>
+                            <td scope="row">{{ $index + 1 }}</td>
+                            @foreach ($fields as $field)
+                                @if ($field == 'created_at')
+                                    <td>{{ $item[$field]->diffForHumans() }}</td>
+                                @else
+                                    <td>{{ $item[$field] }}</td>
                                 @endif
                             @endforeach
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data as $index => $item)
-                            <tr>
-                                <td scope="row">{{ $index + 1 }}</td>
-                                @foreach ($fields as $field)
-                                    @if ($field == 'created_at')
-                                        <td>{{ $item[$field]->diffForHumans() }}</td>
-                                    @else
-                                        <td>{{ $item[$field] }}</td>
-                                    @endif
-                                @endforeach
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @else
-                <div class="no_data">
-                    <p>aucune donnée n'existe</p>
-                </div>
+                    @endforeach
+                </tbody>
+            </table>
+            @if (!$data->count())
+                <div class="no-data">la table est vide</div>
             @endif
         </div>
     </section>

@@ -7,16 +7,16 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg new-card">
+    <section class="outer-bg mh-100">
         <div class="head">
-            <h1 class="title">
+            <div class="title">
                 <a href="{{ Route('cards') }}">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
                 <span>Modifier la carte</span>
-            </h1>
+            </div>
         </div>
-        <div class="form">
+        <div class="form body">
             <form action={{ route('cards.edit.store', ['id' => $card['id']]) }} method="POST">
                 @csrf
                 <div class="part">
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-regular fa-credit-card"></i><span>ajouter une carte</span></button>
+                    <button class="button-add" type="submit"><i class="fa-regular fa-credit-card"></i><span>ajouter une carte</span></button>
                 </div>
 
             </form>

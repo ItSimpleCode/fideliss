@@ -7,16 +7,16 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg new-card">
+    <section class="outer-bg h-100">
         <div class="head">
-            <h1 class="title">
+            <div class="title">
                 <a href="{{ route('client.cards', ['id' => $client['id']]) }}">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
                 <span>Cartes</span>
-            </h1>
+            </div>
         </div>
-        <div class="form">
+        <div class="form body">
             <form action="{{ route('cards.create.store', ['id' => $client['id']]) }}" method="POST">
                 @csrf
                 <div class="part">
@@ -39,40 +39,14 @@
                             <label for="wallet">porte-monnaie</label>
                             <input type="text" name="wallet" id="wallet">
                         </div>
-                        {{-- <div class="selection-field">
-                            <div class="field">
-                                <label for="pay-method">méthode de paiement</label>
-                                <input class="back" type="hidden" name="pay-method">
-                                <input class="front" type="text" id="pay-method">
-                                <i class="fa-solid fa-angle-down"></i>
-                            </div>
-                            <div class="options">
-                                <span class="option" data-hidden="cash">espèces</span>
-                                <span class="option" data-hidden="card bank">carte bancaire</span>
-                                @foreach ($clientCards as $card)
-                                    <span class="option" data-hidden="{{ $card['id'] }}">{{ $card['card_serial'] }}</span>
-                                @endforeach
-                            </div>
-                        </div> --}}
                     </div>
-                    {{-- <div class="double-fields">
-                        <div class="field">
-                            <label for="pay">Numéro de carte</label>
-                            <input type="text" name="card_serial" id="pay">
-                        </div>
-                        <div class="field">
-                            <label for="wallet">porte-monnaie</label>
-                            <input type="text" name="wallet" id="wallet">
-                        </div>
-                    </div> --}}
                 </div>
                 <div class="part">
                     <h2 class="title">Informations sur le client</h2>
                     <div class="double-fields">
                         <div class="field disabled">
                             <label for="first-name">prénom</label>
-                            <input type="text" name="" id="first-name" value="{{ $client['first_name'] }}"
-                                disabled>
+                            <input type="text" name="" id="first-name" value="{{ $client['first_name'] }}" disabled>
                         </div>
                         <div class="field disabled">
                             <label for="last-name">nom</label>
@@ -86,14 +60,13 @@
                         </div>
                         <div class="field disabled">
                             <label for="phone">numéro de téléphone</label>
-                            <input type="text" name="" id="phone" value="{{ $client['phone_number'] }}"
-                                disabled>
+                            <input type="text" name="" id="phone" value="{{ $client['phone_number'] }}" disabled>
                         </div>
                     </div>
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-regular fa-credit-card"></i><span>ajouter une carte</span></button>
+                    <button class="button-add" type="submit"><i class="fa-regular fa-credit-card"></i><span>ajouter une carte</span></button>
                 </div>
 
             </form>

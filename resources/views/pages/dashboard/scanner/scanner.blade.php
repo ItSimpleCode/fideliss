@@ -7,13 +7,13 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg sacnner">
+    <section class="outer-bg h-100">
 
         <div class="head">
             <div class="title">Scanner</div>
             {{-- <a class="add" href="{{ route("$table.add.show") }}"> <i class="fa-solid fa-plus"></i><span>ajouter une nouvelle ligne</span></a> --}}
         </div>
-        <div class="form">
+        <div class="form body">
             <div id="reader" style="width: 500px;"></div>
             <form action={{ route('scanner.addPoints.showv2') }}>
                 <div class="part">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="part">
-                    <button type="submit"><span>Valider</span></button>
+                    <button class="button-add" type="submit"><span>search</span></button>
                 </div>
             </form>
         </div>
