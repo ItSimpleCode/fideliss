@@ -7,33 +7,34 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg">
+    <section class="outer-bg">
         <div class="head">
-            <h1 class="title">
+            <div class="title">
                 <a href="{{ route('branches') }}">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
                 <span>{{ $branch['name'] }}</span>
-            </h1>
+            </div>
         </div>
-
-        <form action={{ route('branches.edit.store', ['id' => $branch['id']]) }} method="POST">
-            @csrf
-            <div class="part">
-                <div class="field">
-                    <label for="name">nom</label>
-                    <input type="text" name="name" id="name" value={{ $branch['name'] }}>
+        <div class="form body">
+            <form action={{ route('branches.edit.store', ['id' => $branch['id']]) }} method="POST">
+                @csrf
+                <div class="part">
+                    <div class="field">
+                        <label for="name">nom</label>
+                        <input type="text" name="name" id="name" value={{ $branch['name'] }}>
+                    </div>
+                    <div class="field">
+                        <label for="address">adresse</label>
+                        <input type="text" name="address" id="address" value={{ $branch['address'] }}>
+                    </div>
                 </div>
-                <div class="field">
-                    <label for="address">adresse</label>
-                    <input type="text" name="address" id="address" value={{ $branch['address'] }}>
-                </div>
-            </div>
 
-            <div class="part">
-                <button type="submit"><i class="fa-solid fa-code-branch"></i><span>Modifier la branche</span></button>
-            </div>
-        </form>
+                <div class="part">
+                    <button class="button-add" type="submit"><i class="fa-solid fa-code-branch"></i><span>Modifier la branche</span></button>
+                </div>
+            </form>
+        </div>
 
     </section>
 @endsection

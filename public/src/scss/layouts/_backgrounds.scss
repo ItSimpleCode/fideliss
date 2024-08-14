@@ -1,3 +1,70 @@
+.outer-nav,
+.outer-aside,
+.outer-bg {
+    background-color: #fff;
+    box-shadow: 0 10px 38px 0 transparentize(#485966, 0.9);
+
+    border-radius: 24px;
+    display: flex;
+}
+
+.outer-nav {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px 12px 12px;
+}
+
+.outer-aside {
+    padding: 24px 0;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.outer-bg {
+    flex-flow: column nowrap;
+    row-gap: 24px;
+    padding: 24px;
+
+    &:has(table) {
+        padding: 24px 24px 0;
+    }
+
+    .head {
+        height: 48px;
+        font-weight: 300;
+        text-transform: capitalize;
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+
+        .title {
+
+            &:has(a) {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                column-gap: 12px;
+            }
+        }
+
+        a {
+            i {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    .body {
+        flex: 1;
+    }
+}
+
+
 .dark-bg {
     display: flex;
     flex-flow: column nowrap;
@@ -24,11 +91,6 @@
 
         a {
             text-decoration: none;
-            color: $text_color_1;
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: center;
-            align-items: center;
         }
 
         i {

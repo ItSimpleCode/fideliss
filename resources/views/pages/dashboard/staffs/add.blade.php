@@ -7,16 +7,16 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg">
+    <section class="outer-bg mh-100">
         <div class="head">
-            <h1 class="title">
+            <div class="title">
                 <a href={{ route('staffs') }}>
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
                 <span>Ajouter un membre du personnel</span>
-            </h1>
+            </div>
         </div>
-        <div class="form">
+        <div class="form body">
             <form action={{ route('staffs.add.store') }} method="POST">
                 @csrf
                 <div class="part">
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-solid fa-users"></i><span>nouveau membre du
+                    <button class="button-add" type="submit"><i class="fa-solid fa-users"></i><span>nouveau membre du
                             personnel</span></button>
                 </div>
 

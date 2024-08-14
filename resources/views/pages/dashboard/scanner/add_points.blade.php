@@ -7,12 +7,12 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg">
+    <section class="outer-bg">
         <div class="head">
             <div class="title">Ajouter des points</div>
         </div>
 
-        <div class="form">
+        <div class="form body">
             <form action="{{ route('scanner.addPoints.store', ['id' => $data['id']]) }}" method="POST">
                 @csrf
                 <div class="part">
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-regular fa-credit-card"></i><span>Ajouter des points</span></button>
+                    <button class="button-add" type="submit"><i class="fa-regular fa-credit-card"></i><span>Ajouter des points</span></button>
                 </div>
 
             </form>
@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="qr-code">{{ $data['qrCode'] }}</div>
                             </div>
-                            <div class="serial">{{$data['card_serial']}}</div>
+                            <div class="serial">{{ $data['card_serial'] }}</div>
                         </div>
                         <div class="down flex-row">
                             <div class="flex-column">

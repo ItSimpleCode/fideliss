@@ -1,157 +1,57 @@
-:root {
-    --duration: 0.3s;
-    --aside-width: 134px;
-    --aside-active-width: 313px;
-    --aside-padding: 48px;
-    --btn-width: 38px;
-    --btn-height: 38px;
-}
-
-ul {
-    list-style: none;
-}
-
 .aside {
-    width: var(--aside-width);
-    padding: var(--aside-padding);
-    user-select: none;
-    overflow: hidden;
-    transition-duration: var(--duration);
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: flex-start;
+    margin: 142px 0 24px;
 
-    font-family: "Sora", sans-serif;
-
-
-
-    // background-color: $bg_color_1;
-    // background: linear-gradient(124deg, rgba(0, 0, 0, 0.95) 1.8%, rgb(0, 55, 79) 31.8%, rgb(9, 93, 134) 56.2%, rgb(15, 155, 217) 89%);
-    // background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/twcomponents/header.webp');
-    background: linear-gradient(170deg, transparentize(#0575E6, 0.15), transparentize(#02298A, 0.15), transparentize(#021B79, 0.15));
-    color: $text_color_0;
-    text-transform: capitalize;
-    height: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: start;
-    row-gap: 48px;
-
-    a {
-        text-decoration: none;
-        width: 100%;
-        height: var(--btn-height);
-        border: none;
-        background: none;
-        cursor: pointer;
-        border-radius: 12px;
-        position: relative;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-    }
-
-    .aside_toggle {
-        background-color: transparent;
-        color: inherit;
-        border: none;
-        display: flex;
-        flex-flow: row;
-        align-items: center;
-        column-gap: 12px;
-        position: relative;
-
-        i {
-            font-size: 30px;
-            width: 38px;
-            height: 38px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        span {
-            font-size: 32px;
-            font-weight: bold;
-        }
-    }
-
-    .text {
-        color: $text_color_0;
-        font-size: 16px;
-        font-weight: 800;
-        text-transform: capitalize;
-        text-align: start;
-        position: absolute;
-        top: 50%;
-        transform: translate(var(--aside-active-width), -50%);
-        transition-duration: var(--duration);
-    }
 
     .list {
-        width: 100%;
-
-        &.main_list {
-            flex: 1;
-            display: flex;
-            flex-flow: column nowrap;
-            row-gap: 36px;
-        }
+        display: flex;
+        flex-flow: column nowrap;
+        row-gap: 48px;
 
         ul {
-            width: 100%;
             display: flex;
-            flex-direction: column;
-            row-gap: 12px;
+            flex-flow: column nowrap;
+            row-gap: 24px;
         }
 
         a {
-            background-color: transparent;
-            transition-duration: var(--duration);
-            overflow: hidden;
-            // opacity: 0.75;
+            color: #252C58;
+            text-decoration: none;
+            text-transform: capitalize;
 
-            padding: 0 7px;
+            height: 29px;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            column-gap: 12px;
+            padding-left: 0;
+            padding-right: 24px;
+            transition-duration: 0.2s;
 
-            &.unclickable {
-                opacity: 1;
+
+            &::before {
+                content: '';
+                display: block;
+                width: 12px;
+                height: 100%;
+                border-radius: 0 6px 6px 0;
+                background-color: #3353f400;
+                transition-duration: 0.2s;
+            }
+
+            &:hover,
+            &.selected {
+                &::before {
+                    background-color: #3354F4;
+                }
             }
 
             i {
                 width: 24px;
                 height: 24px;
-                font-size: 20px;
-                color: $text_color_0;
-                transition-duration: var(--duration);
+
                 display: flex;
                 justify-content: center;
                 align-items: center;
-            }
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-    }
-
-    &.active {
-        width: var(--aside-active-width);
-
-        .aside_toggle {
-            width: calc(var(--aside-active-width) - var(--aside-padding) * 2);
-        }
-
-        .list a {
-            padding: 0;
-        }
-
-        .text {
-            transform: translate(var(--btn-width), -50%);
-        }
-
-        .aside_toggle {
-            .text {
-                transform: translate(calc(var(--btn-width) + 12px), -50%);
             }
         }
     }

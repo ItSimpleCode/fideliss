@@ -15,20 +15,20 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg users">
+    <section class="outer-bg h-100">
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
         </div>
 
-        <div class="main-table">
+        <div class="main-table body">
             <table>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th><span>#</span></th>
                         @foreach ($columns as $column)
-                            <th>{{ $column }}</th>
+                            <th><span>{{ $column }}</span></th>
                         @endforeach
-                        <th class="actions btn-2">Actions</th>
+                        <th class="actions btn-2"><span>Actions</span></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,6 +52,9 @@
                     @endforeach
                 </tbody>
             </table>
+            @if (!$data->count())
+                <div class="no-data">la table est vide</div>
+            @endif
         </div>
     </section>
 @endsection

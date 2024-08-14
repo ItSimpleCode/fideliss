@@ -1,24 +1,21 @@
 @import "../../layouts/global";
 @import "../../layouts/backgrounds";
+@import "../../layouts/classes";
+@import "../../layouts/buttons";
 @import "../../layouts/form";
 
 
-.sacnner {
 
-    height: 100%;
+.body {
+    margin: auto;
+    max-width: 500px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    row-gap: 24px;
 
-
-    .form {
-
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        row-gap: 24px;
-
-        &>* {
-            max-width: 500px;
-            width: 100%;
-        }
+    &>* {
+        width: 100%;
     }
 }
 

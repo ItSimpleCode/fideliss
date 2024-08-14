@@ -1,13 +1,13 @@
 @import "../../layouts/global";
 @import "../../layouts/backgrounds";
+@import "../../layouts/classes";
+@import "../../layouts/buttons";
 @import "../../layouts/card";
 @import "../../layouts/form";
 
-.new-card {
-    height: 100%;
-}
 
-.form {
+
+.body {
     width: 100%;
     height: 100%;
     display: flex;

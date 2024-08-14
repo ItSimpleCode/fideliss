@@ -7,14 +7,14 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg">
+    <section class="outer-bg mh-100">
         <div class="head">
-            <h1 class="title">
+            <div class="title">
                 <a href="{{ route('clients') }}">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
                 <span>{{ $client['first_name'] . ' ' . $client['last_name'] }}</span>
-            </h1>
+            </div>
         </div>
 
         <form action={{ route('clients.edit.store', ['id' => $client['id']]) }} method="POST">
@@ -70,7 +70,7 @@
             </div>
 
             <div class="part">
-                <button type="submit">Modifier</button>
+                <button class="button-add" type="submit">Modifier</button>
             </div>
         </form>
 

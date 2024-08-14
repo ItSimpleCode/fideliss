@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <section class="dark-bg">
+    <section class="outer-bg">
         <div class="head">
             <a href={{ route('transaction.demande') }}>
                 <i class="fa-solid fa-arrow-left"></i>
@@ -15,7 +15,7 @@
             <div class="title">Edite cette domande</div>
         </div>
 
-        <div class="form">
+        <div class="form body">
             <form action={{ route('transaction.demande.edit.store', ['id' => $data['id']]) }} method="POST">
                 @csrf
                 <div class="part">
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="part">
-                    <button type="submit"><i class="fa-regular fa-credit-card"></i><span>Ajouter des points</span></button>
+                    <button class="button-add" type="submit"><i class="fa-regular fa-credit-card"></i><span>Ajouter des points</span></button>
                 </div>
 
             </form>
