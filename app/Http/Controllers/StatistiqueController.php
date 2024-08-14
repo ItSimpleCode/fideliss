@@ -82,16 +82,29 @@ class StatistiqueController extends Controller
             ->whereDate('created_at', '<=', $previousEndDate)
             ->count();
 
+        $data = [
+            'clients' => [
+                'new' => $clientsData,
+                'old' => $old_clientsData,
+            ],
+            'cards' => [
+                'new' => $cardsData,
+                'old' => $old_cardsData,
+            ],
+            'transactions' => [
+                'new' => $transactionsData,
+                'old' => $old_transactionsData,
+            ],
+        ];
+
+        // return $data;
+
+
         return view(
             'pages.dashboard.statistics.statistics',
             compact(
                 'date',
-                'clientsData',
-                'old_clientsData',
-                'cardsData',
-                'old_cardsData',
-                'transactionsData',
-                'old_transactionsData'
+                'data',
             )
         );
     }
