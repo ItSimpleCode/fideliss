@@ -3,12 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Branch;
 use App\Models\Card;
 use App\Models\Client;
+use App\Models\ClientCards;
 use App\Models\Staff;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+use function PHPSTORM_META\map;
 
 class StatistiqueController extends Controller
 {
@@ -56,45 +60,122 @@ class StatistiqueController extends Controller
         //     ];
         // });
 
+<<<<<<< HEAD
         // --  clients statistique
         $clientsData = Client::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+=======
+
+
+        // --  clients statistique for cards
+        $clientsData_cards = Client::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+>>>>>>> main
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->count();
-        $old_clientsData = Client::whereDate('created_at', '>=', $previousStartDate)
+        $old_clientsData_cards = Client::whereDate('created_at', '>=', $previousStartDate)
             ->whereDate('created_at', '<=', $previousEndDate)
             ->count();
 
-        // --  cards statistique
-        $cardsData = Card::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+        // --  cards statistique for cards
+        $clientsCardsData_cards = ClientCards::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->count();
-        $old_cardsData = Card::whereDate('created_at', '>=', $previousStartDate)
+        $old_clientsCardsData_cards = ClientCards::whereDate('created_at', '>=', $previousStartDate)
             ->whereDate('created_at', '<=', $previousEndDate)
             ->count();
 
-        // --  transctions statistique
-        $transactionsData = Transaction::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+        // --  transctions statistique for cards
+        $transactionsData_cards = Transaction::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
+<<<<<<< HEAD
             ->get(['points']);
         $old_transactionsData = Transaction::whereDate('created_at', '>=', $previousStartDate)
             ->whereDate('created_at', '<=', $previousEndDate)
             ->get(['points']);
+=======
+            ->sum('points');
+        $old_transactionsData_cards = Transaction::whereDate('created_at', '>=', $previousStartDate)
+            ->whereDate('created_at', '<=', $previousEndDate)
+            ->sum('points');
+
+        // --  transctions statistique for chart
+        $transactionsData_chart = Transaction::select('id', 'points', 'created_at')
+            ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+            ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
+            ->get();
+
+
+        // --  cards type statistique for chart
+        $typeCardsData_chart = Card::select('id', 'name')
+            ->withCount('clientcards')
+            ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+            ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
+            ->get();
+
+        // --  cards statistique for chart
+        $cardsData_chart = ClientCards::with('cards')
+            ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+            ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
+            ->get();
+        $cardsData_chart = $cardsData_chart->map(function ($item) {
+            return [
+                'id' => $item->id,
+                'created_at' => $item->created_at,
+                'cardType' => $item->cards->name
+            ];
+        });
+
+        // --  branch statistique for chart
+        $branchesData_chart = Branch::withCount(['staffs', 'clients'])
+            ->with('clients.clientCards.transactions')
+            ->get();
+        $branchesData_chart = $branchesData_chart->map(function ($branch) {
+            $totalTransactions = 0;
+            foreach ($branch->clients as $client) {
+                foreach ($client->clientCards as $clientCard) {
+                    $totalTransactions += $clientCard->transactions->count();
+                }
+            }
+            return [
+                'id' => $branch->id,
+                'name' => $branch->name,
+                'staffs_count' => $branch->staffs_count,
+                'clients_count' => $branch->clients_count,
+                'transactions_count' => $totalTransactions,
+            ];
+        });
+
+
+
+
+
+
+
+>>>>>>> main
 
         $data = [
             'clients' => [
-                'new' => $clientsData,
-                'old' => $old_clientsData,
+                'new' => $clientsData_cards,
+                'old' => $old_clientsData_cards,
             ],
             'cards' => [
-                'new' => $cardsData,
-                'old' => $old_cardsData,
+                'new' => $clientsCardsData_cards,
+                'old' => $old_clientsCardsData_cards,
             ],
-            'transactions' => [
-                'new' => $transactionsData,
-                'old' => $old_transactionsData,
+            'transactions_card' => [
+                'new' => $transactionsData_cards,
+                'old' => $old_transactionsData_cards,
             ],
+            'transactions_chart' => $transactionsData_chart,
+            'typeCards_chart' => $typeCardsData_chart,
+            'cardsData_chart' => $cardsData_chart,
+            'branchesData_chart' => $branchesData_chart,
         ];
 
+<<<<<<< HEAD
+=======
+        // return $branchesData_chart;
+
+>>>>>>> main
 
         return view(
             'pages.dashboard.statistics.statistics',

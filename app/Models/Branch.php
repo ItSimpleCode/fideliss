@@ -11,4 +11,8 @@ class Branch extends Authenticatable
     {
         return $this->hasMany(Staff::class, 'id_branch');
     }
+    public function clients()
+    {
+        return $this->hasMany(Client::class, 'id_branch');
+    }
 }

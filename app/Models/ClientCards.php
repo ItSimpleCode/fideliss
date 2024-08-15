@@ -17,4 +17,8 @@ class ClientCards extends Model
     {
         return $this->belongsTo(Card::class, 'id_card');
     }
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'id_client_card');
+    }
 }
