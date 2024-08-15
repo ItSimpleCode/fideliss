@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', "#{$client['first_name']} #{$client['last_name']}")
+@section('title', 'Clients - Modifier')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/clients/edit.css') }}">

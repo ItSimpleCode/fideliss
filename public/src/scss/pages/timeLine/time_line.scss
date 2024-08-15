@@ -1,0 +1,40 @@
+@import "../../layouts/global";
+@import "../../layouts/backgrounds";
+@import "../../layouts/table";
+@import "../../layouts/classes";
+
+.outer-bg {
+    padding: 24px !important;
+}
+
+.fc-header-toolbar {
+    margin: 0 !important;
+}
+
+.fc-toolbar-title {
+    font-size: 16px !important;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+
+.fc-toolbar-chunk {
+    button[type=button] {
+        height: 48px;
+        padding: 0 12px;
+    }
+
+    .fc-today-button {
+        border-radius: 12px;
+    }
+
+    .fc-button-group {
+
+        :first-child {
+            border-radius: 12px 0 0 12px;
+        }
+
+        :last-child {
+            border-radius: 0 12px 12px 0;
+        }
+    }
+}

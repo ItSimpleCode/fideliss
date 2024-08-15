@@ -12,7 +12,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $columns = ["Prénom", "Nom de famille", 'cin', "Numéro de téléphone", "Sexe", "Email", "Date d'adhésion", "Cartes"];
+        $columns = ["Prénom", "Nom", 'cin', "N.téléphone", "Sexe", "Email", "D.naissance", "Cartes"];
         $fields = ['first_name', 'last_name', 'cin', 'phone_number', 'gender', 'email', 'created_at', 'cards_number'];
         if (Auth::guard('admin')->check()) {
             $clients = Client::select('id', 'first_name', 'last_name', 'cin', 'phone_number', 'gender', 'email', 'created_at', 'active')
@@ -74,7 +74,7 @@ class ClientController extends Controller
                 'email.email' => 'L\'adresse email doit être valide.',
                 'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
             ]);
-            
+
 
             if (Auth::guard('admin')->check()) {
                 $request->validate([
@@ -111,7 +111,7 @@ class ClientController extends Controller
 
     public function showEditForm($id)
     {
-        $client = Client::select('id', 'first_name', 'last_name','cin', 'birth_date', 'phone_number', 'gender', 'address', 'email')
+        $client = Client::select('id', 'first_name', 'last_name', 'cin', 'birth_date', 'phone_number', 'gender', 'address', 'email')
             ->where('id', $id)
             ->first();
 
@@ -149,7 +149,7 @@ class ClientController extends Controller
                 'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
                 'active.required' => 'Le statut actif est requis.',
             ]);
-            
+
 
             $client = Client::find($id);
             $client->first_name = $request->first_name;

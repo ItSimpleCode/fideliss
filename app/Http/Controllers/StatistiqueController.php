@@ -56,8 +56,6 @@ class StatistiqueController extends Controller
         //     ];
         // });
 
-
-
         // --  clients statistique
         $clientsData = Client::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
@@ -77,10 +75,10 @@ class StatistiqueController extends Controller
         // --  transctions statistique
         $transactionsData = Transaction::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
-            ->count();
+            ->get(['points']);
         $old_transactionsData = Transaction::whereDate('created_at', '>=', $previousStartDate)
             ->whereDate('created_at', '<=', $previousEndDate)
-            ->count();
+            ->get(['points']);
 
         $data = [
             'clients' => [
@@ -96,8 +94,6 @@ class StatistiqueController extends Controller
                 'old' => $old_transactionsData,
             ],
         ];
-
-        // return $data;
 
 
         return view(

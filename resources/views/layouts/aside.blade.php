@@ -11,7 +11,7 @@
                     <a href="{{ route('actions') }}"><i class="fa-solid fa-arrow-pointer"></i><span>actions</span></a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa-solid fa-timeline"></i><span>chronologie</span></a>
+                    <a href="{{ route('timeLine') }}"><i class="fa-solid fa-timeline"></i><span>chronologie</span></a>
                 </li>
             </ul>
 

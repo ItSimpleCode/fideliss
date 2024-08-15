@@ -1,6 +1,11 @@
 .aside {
     margin: 142px 0 24px;
 
+    display: flex;
+    flex-flow: column nowrap;
+    row-gap: 48px;
+
+    overflow-y: auto;
 
     .list {
         display: flex;

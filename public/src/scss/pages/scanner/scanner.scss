@@ -8,6 +8,7 @@
 
 .body {
     margin: auto;
+    width: 100%;
     max-width: 500px;
     display: flex;
     flex-flow: column nowrap;
@@ -23,8 +24,9 @@
     border: 2px solid #333;
     border-radius: 10px;
     overflow: hidden;
-    width: 500px;
-    height: 376px;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 376px !important;
 
     video {
         width: 100%;

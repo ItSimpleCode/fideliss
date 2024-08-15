@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', $table)
+@section('title', 'Demande')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/demandes/demandes.css') }}">
@@ -23,27 +23,33 @@
             <table>
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>
+                            <div>#</div>
+                        </th>
                         @foreach ($columns as $column)
-                            <th>{{ $column }}</th>
+                            <th>
+                                <div>{{ $column }}</div>
+                            </th>
                         @endforeach
-                        <th class="actions btn-3">Actions</th>
+                        <th class="actions btn-3">
+                            <div>Actions</div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $index => $item)
                         <tr>
-                            <td scope="row">{{ $index + 1 }}</td>
+                            <td>
+                                <div>{{ $index + 1 }}</div>
+                            </td>
                             @foreach ($fields as $field)
-                                @if ($field == 'status')
-                                    <td class={{ $item[$field] }}>{{ $item[$field] }}</td>
-                                @else
-                                    <td>{{ $item[$field] }}</td>
-                                @endif
+                                <td {{ $field == 'status' ? "class='$item[$field]'" : '' }}>
+                                    <div>{{ $item[$field] }}</div>
+                                </td>
                             @endforeach
                             <td>
                                 @if ($item['status'] != 'Done')
-                                    <div class="actions btn-3">
+                                    <div class="actions btn-{{ $item['status'] == 'Waiting' ? '2' : '3' }}">
                                         @if ($item['status'] != 'Waiting')
                                             <a href={{ route('transaction.demande.resend', ['id' => $item['id']]) }} class="send">
                                                 <i class="fa-regular fa-paper-plane"></i>

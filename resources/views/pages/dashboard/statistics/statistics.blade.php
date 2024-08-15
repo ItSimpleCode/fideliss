@@ -6,9 +6,12 @@
     <link rel="stylesheet" href="{{ asset('dist\css\pages\statistics\statistics.css') }}">
 @endsection
 
-@section('date')
+@section('add-options')
+    <button class="nav-btn pdf-btn">
+        <i class="fa-solid fa-file-pdf"></i>
+    </button>
     <form class="date">
-        <button type="button" class="date-btn">
+        <button type="button" class="nav-btn date-btn">
             <i class="fa-regular fa-calendar"></i>
         </button>
         <div class="sub-list">
@@ -101,21 +104,41 @@
             <table>
                 <thead>
                     <tr>
-                        <th><span>créateur</span></th>
-                        <th><span>offre</span></th>
-                        <th><span>coût</span></th>
-                        <th><span>durée</span></th>
-                        <th><span>réaction</span></th>
+                        <th>
+                            <div>créateur</div>
+                        </th>
+                        <th>
+                            <div>offre</div>
+                        </th>
+                        <th>
+                            <div>coût</div>
+                        </th>
+                        <th>
+                            <div>durée</div>
+                        </th>
+                        <th>
+                            <div>réaction</div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @for ($i = 0; $i < 15; $i++)
                         <tr>
-                            <td>ad.youssef elqayedy</td>
-                            <td>batata</td>
-                            <td>500</td>
-                            <td>26/07/2024</td>
-                            <td>5127</td>
+                            <td>
+                                <div>ad.youssef elqayedy</div>
+                            </td>
+                            <td>
+                                <div>batata</div>
+                            </td>
+                            <td>
+                                <div>500</div>
+                            </td>
+                            <td>
+                                <div>26/07/2024</div>
+                            </td>
+                            <td>
+                                <div>5127</div>
+                            </td>
                         </tr>
                     @endfor
                 </tbody>
