@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Branch;
 use App\Models\Card;
 use App\Models\Client;
 use App\Models\ClientCards;
@@ -99,7 +100,6 @@ class StatistiqueController extends Controller
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->get();
 
-
         // --  cards statistique for chart
         $cardsData_chart = ClientCards::with('cards')
             ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
@@ -112,6 +112,27 @@ class StatistiqueController extends Controller
                 'cardType' => $item->cards->name
             ];
         });
+
+        // --  branch statistique for chart
+        $branchesData_chart = Branch::withCount(['staffs', 'clients'])
+            ->with('clients.clientCards.transactions')
+            ->get();
+        $branchesData_chart = $branchesData_chart->map(function ($branch) {
+            $totalTransactions = 0;
+            foreach ($branch->clients as $client) {
+                foreach ($client->clientCards as $clientCard) {
+                    $totalTransactions += $clientCard->transactions->count();
+                }
+            }
+            return [
+                'id' => $branch->id,
+                'name' => $branch->name,
+                'staffs_count' => $branch->staffs_count,
+                'clients_count' => $branch->clients_count,
+                'transactions_count' => $totalTransactions,
+            ];
+        });
+
 
 
 
@@ -134,10 +155,11 @@ class StatistiqueController extends Controller
             ],
             'transactions_chart' => $transactionsData_chart,
             'typeCards_chart' => $typeCardsData_chart,
-            'cardsData_chart' => $cardsData_chart
+            'cardsData_chart' => $cardsData_chart,
+            'branchesData_chart' => $branchesData_chart,
         ];
 
-        // return $cardsData_chart;
+        // return $branchesData_chart;
 
 
         return view(
