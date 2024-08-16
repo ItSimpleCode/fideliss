@@ -9,6 +9,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\StatistiqueController;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\TimeLigneController;
 use App\Http\Controllers\TransactionDemandeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,10 +32,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['user.auth'])->group(function () {
     Route::middleware(['admin.auth'])->group(function () {
         Route::get('/dashboard/statistics', [StatistiqueController::class, 'index'])->name('statistics');
-
+        
         Route::get('/dashboard/actions', [ActionsController::class, 'index'])->name('actions');
         Route::get('/dashboard/actions/{id}/valider', [ActionsController::class, 'valider'])->name('actions.valider');
         Route::get('/dashboard/actions/{id}/invalider', [ActionsController::class, 'invalider'])->name('actions.invalider');
+        
+        Route::get('/dashboard/timelinge', [TimeLigneController::class, 'index'])->name('timeLine');
 
         Route::get('/dashboard/admins', [AdminController::class, 'index'])->name('admins');
         Route::get('/dashboard/admins/add', [AdminController::class, 'showAddForm'])->name('admins.add.show');
@@ -106,10 +109,6 @@ Route::get('/clients_space', function () {
     return view('clients_space');
 })->name('client.space');
 
-// Clients Space routes
-Route::get('/dashboard/timeLine', function () {
-    return view('pages.dashboard.timeline.timeLine');
-})->name('timeLine');
 
 Route::middleware('scanner.auth')->get('/dashboard/addPoints/{cardsSerial}', [CardController::class, 'showAddPointsPageBySanning'])->name('scanner.addPoints.show');
 
