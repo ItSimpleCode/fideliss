@@ -19,7 +19,7 @@ class CardController extends Controller
 
     public function index()
     {
-        $columns = ["Nom", "Coût", "Période", "Date de création"];
+        $columns = ["Nom", "Coût", "Période", "D.création"];
         $fields = ['name', 'cost', 'period', 'created_at'];
         $cards = Card::select('id', 'name', 'cost', 'period', 'active', 'created_at', 'active')
             ->orderBy('created_at', 'desc')
@@ -94,7 +94,7 @@ class CardController extends Controller
                 'wallet.required' => 'Le montant du portefeuille est requis.',
                 'wallet.numeric' => 'Le montant du portefeuille doit être un nombre.',
             ]);
-            
+
 
             $cardSelected = Card::find($request->card_type);
             if ($cardSelected) {
@@ -211,7 +211,7 @@ class CardController extends Controller
             'description.required' => 'La description est requise.',
         ]);
 
-        
+
         $card = ClientCards::find($id);
 
         if (Auth::guard('staff')->check()) {
@@ -277,7 +277,7 @@ class CardController extends Controller
                 'period.int' => 'La période doit être un entier.',
                 'active.required' => 'Le statut est requis.',
             ]);
-            
+
 
             $card = new Card;
             $card->name = $request->name;
@@ -314,7 +314,7 @@ class CardController extends Controller
                 'period.int' => 'La période doit être un entier.',
                 'active.required' => 'Le statut est requis.',
             ]);
-            
+
 
             $card = Card::find($id);
             $card->name = $request->name;
