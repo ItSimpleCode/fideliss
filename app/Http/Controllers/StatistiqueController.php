@@ -60,15 +60,10 @@ class StatistiqueController extends Controller
         //     ];
         // });
 
-<<<<<<< HEAD
-        // --  clients statistique
-        $clientsData = Client::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
-=======
 
 
         // --  clients statistique for cards
         $clientsData_cards = Client::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
->>>>>>> main
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->count();
         $old_clientsData_cards = Client::whereDate('created_at', '>=', $previousStartDate)
@@ -86,12 +81,6 @@ class StatistiqueController extends Controller
         // --  transctions statistique for cards
         $transactionsData_cards = Transaction::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
-<<<<<<< HEAD
-            ->get(['points']);
-        $old_transactionsData = Transaction::whereDate('created_at', '>=', $previousStartDate)
-            ->whereDate('created_at', '<=', $previousEndDate)
-            ->get(['points']);
-=======
             ->sum('points');
         $old_transactionsData_cards = Transaction::whereDate('created_at', '>=', $previousStartDate)
             ->whereDate('created_at', '<=', $previousEndDate)
@@ -127,6 +116,8 @@ class StatistiqueController extends Controller
         // --  branch statistique for chart
         $branchesData_chart = Branch::withCount(['staffs', 'clients'])
             ->with('clients.clientCards.transactions')
+            ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+            ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->get();
         $branchesData_chart = $branchesData_chart->map(function ($branch) {
             $totalTransactions = 0;
@@ -148,41 +139,34 @@ class StatistiqueController extends Controller
 
 
 
+        // $data = [
+        //     'clients' => [
+        //         'new' => $clientsData_cards,
+        //         'old' => $old_clientsData_cards,
+        //     ],
+        //     'cards' => [
+        //         'new' => $clientsCardsData_cards,
+        //         'old' => $old_clientsCardsData_cards,
+        //     ],
+        //     'transactions_card' => [
+        //         'new' => $transactionsData_cards,
+        //         'old' => $old_transactionsData_cards,
+        //     ],
+        //     'transactions_chart' => $transactionsData_chart,
+        //     'typeCards_chart' => $typeCardsData_chart,
+        //     'cardsData_chart' => $cardsData_chart,
+        //     // 'branchesData_chart' => $branchesData_chart,
+        // ];
+
+        return $branchesData_chart;
 
 
->>>>>>> main
-
-        $data = [
-            'clients' => [
-                'new' => $clientsData_cards,
-                'old' => $old_clientsData_cards,
-            ],
-            'cards' => [
-                'new' => $clientsCardsData_cards,
-                'old' => $old_clientsCardsData_cards,
-            ],
-            'transactions_card' => [
-                'new' => $transactionsData_cards,
-                'old' => $old_transactionsData_cards,
-            ],
-            'transactions_chart' => $transactionsData_chart,
-            'typeCards_chart' => $typeCardsData_chart,
-            'cardsData_chart' => $cardsData_chart,
-            'branchesData_chart' => $branchesData_chart,
-        ];
-
-<<<<<<< HEAD
-=======
-        // return $branchesData_chart;
-
->>>>>>> main
-
-        return view(
-            'pages.dashboard.statistics.statistics',
-            compact(
-                'date',
-                'data',
-            )
-        );
+        // return view(
+        //     'pages.dashboard.statistics.statistics',
+        //     compact(
+        //         'date',
+        //         'data',
+        //     )
+        // );
     }
 }
