@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', $table)
+@section('title', 'Administrateurs')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist\css\pages\admins\admins.css') }}">
@@ -24,10 +24,14 @@
             <table>
                 <thead>
                     <tr>
-                        <th><span>#</span></th>
+                        <th>
+                            <div>#</div>
+                        </th>
                         @foreach ($columns as $column)
                             @if ($column !== '-')
-                                <th><span>{{ $column }}</span></th>
+                                <th>
+                                    <div>{{ $column }}</div>
+                                </th>
                             @endif
                         @endforeach
                     </tr>
@@ -35,12 +39,18 @@
                 <tbody>
                     @foreach ($data as $index => $item)
                         <tr>
-                            <td scope="row">{{ $index + 1 }}</td>
+                            <td>
+                                <div>{{ $index + 1 }}</div>
+                            </td>
                             @foreach ($fields as $field)
                                 @if ($field == 'created_at')
-                                    <td>{{ $item[$field]->diffForHumans() }}</td>
+                                    <td>
+                                        <div>{{ $item[$field]->diffForHumans() }}</div>
+                                    </td>
                                 @else
-                                    <td>{{ $item[$field] }}</td>
+                                    <td>
+                                        <div>{{ $item[$field] }}</div>
+                                    </td>
                                 @endif
                             @endforeach
                         </tr>

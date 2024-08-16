@@ -96,9 +96,13 @@ Route::post('/forgetPassword', [AuthController::class, 'SendPasswordInMail'])->n
 
 // Clients Space routes
 Route::get('/clients_space', function () {
-    return view('./clients_space');
+    return view('clients_space');
 })->name('client.space');
 
+// Clients Space routes
+Route::get('/dashboard/timeLine', function () {
+    return view('pages.dashboard.timeline.timeLine');
+})->name('timeLine');
 
 Route::middleware('scanner.auth')->get('/dashboard/addPoints/{cardsSerial}', [CardController::class, 'showAddPointsPageBySanning'])->name('scanner.addPoints.show');
 

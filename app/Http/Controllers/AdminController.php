@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $columns = ["Prénom", "Nom de famille", "Numéro de téléphone", "Sexe", "Email", "Date d'adhésion"];
+        $columns = ["Prénom", "Nom", "N.téléphone", "Sexe", "Email", "D.naissance"];
         $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at'];
         $data = Admin::select('id', 'first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at')
             ->orderBy('created_at')

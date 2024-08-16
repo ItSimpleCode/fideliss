@@ -139,6 +139,7 @@ class StatistiqueController extends Controller
 
 
 
+
         $data = [
             'clients' => [
                 'new' => $clientsData_cards,
@@ -168,5 +169,6 @@ class StatistiqueController extends Controller
                 'data',
             )
         );
+
     }
 }

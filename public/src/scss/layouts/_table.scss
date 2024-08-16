@@ -2,7 +2,7 @@
     position: relative;
     width: 100%;
 
-    overflow-y: auto;
+    overflow: auto;
 
     table {
         width: 100%;
@@ -15,46 +15,52 @@
         }
     }
 
+    thead,
+    tbody {
 
-    thead {
-        tr {
-            th {
-                background-color: #ffffff;
-                color: #252C58;
-                font-weight: 500;
-                text-transform: capitalize;
+        th>div,
+        td>div {
+            min-width: max-content;
+            height: 100%;
+            padding: 0 12px;
 
-                span {
-                    display: block;
-                    height: 100%;
-                    border-bottom: 2px solid transparentize(#252C58, 0.92);
-                    padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+    }
 
-                    &:first-child {
-                        // padding-left: 12px;
-                        // border-radius: 12px 0 0 12px;
-                    }
+    thead th,
+    tbody td:first-child {
+        position: sticky;
+        z-index: 1;
 
-                    &:last-child {
-                        // padding-right: 12px;
-                        // border-radius: 0 12px 12px 0;
-                    }
-                }
+        background-color: #ffffff;
+        color: #252C58;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
 
-                position: sticky;
-                top: 0;
-                z-index: 1;
-            }
+    thead th:first-child,
+    tbody td:first-child {
+        left: 0;
+    }
+
+    thead th:first-child {
+        z-index: 2;
+    }
+
+    thead th {
+        top: 0;
+
+        div {
+            border-bottom: 2px solid transparentize(#252C58, 0.92);
+            padding-bottom: 12px;
         }
     }
 
     tbody {
-        tr {
-            transition-duration: 0.3s;
-
-            &:hover td {
-                background-color: transparentize(#252C58, 0.98);
-            }
+        tr:hover td {
+            border-bottom-color: transparentize(#252C58, 0.92);
         }
 
         td {
@@ -62,14 +68,7 @@
             font-weight: 300;
             text-transform: capitalize;
 
-            &:first-child {
-                border-radius: 12px 0 0 12px;
-            }
-
-            &:last-child {
-                border-radius: 0 12px 12px 0;
-                padding-right: 12px;
-            }
+            border-bottom: 2px solid transparent;
         }
 
         .actions {
@@ -129,9 +128,9 @@
         }
     }
 
-    .actions:last-child {
-        width: 422px;
-    }
+    // .actions:last-child {
+    //     width: 422px;
+    // }
 
     th,
     td {

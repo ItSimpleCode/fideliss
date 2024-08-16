@@ -13,7 +13,7 @@ class TransactionDemandeController extends Controller
 {
     public function showByIdStaff()
     {
-        $columns = ["serie de carte", "client", "points", 'description', "status"];
+        $columns = ["série", "client", "points", 'description', "status"];
         $fields = ['card_serial', 'client', 'points', 'description', 'status'];
         $data = TransactionDemande::with('clientCards.client')
             ->where('id_money_converter', Auth::guard('staff')->user()->id)

@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', 'ajouter une branche')
+@section('title', 'Branches - Ajouter')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/branches/add.css') }}">
