@@ -116,6 +116,8 @@ class StatistiqueController extends Controller
         // --  branch statistique for chart
         $branchesData_chart = Branch::withCount(['staffs', 'clients'])
             ->with('clients.clientCards.transactions')
+            ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+            ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->get();
         $branchesData_chart = $branchesData_chart->map(function ($branch) {
             $totalTransactions = 0;
@@ -137,9 +139,6 @@ class StatistiqueController extends Controller
 
 
 
-
-
-
         $data = [
             'clients' => [
                 'new' => $clientsData_cards,
@@ -156,7 +155,7 @@ class StatistiqueController extends Controller
             'transactions_chart' => $transactionsData_chart,
             'typeCards_chart' => $typeCardsData_chart,
             'cardsData_chart' => $cardsData_chart,
-            'branchesData_chart' => $branchesData_chart,
+            // 'branchesData_chart' => $branchesData_chart,
         ];
 
         // return $branchesData_chart;
