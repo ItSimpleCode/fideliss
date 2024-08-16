@@ -89,7 +89,7 @@ class BranchController extends Controller
         $branch = Branch::find($id);
         $staffCount = Staff::where('id_branch', $id)->count();
 
-        if ($staffCount > 0) {
+        if ($staffCount > 0 && $branch->active == 1) {
             return back()->withErrors(['error' =>  "La branche n'est pas vide. Elle contient $staffCount membre(s) du personnel."]);
         }
 

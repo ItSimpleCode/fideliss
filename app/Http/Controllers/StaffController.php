@@ -9,6 +9,7 @@ use App\Models\Staff;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class StaffController extends Controller
 {
@@ -53,10 +54,9 @@ class StaffController extends Controller
             $request->validate([
                 'first_name' => 'required|max:255',
                 'last_name' => 'required|max:255',
-                // 'birth_date' => 'required|date',
+                'birth_date' => 'required|date',
                 'phone_number' => 'required',
                 'gender' => 'required',
-                'email' => 'required|email|max:255',
                 'password' => 'required|min:8|max:255',
                 'id_branch' => 'required',
             ], [
@@ -64,33 +64,44 @@ class StaffController extends Controller
                 'first_name.max' => 'Le prénom ne peut pas dépasser 255 caractères.',
                 'last_name.required' => 'Le nom de famille est requis.',
                 'last_name.max' => 'Le nom de famille ne peut pas dépasser 255 caractères.',
-                // 'birth_date.required' => 'La date de naissance est requis.',
+                'birth_date.required' => 'La date de naissance est requis.',
+                'birth_date.date' => 'La date de naissance doit être une date valide.',
                 'phone_number.required' => 'Le numéro de téléphone est requis.',
                 'gender.required' => 'Le genre est requis.',
-                'email.required' => 'L\'adresse email est requise.',
-                'email.email' => 'L\'adresse email doit être valide.',
-                'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
                 'password.required' => 'Le mot de passe est requis.',
                 'password.min' => 'Le mot de passe doit comporter au moins 8 caractères.',
                 'password.max' => 'Le mot de passe ne peut pas dépasser 255 caractères.',
                 'id_branch.required' => 'La branche est requise.',
             ]);
 
+            $request->validate([
+                'email' => [
+                    'required',
+                    'email',
+                    'max:255',
+                    function ($attribute, $value, $fail) {
+                        $emailExists = DB::table('staffs')->where('email', $value)->exists() ||
+                            DB::table('admins')->where('email', $value)->exists() ||
+                            DB::table('clients')->where('email', $value)->exists();
+
+                        if ($emailExists) {
+                            $fail('Cet email est déjà utilisé.');
+                        }
+                    },
+                ],
+            ], [
+                'email.required' => 'L\'adresse email est requise.',
+                'email.email' => 'L\'adresse email doit être valide.',
+                'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
+            ]);
+
 
             $staff = new Staff;
             $staff->first_name = $request->first_name;
             $staff->last_name = $request->last_name;
-            $staff->birth_date = '1999-12-31';
-            // $staff->birth_date = $request->birth_date;
+            $staff->birth_date = $request->birth_date;
             $staff->phone_number = $request->phone_number;
             $staff->gender = $request->gender;
-            if (
-                Admin::where('email', $staff->email)->exists() ||
-                Staff::where('email', $staff->email)->exists() ||
-                Client::where('email', $staff->email)->exists()
-            ) {
-                return back()->withErrors(['error' =>  'ce mail est deja utilisé']);
-            }
             $staff->email = $request->email;
             $staff->password = $request->password;
             $staff->id_creator = Auth::guard('admin')->user()->id;

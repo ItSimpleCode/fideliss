@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use App\Models\Branch;
 use App\Models\Client;
+use App\Models\Staff;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
@@ -48,12 +52,11 @@ class ClientController extends Controller
             $request->validate([
                 'first_name' => 'required|max:255',
                 'last_name' => 'required|max:255',
-                'cin' => 'required|max:255|unique',
+                'cin' => 'required|max:255|unique:clients,cin',
                 'birth_date' => 'required|date',
                 'phone_number' => 'required',
                 'gender' => 'required|max:255',
-                'address' => 'required|string|max:255',
-                'email' => 'required|email|max:255',
+                'address' => 'required|string|max:255'
             ], [
                 'first_name.required' => 'Le prénom est requis.',
                 'first_name.max' => 'Le prénom ne peut pas dépasser 255 caractères.',
@@ -69,7 +72,25 @@ class ClientController extends Controller
                 'gender.max' => 'Le genre ne peut pas dépasser 255 caractères.',
                 'address.required' => 'L\'adresse est requise.',
                 'address.string' => 'L\'adresse doit être une chaîne de caractères.',
-                'address.max' => 'L\'adresse ne peut pas dépasser 255 caractères.',
+                'address.max' => 'L\'adresse ne peut pas dépasser 255 caractères.'
+            ]);
+
+            $request->validate([
+                'email' => [
+                    'required',
+                    'email',
+                    'max:255',
+                    function ($attribute, $value, $fail) {
+                        $emailExists = DB::table('staffs')->where('email', $value)->exists() ||
+                            DB::table('admins')->where('email', $value)->exists() ||
+                            DB::table('clients')->where('email', $value)->exists();
+
+                        if ($emailExists) {
+                            $fail('Cet email est déjà utilisé.');
+                        }
+                    },
+                ],
+            ], [
                 'email.required' => 'L\'adresse email est requise.',
                 'email.email' => 'L\'adresse email doit être valide.',
                 'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
@@ -81,6 +102,7 @@ class ClientController extends Controller
                     'id_branch' => 'required',
                 ]);
             }
+
             $client = new Client;
             $client->first_name = $request->first_name;
             $client->last_name = $request->last_name;
@@ -129,7 +151,6 @@ class ClientController extends Controller
                 'gender' => 'required|max:255',
                 'address' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
-                'active' => 'required',
             ], [
                 'first_name.required' => 'Le prénom est requis.',
                 'first_name.max' => 'Le prénom ne peut pas dépasser 255 caractères.',
@@ -147,19 +168,41 @@ class ClientController extends Controller
                 'email.required' => 'L\'adresse email est requise.',
                 'email.email' => 'L\'adresse email doit être valide.',
                 'email.max' => 'L\'adresse email ne peut pas dépasser 255 caractères.',
-                'active.required' => 'Le statut actif est requis.',
+            ]);
+
+
+            $request->validate([
+                'cin' => [
+                    'required',
+                    'max:255',
+                    Rule::unique('clients', 'cin')->ignore($id),
+                ],
+            ], [
+                'cin.required' => 'Le CIN est requis.',
+                'cin.max' => 'Le CIN ne peut pas dépasser 255 caractères.',
+                'cin.unique' => 'Ce CIN est déjà utilisé.',
             ]);
 
 
             $client = Client::find($id);
             $client->first_name = $request->first_name;
             $client->last_name = $request->last_name;
+            $client->cin = $request->cin;
             $client->birth_date = $request->birth_date;
             $client->phone_number = $request->phone_number;
             $client->gender = $request->gender;
             $client->address = $request->address;
+
+            $currentEmail = $client->email;
+            $emailExists = Admin::where('email', $request->email)->exists() ||
+                Staff::where('email', $request->email)->where('email', '!=', $currentEmail)->exists() ||
+                Client::where('email', $request->email)->exists();
+
+            if ($emailExists) {
+                return back()->withErrors(['error' =>  'ce mail est deja utilisé']);
+            }
+
             $client->email = $request->email;
-            $client->active = $request->active;
             $client->update();
 
 
