@@ -11,7 +11,7 @@ class ActionsController extends Controller
 {
     public function index()
     {
-        $columns = ["série", "client", "staff", "points", 'description'];
+        $columns = ["série", "client", "Personnel", "points", 'description'];
         $fields = ['card_serial', 'client', "staff", 'points', 'description'];
         $data = TransactionDemande::with('clientCards.client', 'staffs')
             ->where('status', 'Waiting')

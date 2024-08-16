@@ -31,144 +31,119 @@ class StatistiqueController extends Controller
         $previousStartDate = $startDate->copy()->subDays($daysDifference + 1)->format('Y-m-d');
         $previousEndDate = $endDate->copy()->subDays($daysDifference + 1)->format('Y-m-d');
 
-        // Define columns and fields
-        // $columns = ['serie de carte', 'client', 'converter', 'type converter', 'points'];
-        // $fields = ['card_serial', 'client', 'converter', 'type_converter', 'points'];
-
-        // $transaction = Transaction::with([
-        //     'clientCards' => function ($query) {
-        //         $query->with('client');
-        //     }
-        // ])
-        //     ->whereDate('created_at', '>=', $date['dateStart'])
-        //     ->whereDate('created_at', '<=', $date['dateEnd'])
-        //     ->orderBy('created_at', 'desc')
-        //     ->get();
-
-        // $transaction = $transaction->map(function ($item) {
-        //     $converter = $item->type_money_converter == 'admin'
-        //         ? Admin::find($item->id_money_converter)
-        //         : Staff::find($item->id_money_converter);
-
-        //     return [
-        //         'id' => $item->id,
-        //         'card_serial' => $item->clientCards->card_serial,
-        //         'client' => $item->clientCards->client->first_name . ' ' . $item->clientCards->client->last_name,
-        //         'type_converter' => $item->type_money_converter,
-        //         'converter' => $converter ? $converter->first_name . ' ' . $converter->last_name : null,
-        //         'points' => $item->points
-        //     ];
-        // });
-
-
-
-        // --  clients statistique for cards
-        $clientsData_cards = Client::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+        /* Cards */
+        // --  clients
+        $clients_cards = Client::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->count();
-        $old_clientsData_cards = Client::whereDate('created_at', '>=', $previousStartDate)
+        $before_clients_cards = Client::whereDate('created_at', '>=', $previousStartDate)
             ->whereDate('created_at', '<=', $previousEndDate)
             ->count();
 
-        // --  cards statistique for cards
-        $clientsCardsData_cards = ClientCards::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+        // --  cards
+        $clientsCards_cards = ClientCards::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->count();
-        $old_clientsCardsData_cards = ClientCards::whereDate('created_at', '>=', $previousStartDate)
+        $before_clientsCards_cards = ClientCards::whereDate('created_at', '>=', $previousStartDate)
             ->whereDate('created_at', '<=', $previousEndDate)
             ->count();
 
-        // --  transctions statistique for cards
-        $transactionsData_cards = Transaction::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+        // --  transactions
+        $transactions_cards = Transaction::whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->sum('points');
-        $old_transactionsData_cards = Transaction::whereDate('created_at', '>=', $previousStartDate)
+        $before_transactions_cards = Transaction::whereDate('created_at', '>=', $previousStartDate)
             ->whereDate('created_at', '<=', $previousEndDate)
             ->sum('points');
 
-        // --  transctions statistique for chart
-        $transactionsData_chart = Transaction::select('id', 'points', 'created_at')
+        $cards = [
+            'clients' => [
+                'new' => $clients_cards,
+                'before' => $before_clients_cards,
+            ],
+            'cards' => [
+                'new' => $clientsCards_cards,
+                'before' => $before_clientsCards_cards,
+            ],
+            'transactions' => [
+                'new' => $transactions_cards,
+                'before' => $before_transactions_cards,
+            ],
+        ];
+
+        /* Chart */
+        // --  transactions
+        $transactions_chart = Transaction::select('id', 'points', 'created_at')
             ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->get();
 
-
-        // --  cards type statistique for chart
-        $typeCardsData_chart = Card::select('id', 'name')
+        // --  statistique
+        $typeCards_chart = Card::select('id', 'name')
             ->withCount('clientcards')
             ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
             ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
+            ->orderBy('clientcards_count', 'desc')
             ->get();
 
-        // --  cards statistique for chart
-        $cardsData_chart = ClientCards::with('cards')
-            ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
-            ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
-            ->get();
-        $cardsData_chart = $cardsData_chart->map(function ($item) {
-            return [
-                'id' => $item->id,
-                'created_at' => $item->created_at,
-                'cardType' => $item->cards->name
-            ];
-        });
+        // --  cards
+        $cards_chart = DB::table('cards')
+            ->whereBetween('cards.created_at', [$date['dateStart'], $date['dateEnd']])
+            ->join('client_cards', 'cards.id', '=', 'client_cards.id_card')
+            ->leftJoin('transactions', 'client_cards.id', '=', 'transactions.id_client_card')
+            ->whereBetween('client_cards.created_at', [$date['dateStart'], $date['dateEnd']])
+            ->select('cards.name as card_name', 'cards.id as card_id', DB::raw('SUM(transactions.points) as total_points'))
+            ->groupBy('cards.id', 'cards.name')
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'card_name' => $item->card_name,
+                    'total_points' => $item->total_points ?? 0,
+                ];
+            })
+            ->toArray();
 
-        // --  branch statistique for chart
-        $branchesData_chart = Branch::withCount(['staffs', 'clients'])
-            ->with('clients.clientCards.transactions')
-            ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
-            ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
-            ->get();
-        $branchesData_chart = $branchesData_chart->map(function ($branch) {
-            $totalTransactions = 0;
-            foreach ($branch->clients as $client) {
-                foreach ($client->clientCards as $clientCard) {
-                    $totalTransactions += $clientCard->transactions->count();
-                }
-            }
-            return [
-                'id' => $branch->id,
-                'name' => $branch->name,
-                'staffs_count' => $branch->staffs_count,
-                'clients_count' => $branch->clients_count,
-                'transactions_count' => $totalTransactions,
-            ];
-        });
-
-
-
-
-
-
-        $data = [
-            'clients' => [
-                'new' => $clientsData_cards,
-                'old' => $old_clientsData_cards,
-            ],
-            'cards' => [
-                'new' => $clientsCardsData_cards,
-                'old' => $old_clientsCardsData_cards,
-            ],
-            'transactions_card' => [
-                'new' => $transactionsData_cards,
-                'old' => $old_transactionsData_cards,
-            ],
-            'transactions_chart' => $transactionsData_chart,
-            'typeCards_chart' => $typeCardsData_chart,
-            'cardsData_chart' => $cardsData_chart,
-            // 'branchesData_chart' => $branchesData_chart,
+        $charts = [
+            'transactions' => $transactions_chart,
+            'typeCards' => $typeCards_chart,
+            'cards' => $cards_chart,
         ];
 
-        // return $branchesData_chart;
+        /* branch table */
+        $branches = DB::table('branchs')
+            ->select('branchs.name as branch_name')
+            ->addSelect(DB::raw('COUNT(DISTINCT staffs.id) as staff_count'))
+            ->addSelect(DB::raw('COUNT(DISTINCT clients.id) as client_count'))
+            ->addSelect(DB::raw('COUNT(DISTINCT client_cards.id) as client_card_count'))
+            ->addSelect(DB::raw('SUM(transactions.points) as total_points'))
+            ->leftJoin('staffs', 'staffs.id_branch', '=', 'branchs.id')
+            ->leftJoin('clients', 'clients.id_branch', '=', 'branchs.id')
+            ->leftJoin('client_cards', 'client_cards.id_client', '=', 'clients.id')
+            ->leftJoin('transactions', 'transactions.id_client_card', '=', 'client_cards.id')
+            ->whereBetween('transactions.created_at', [$date['dateStart'], $date['dateEnd']])
+            ->groupBy('branchs.name')
+            ->orderBy('total_points', 'desc')
+            ->get();
 
+        $branchTable = [
+            'columns' => [
+                'branch_name' => 'branches',
+                'staff_count' => 'clients',
+                'client_count' => 'personnel',
+                'client_card_count' => 'client cards',
+                'total_points' => 'transactions total',
+            ],
+            'rows' => $branches,
+        ];
 
         return view(
             'pages.dashboard.statistics.statistics',
             compact(
                 'date',
-                'data',
+                'cards',
+                'charts',
+                'branchTable'
             )
         );
-
     }
 }

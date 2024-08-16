@@ -15,7 +15,7 @@
 @endsection
 
 @section('content')
-    <section class="outer-bg users">
+    <section class="outer-bg h-100">
         <div class="head">
             <div class="title">{{ $table }} ({{ $data->count() }})</div>
         </div>

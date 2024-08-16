@@ -29,47 +29,51 @@
 @endsection
 
 @section('content')
+    @php
+        if (!function_exists('shortNumber')) {
+            function shortNumber($number, $precision = 1)
+            {
+                if ($number < 1000) {
+                    return $number;
+                }
+
+                $units = ['', 'K', 'M', 'B', 'T'];
+                $power = floor(log($number, 1000));
+                $shortNumber = $number / pow(1000, $power);
+
+                return round($shortNumber, $precision) . $units[$power];
+            }
+        }
+
+    @endphp
+
     <div class="result-cards">
-        <div class="outer-bg card">
-            <div class="up">
-                <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                <div class="number">{{ rand(0, 999) }}k</div>
+        @foreach ($cards as $name => $card)
+            @php
+                if ($card['new'] === $card['before']) {
+                    $p = 0;
+                    $c = 'fa-minus';
+                } elseif ($card['new'] > $card['before']) {
+                    $p = $card['before'] === 0 ? 100 : ($card['before'] * 100) / $card['new'];
+                    $c = 'fa-arrow-trend-up';
+                } elseif ($card['new'] < $card['before']) {
+                    $p = $card['before'] === 0 ? -100 : ($card['new'] * 100) / $card['before'];
+                    $c = 'fa-arrow-trend-down';
+                }
+            @endphp
+            <div class="outer-bg card">
+                <div class="up">
+                    <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                    <div class="number">{{ shortNumber($card['new']) }}</div>
+                </div>
+                <div class="down">
+                    <span class="card-name">{{ $name }}</span>
+                    <span class="percent">{{ number_format($p, 2) }}%
+                        {{-- <span class="percent">{{ $card['new'] === $card['before'] ? 0 : ($card['new'] > $card['before'] ? ($card['before'] * 100) / $card['new'] : ($card['new'] * 100) / $card['before']) }}% --}}
+                        <i class="fa-solid {{ $c }}"></i></span>
+                </div>
             </div>
-            <div class="down">
-                <span class="card-name">clients</span>
-                <span class="percent">{{ rand(0, 100) }}% <i class="fa-solid fa-arrow-trend-{{ rand(0, 1) ? 'up' : 'down' }}"></i></span>
-            </div>
-        </div>
-        <div class="outer-bg card">
-            <div class="up">
-                <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                <div class="number">{{ rand(0, 999) }}k</div>
-            </div>
-            <div class="down">
-                <span class="card-name">cards</span>
-                <span class="percent">{{ rand(0, 100) }}% <i class="fa-solid fa-arrow-trend-{{ rand(0, 1) ? 'up' : 'down' }}"></i></span>
-            </div>
-        </div>
-        <div class="outer-bg card">
-            <div class="up">
-                <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                <div class="number">{{ rand(0, 999) }}k</div>
-            </div>
-            <div class="down">
-                <span class="card-name">transactions</span>
-                <span class="percent">{{ rand(0, 100) }}% <i class="fa-solid fa-arrow-trend-{{ rand(0, 1) ? 'up' : 'down' }}"></i></span>
-            </div>
-        </div>
-        <div class="outer-bg card">
-            <div class="up">
-                <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                <div class="number">{{ rand(0, 999) }}k</div>
-            </div>
-            <div class="down">
-                <span class="card-name">services react</span>
-                <span class="percent">{{ rand(0, 100) }}% <i class="fa-solid fa-arrow-trend-{{ rand(0, 1) ? 'up' : 'down' }}"></i></span>
-            </div>
-        </div>
+        @endforeach
     </div>
 
     <div class="outer-bg transactions">
@@ -104,48 +108,27 @@
             <table>
                 <thead>
                     <tr>
-                        <th>
-                            <div>créateur</div>
-                        </th>
-                        <th>
-                            <div>offre</div>
-                        </th>
-                        <th>
-                            <div>coût</div>
-                        </th>
-                        <th>
-                            <div>durée</div>
-                        </th>
-                        <th>
-                            <div>réaction</div>
-                        </th>
+                        @foreach ($branchTable['columns'] as $col)
+                            <th>
+                                <div>{{ $col }}</div>
+                            </th>
+                        @endforeach
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i = 0; $i < 15; $i++)
+                    @foreach ($branchTable['rows'] as $row)
                         <tr>
-                            <td>
-                                <div>ad.youssef elqayedy</div>
-                            </td>
-                            <td>
-                                <div>batata</div>
-                            </td>
-                            <td>
-                                <div>500</div>
-                            </td>
-                            <td>
-                                <div>26/07/2024</div>
-                            </td>
-                            <td>
-                                <div>5127</div>
-                            </td>
+                            @foreach ($branchTable['columns'] as $key => $col)
+                                <td>
+                                    <div>{{ $row->$key }}</div>
+                                </td>
+                            @endforeach
                         </tr>
-                    @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
 @endsection
 
 @section('script')
@@ -204,14 +187,6 @@
                 };
             }
 
-            function generateDatas(count) {
-                var data = [];
-                for (var i = 0; i < count; ++i) {
-                    data.push(generateData());
-                }
-                return data;
-            }
-
             var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
                 maxDeviation: 0.5,
                 baseInterval: {
@@ -260,8 +235,14 @@
                 });
             });
 
-            var data = generateDatas(12);
-            series.data.setAll(data);
+            series.data.setAll([
+                @foreach ($charts['transactions'] as $chart)
+                    {
+                        date: new Date('{{ $chart['created_at'] }}').getTime(),
+                        value: {{ $chart['points'] }}
+                    },
+                @endforeach
+            ]);
 
             series.appear(1000);
             chart.appear(1000, 100);
@@ -271,44 +252,26 @@
         // top-type-cards, top-type-services
         const data = [{
                 id: 'top-type-cards-chart',
-                data: [{
-                        value: 3,
-                        typeOFCard: "Visa"
-                    },
-                    {
-                        value: 5,
-                        typeOFCard: "MasterCard"
-                    },
-                    {
-                        value: 2,
-                        typeOFCard: "American Express"
-                    },
-                    {
-                        value: 6,
-                        typeOFCard: "Discover"
-                    },
+                data: [
+                    @foreach ($charts['typeCards'] as $card)
+                        {
+                            typeOFCard: '{{ $card['name'] }}',
+                            value: {{ $card['clientcards_count'] }},
+                        },
+                    @endforeach
                 ]
             },
             {
                 id: 'top-type-services-chart',
-                data: [{
-                        value: 3,
-                        typeOFCard: "Visa"
-                    },
-                    {
-                        value: 5,
-                        typeOFCard: "MasterCard"
-                    },
-                    {
-                        value: 2,
-                        typeOFCard: "American Express"
-                    },
-                    {
-                        value: 6,
-                        typeOFCard: "Discover"
-                    },
+                data: [
+                    @foreach ($charts['typeCards'] as $card)
+                        {
+                            typeOFCard: '{{ $card['name'] }}',
+                            value: {{ $card['clientcards_count'] }},
+                        },
+                    @endforeach
                 ]
-            }
+            },
         ];
 
         data.forEach(obj => {
@@ -341,17 +304,17 @@
                     tooltipText: ""
                 });
 
-                // Show only the category names in the labels
+                // Hide labels on slices
                 series.labels.template.setAll({
-                    text: "{category}", // Displays only the category names
+                    text: "", // No text on the slices
                     textType: "circular",
                     centerX: 0,
                     centerY: 0
                 });
 
-                // Remove the ticks if needed
+                // Hide ticks
                 series.ticks.template.setAll({
-                    disabled: true // Hides the ticks which might be used for displaying additional info
+                    disabled: true // Hides the ticks
                 });
 
                 // Disable tooltips for legend items
@@ -366,14 +329,12 @@
                     tooltipText: "" // Disable tooltips for legend labels
                 });
 
-                series.labels.template.setAll({
-                    textType: "circular",
-                    centerX: 0,
-                    centerY: 0
+                // Remove legend labels text if not needed
+                legend.labels.template.setAll({
+                    text: "" // Hide text in the legend if not needed
                 });
 
-                console.log(getRandomColorHexCode());
-
+                // Set colors for slices based on the data
                 series.get("colors").set("colors", obj.data.map(e => am5.color(getRandomColorHexCode())));
 
                 // Set data
@@ -386,6 +347,7 @@
                 series.appear(1000, 100);
 
             });
+
         });
 
 
@@ -398,17 +360,14 @@
         am5.ready(function() {
 
             // Create root element
-            // https://www.amcharts.com/docs/v5/getting-started/#Root_element
             var root = am5.Root.new("cards-chart");
 
             // Set themes
-            // https://www.amcharts.com/docs/v5/concepts/themes/
             root.setThemes([
                 am5themes_Animated.new(root)
             ]);
 
             // Create chart
-            // https://www.amcharts.com/docs/v5/charts/xy-chart/
             var chart = root.container.children.push(am5xy.XYChart.new(root, {
                 panX: true,
                 panY: true,
@@ -420,40 +379,56 @@
             }));
 
             // Add cursor
-            // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
             var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
             cursor.lineY.set("visible", false);
 
+            // Function to set responsive label sizes and padding
+            function setLabelConfig() {
+                let labelFontSize = 12;
+                let paddingBottom = 5;
+
+                if (window.innerWidth < 768) { // Small screens
+                    labelFontSize = 10;
+                    paddingBottom = 3;
+                } else if (window.innerWidth < 1024) { // Medium screens
+                    label
+                    labelFontSize = 11;
+                    paddingBottom = 4;
+                }
+
+                xRenderer.labels.template.setAll({
+                    rotation: 0, // Keep labels horizontal
+                    textAlign: "center", // Center-align text horizontally
+                    textValign: "middle", // Center-align text vertically
+                    centerY: am5.p50,
+                    centerX: am5.p50,
+                    paddingBottom: paddingBottom, // Adjust padding as needed
+                    fontSize: labelFontSize + "px" // Adjust font size based on screen size
+                });
+            }
+
             // Create axes
-            // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
             var xRenderer = am5xy.AxisRendererX.new(root, {
                 minGridDistance: 30,
                 minorGridEnabled: true
             });
 
-            xRenderer.labels.template.setAll({
-                rotation: 0, // Make labels horizontal
-                textAlign: "center", // Center-align text horizontally
-                textValign: "middle", // Center-align text vertically
-                centerY: am5.p50,
-                centerX: am5.p50, // Center X-axis labels
-                paddingRight: 15
-            });
+            setLabelConfig();
 
             xRenderer.grid.template.setAll({
                 location: 1
-            })
+            });
 
             var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
                 maxDeviation: 0.3,
-                categoryField: "cardName", // Updated field name
+                categoryField: "cardName",
                 renderer: xRenderer,
                 tooltip: am5.Tooltip.new(root, {})
             }));
 
             var yRenderer = am5xy.AxisRendererY.new(root, {
                 strokeOpacity: 0.1
-            })
+            });
 
             var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
                 maxDeviation: 0.3,
@@ -461,14 +436,13 @@
             }));
 
             // Create series
-            // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
             var series = chart.series.push(am5xy.ColumnSeries.new(root, {
                 name: "Series 1",
                 xAxis: xAxis,
                 yAxis: yAxis,
                 valueYField: "value",
                 sequencedInterpolation: true,
-                categoryXField: "cardName", // Updated field name
+                categoryXField: "cardName",
                 tooltip: am5.Tooltip.new(root, {
                     labelText: "{valueY}"
                 })
@@ -487,34 +461,29 @@
                 return chart.get("colors").getIndex(series.columns.indexOf(target));
             });
 
-            const rand = () => Math.random() * 1000;
-
             // Set data
-            var data = [{
-                cardName: "Visa",
-                value: rand()
-            }, {
-                cardName: "MasterCard",
-                value: rand()
-            }, {
-                cardName: "American Express",
-                value: rand()
-            }, {
-                cardName: "Discover",
-                value: rand()
-            }, {
-                cardName: "Diners Club",
-                value: rand()
-            }];
+            var data = [
+                @foreach ($charts['cards'] as $card)
+                    {
+                        cardName: '{{ $card['card_name'] }}',
+                        value: {{ $card['total_points'] }}
+                    },
+                @endforeach
+            ];
 
             xAxis.data.setAll(data);
             series.data.setAll(data);
 
             // Make stuff animate on load
-            // https://www.amcharts.com/docs/v5/concepts/animations/
             series.appear(1000);
             chart.appear(1000, 100);
 
-        }); // end am5.ready()
+            // Adjust the chart on window resize
+            window.addEventListener('resize', function() {
+                setLabelConfig();
+                chart.appear(1000, 100); // Reapply animations if necessary
+            });
+
+        });
     </script>
 @endsection
