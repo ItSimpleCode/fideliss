@@ -116,6 +116,8 @@ class StatistiqueController extends Controller
         // --  branch statistique for chart
         $branchesData_chart = Branch::withCount(['staffs', 'clients'])
             ->with('clients.clientCards.transactions')
+            ->whereDate('created_at', '>=', $startDate->format('Y-m-d'))
+            ->whereDate('created_at', '<=', $endDate->format('Y-m-d'))
             ->get();
         $branchesData_chart = $branchesData_chart->map(function ($branch) {
             $totalTransactions = 0;
@@ -137,37 +139,34 @@ class StatistiqueController extends Controller
 
 
 
+        // $data = [
+        //     'clients' => [
+        //         'new' => $clientsData_cards,
+        //         'old' => $old_clientsData_cards,
+        //     ],
+        //     'cards' => [
+        //         'new' => $clientsCardsData_cards,
+        //         'old' => $old_clientsCardsData_cards,
+        //     ],
+        //     'transactions_card' => [
+        //         'new' => $transactionsData_cards,
+        //         'old' => $old_transactionsData_cards,
+        //     ],
+        //     'transactions_chart' => $transactionsData_chart,
+        //     'typeCards_chart' => $typeCardsData_chart,
+        //     'cardsData_chart' => $cardsData_chart,
+        //     // 'branchesData_chart' => $branchesData_chart,
+        // ];
+
+        return $branchesData_chart;
 
 
-
-        $data = [
-            'clients' => [
-                'new' => $clientsData_cards,
-                'old' => $old_clientsData_cards,
-            ],
-            'cards' => [
-                'new' => $clientsCardsData_cards,
-                'old' => $old_clientsCardsData_cards,
-            ],
-            'transactions_card' => [
-                'new' => $transactionsData_cards,
-                'old' => $old_transactionsData_cards,
-            ],
-            'transactions_chart' => $transactionsData_chart,
-            'typeCards_chart' => $typeCardsData_chart,
-            'cardsData_chart' => $cardsData_chart,
-            'branchesData_chart' => $branchesData_chart,
-        ];
-
-        // return $branchesData_chart;
-
-
-        return view(
-            'pages.dashboard.statistics.statistics',
-            compact(
-                'date',
-                'data',
-            )
-        );
+        // return view(
+        //     'pages.dashboard.statistics.statistics',
+        //     compact(
+        //         'date',
+        //         'data',
+        //     )
+        // );
     }
 }

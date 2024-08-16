@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', $table)
+@section('title', 'Branches')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/branches/branches.css') }}">
@@ -25,25 +25,29 @@
             <table>
                 <thead>
                     <tr>
-                        <th><span>#</span></th>
+                        <th>
+                            <div>#</div>
+                        </th>
                         @foreach ($columns as $column)
-                            @if ($column !== '-')
-                                <th><span>{{ $column }}</span></th>
-                            @endif
+                            <th>
+                                <div>{{ $column }}</div>
+                            </th>
                         @endforeach
-                        <th class="actions btn-2"><span>Actions</span></th>
+                        <th class="actions btn-2">
+                            <div>Actions</div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $index => $item)
                         <tr>
-                            <td scope="row">{{ $index + 1 }}</td>
+                            <td scope="row">
+                                <div>{{ $index + 1 }}</div>
+                            </td>
                             @foreach ($fields as $field)
-                                @if ($field == 'created_at')
-                                    <td>{{ $item[$field]->diffForHumans() }}</td>
-                                @else
-                                    <td>{{ $item[$field] }}</td>
-                                @endif
+                                <td>
+                                    <div>{{ $field == 'created_at' ? $item[$field]->diffForHumans() : $item[$field] }}</div>
+                                </td>
                             @endforeach
 
                             <td>
@@ -52,18 +56,10 @@
                                         <i class="fa-regular fa-pen-to-square"></i>
                                         <span>éditer</span>
                                     </a>
-                                    @if ($item['active'])
-                                        <a href={{ route('branches.edit.status', ['id' => $item['id']]) }} class='active'>
-                                            <i class="fa-solid fa-user"></i>
-                                            <span>actif</span>
-                                        </a>
-                                    @else
-                                        <a href={{ route('branches.edit.status', ['id' => $item['id']]) }} class='disactive'>
-                                            <i class="fa-solid fa-user-slash"></i>
-                                            <span>inactif</span>
-                                        </a>
-                                    @endif
-
+                                    <a href={{ route('branches.edit.status', ['id' => $item['id']]) }} class='{{ $item['active'] ? 'active' : 'disactive' }}'>
+                                        <i class="fa-solid fa-user{{ $item['active'] ? '' : '-slash' }}"></i>
+                                        <span>{{ $item['active'] ? 'actif' : 'inactif' }}</span>
+                                    </a>
                                 </div>
                             </td>
 

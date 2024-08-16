@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', 'Ajouter un client')
+@section('title', 'Clients - Ajouter')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/clients/add.css') }}">

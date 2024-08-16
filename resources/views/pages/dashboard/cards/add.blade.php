@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', "ajouter une carte pour #{$client['first_name']} #{$client['last_name']}")
+@section('title', 'Cardes - Ajouter')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/cards/add.css') }}">

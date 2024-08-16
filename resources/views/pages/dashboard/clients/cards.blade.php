@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', "{$client[1]} - cartes")
+@section('title', 'Clients - Cardes')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/clients/cards.css') }}">

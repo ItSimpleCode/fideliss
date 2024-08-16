@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', $table)
+@section('title', 'Actions')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/actions/actions.css') }}">
@@ -24,19 +24,29 @@
             <table>
                 <thead>
                     <tr>
-                        <th><span>#</span></th>
+                        <th>
+                            <div>#</div>
+                        </th>
                         @foreach ($columns as $column)
-                            <th><span>{{ $column }}</span></th>
+                            <th>
+                                <div>{{ $column }}</div>
+                            </th>
                         @endforeach
-                        <th class="actions btn-2"><span>Actions</span></th>
+                        <th class="actions btn-2">
+                            <div>Actions</div>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $index => $item)
                         <tr>
-                            <td scope="row">{{ $index + 1 }}</td>
+                            <td>
+                                <div>{{ $index + 1 }}</div>
+                            </td>
                             @foreach ($fields as $field)
-                                <td>{{ $item[$field] }}</td>
+                                <td>
+                                    <div>{{ $item[$field] }}</div>
+                                </td>
                             @endforeach
                             <td>
                                 <div class="actions btn-2">

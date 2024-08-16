@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', 'Editer une demande')
+@section('title', 'Demande - Modifier')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/demandes/edit.css') }}">

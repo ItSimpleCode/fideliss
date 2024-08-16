@@ -3,13 +3,12 @@
         <img src="{{ asset('img/logo.png') }}" alt="">
     </div>
     <div class="options">
-        @yield('date')
+        @yield('add-options')
         <div class="user">
             <button class="user-pic">
                 <img src={{ asset('img/user.png') }} alt="photo de profil" class="user_pic">
             </button>
             <span class="user_info">
-
                 @if (Auth::guard('admin')->check())
                     <span>admin</span>
                     <span>{{ Auth::guard('admin')->user()->gender == 'male' ? 'mr.' : 'mme.' }}{{ Auth::guard('admin')->user()->first_name }}

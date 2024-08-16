@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', 'modifier un membre du personnel')
+@section('title', 'Personnel - Modifier')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist\css\pages\staffs\edit.css') }}">

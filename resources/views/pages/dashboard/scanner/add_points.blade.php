@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('title', 'Ajouter des points')
+@section('title', 'Scanner - Ajouter des points')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/scanner/add_points.css') }}">

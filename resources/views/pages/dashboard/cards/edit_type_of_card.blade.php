@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-{{-- @section('title', '') --}}
+@section('title', 'Cardes - Modifier')
 
 @section('stylesheet')
     <link rel="stylesheet" href="{{ asset('dist/css/pages/cards/type_of_card.css') }}">
