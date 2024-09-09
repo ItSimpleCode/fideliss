@@ -5,24 +5,97 @@
 
 }
 
-.button-add {
-    background-color: #3354F4;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 300;
-    text-transform: capitalize;
-    padding: 12px;
+:is(a,button)[class$='-button'] {
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.head-button,
+.head-border-button {
+    border: 2px solid transparent;
+    padding: 10px;
     border-radius: 12px;
 
     display: flex;
     flex-flow: row nowrap;
     column-gap: 12px;
 
-    i {
+    svg {
         width: 24px;
         height: 24px;
+    }
+}
+
+@each $type, $styles in $button-styles {
+    .head-button.#{$type},
+    .#{$type}-button {
+        background-color: map-get($styles, bg);
+        color: map-get($styles, color);
+
+        svg {
+            .fill {
+                fill: map-get($styles, color);
+            }
+
+            .stroke {
+                stroke: map-get($styles, color);
+            }
+        }
+
+        &:hover {
+            background-color: darken(map-get($styles, bg), 10%);
+        }
+    }
+
+    .head-border-button.#{$type},
+    .#{$type}-border-button {
+        border-color: map-get($styles, bg);
+        color: map-get($styles, bg);
+
+        svg {
+            .fill {
+                fill: map-get($styles, bg);
+            }
+
+            .stroke {
+                stroke: map-get($styles, bg);
+            }
+        }
+
+        &:hover {
+            background-color: darken(map-get($styles, color), 10%);
+        }
+    }
+}
+
+
+.controllers {
+    display: flex;
+    flex-flow: row nowrap;
+    column-gap: 12px;
+
+    a {
+        display: inline-block;
+
+        border-radius: 12px;
+        height: 48px;
+        padding: 0 12px;
         display: flex;
         justify-content: center;
         align-items: center;
+
+
+        font-weight: 500;
+
+        &:has(i) {
+            background-color: #857878;
+            color: #ffffff;
+        }
+
+        &:not(:has(i)) {
+            border: 2px solid #857878;
+            color: #857878;
+        }
     }
 }

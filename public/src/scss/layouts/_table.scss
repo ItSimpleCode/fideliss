@@ -1,25 +1,28 @@
 .main-table {
     position: relative;
     width: 100%;
-
+    padding: 0 24px;
     overflow: auto;
+
+    &:has(.no-data) {
+        display: flex;
+        flex-direction: column;
+
+        .no-data {
+            flex: 1;
+        }
+    }
 
     table {
         width: 100%;
         border-collapse: collapse;
-
-        @for $i from 1 through 3 {
-            .actions.btn-#{$i} {
-                width: (130px * $i + 6px * ($i - 1));
-            }
-        }
     }
 
     thead,
     tbody {
 
-        th>div,
-        td>div {
+        th > div,
+        td > div {
             min-width: max-content;
             height: 100%;
             padding: 0 12px;
@@ -42,7 +45,7 @@
 
     thead th:first-child,
     tbody td:first-child {
-        left: 0;
+        left: -24px;
     }
 
     thead th:first-child {
@@ -52,85 +55,104 @@
     thead th {
         top: 0;
 
+        &.fit-width {
+            width: 0;
+        }
+
         div {
             border-bottom: 2px solid transparentize(#252C58, 0.92);
             padding-bottom: 12px;
         }
     }
 
+    thead th:first-child,
+    tbody td:first-child {
+        div {
+            border-right: 2px solid transparentize(#252C58, 0.92);
+        }
+    }
+
     tbody {
-        tr:hover td {
-            border-bottom-color: transparentize(#252C58, 0.92);
+        tr {
+            &:hover td {
+                border-bottom-color: transparentize(#252C58, 0.92);
+            }
         }
 
         td {
             height: 62px;
             font-weight: 300;
-            text-transform: capitalize;
 
             border-bottom: 2px solid transparent;
         }
 
+        .empty {
+            background-color: transparentize(#252C58, 0.95);
+        }
+
+        .status {
+            padding: 6px 12px;
+            border-radius: 24px;
+
+
+            $button-statuses: (
+                invalid: (bg: #f8d7da,
+                    color: #721c24
+                ),
+                active: (bg: #d4edda,
+                    color: #155724
+                ),
+                pending: (bg: #fff3cd,
+                    color: #856404
+                ),
+                expired: (bg: #f5c6cb,
+                    color: #721c24
+                ),
+                disactivited: (bg: #e2e3e5,
+                    color: #6c757d
+                ),
+                accepted: (bg: #d4edda,
+                    color: #155724
+                ),
+                rejected: (bg: #f8d7da,
+                    color: #721c24
+                )
+            );
+
+            @each $status, $colors in $button-statuses {
+                &.#{$status} {
+                    background-color: map-get($colors, bg);
+                    color: map-get($colors, color);
+                }
+            }
+        }
+
         .actions {
-            display: inline-flex;
+            display: flex;
             flex-flow: row nowrap;
             column-gap: 6px;
 
-            &#{-1} {
-                width: 140px;
-            }
-
             a {
+                flex: 1 1 48px;
                 display: inline-block;
-                width: 130px;
-                height: 30px;
-
-                color: #252C58;
-                background-color: $bg_color_0;
-                font-weight: 500;
+                height: 36px;
                 text-decoration: none;
 
+                display: flex;
                 flex-flow: row nowrap;
+                justify-content: center;
+                align-items: center;
                 column-gap: 6px;
                 padding: 0 12px;
                 border-radius: 6px;
 
-                &,
-                i {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                }
-
-                &.show,
-                &.send {
-                    background-color: $btn_send;
-                    color: #ffffff;
-                }
-
-                &.edit {
-                    background-color: $btn_edit;
-                    border: 2px solid #252C58;
-                }
-
-                &.active {
-                    background-color: $btn_active;
-                }
-
-                &.disactive {
-                    background-color: $btn_disactive;
-                }
-
-                &.annulation {
-                    background-color: $btn_remove;
+                svg {
+                    width: 24px;
+                    height: 24px;
                 }
             }
         }
     }
-
-    // .actions:last-child {
-    //     width: 422px;
-    // }
 
     th,
     td {

@@ -6,8 +6,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Transaction extends Authenticatable
 {
-    public function clientCards()
-    {
-        return $this->belongsTo(ClientCards::class, 'id_client_card');
-    }
+
+    protected $fillable = [
+        'actor',
+        'admin_id',
+        'client_id',
+        'staff_id',
+        'points',
+        'description'
+    ];
+
 }

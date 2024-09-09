@@ -8,12 +8,13 @@ class Staff extends Authenticatable
 {
     protected $table = 'staffs';
 
-    public function admins()
+    public function admin()
     {
-        return $this->belongsTo(Admin::class, 'id_creator');
+        return $this->belongsTo(Admin::class, 'creator_admin_id');
     }
-    public function branches()
+
+    public function agency()
     {
-        return $this->belongsTo(Branch::class, 'id_branch');
+        return $this->belongsTo(Agency::class, 'agency_id');
     }
 }

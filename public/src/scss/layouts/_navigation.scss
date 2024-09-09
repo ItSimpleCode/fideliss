@@ -1,13 +1,50 @@
-$bg1 : #EEEFF3;
+$bg1: #EEEFF3;
 $navbg: #fff;
+$navHeight: 80px;
 
-.main_nav {
+header {
     width: calc(100% - 48px);
     position: absolute;
     top: 0;
     left: 0;
     z-index: 9999;
     margin: 24px 24px 0 24px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    column-gap: 24px;
+
+    .aside-toggle {
+        width: ($navHeight - 24px);
+        height: ($navHeight - 24px);
+
+        padding: 0 !important;
+
+        &,
+        i {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        i {
+            font-size: 20px;
+
+        }
+
+        @media (orientation: landscape) and (min-width: 1140px) {
+            display: none !important;
+        }
+
+
+    }
+
+    .nav {
+        flex: 1;
+
+        height: $navHeight;
+    }
 
     button {
 
@@ -18,17 +55,30 @@ $navbg: #fff;
             align-items: center;
         }
 
-        i {
-            font-size: 16px;
+        &.aside-toggle svg {
+            width: 24px;
+            height: 24px;
+
+            .stroke {
+                stroke: #252C58;
+            }
+
+            .fill {
+                fill: #252C58;
+            }
         }
     }
 
     .logo {
-        background-color: $bg1;
-        width: 182px;
-        height: 70px;
+        // background-color: $bg1;
+        width: 191.47px;
+        height: 100%;
         border-radius: 12px;
         padding: 12px;
+
+        @media (orientation: portrait) or ((orientation: landscape) and (max-width: 1139px)) {
+            width: fit-content;
+        }
 
         img {
             width: 100%;
@@ -68,11 +118,11 @@ $navbg: #fff;
         .sub-list {
             position: absolute;
             top: 100%;
-            left: 0;
+            right: 0;
 
-            background-color: #fff;
+            background-color: #eee;
 
-            width: 100%;
+            min-width: 100%;
             padding: 12px;
             border-radius: 12px;
 
@@ -102,18 +152,6 @@ $navbg: #fff;
                     background-color: #eee;
                 }
             }
-
-            a {
-                text-decoration: none;
-            }
-
-            i {
-                width: 24px;
-                height: 24px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
         }
     }
 
@@ -122,7 +160,6 @@ $navbg: #fff;
 
         .date-btn {
             background-color: #332F85;
-            color: #fff;
         }
 
         .sub-list {
@@ -139,7 +176,7 @@ $navbg: #fff;
 
             display: none;
 
-            &>div {
+            & > div {
                 display: flex;
                 flex-flow: row nowrap;
                 justify-content: space-between;

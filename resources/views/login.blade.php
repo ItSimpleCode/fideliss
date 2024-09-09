@@ -14,52 +14,46 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('dist/css/fontAwesome/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/fontAwesome/solid.css') }}">
-
     <link rel="stylesheet" href="{{ asset('dist/css/pages/log_in/log_in.css') }}">
 </head>
 
 <body>
-    @error('error')
-        <div class="error">
-            <span class="message">{{ $message }}</span>
-            <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-    @enderror
-    <div class="log_in">
-        <div class="head">
-            <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo de Fidelis">
-            <h1>Connectez-vous à votre compte</h1>
-        </div>
-        <form class="form" action={{ route('login') }} method="POST">
-            @csrf
-            <div class="field">
-                <label for="email">Adresse email</label>
-                <div class="input">
-                    <input type="text" id="email" name="email" placeholder="fidelis@email.com" value="y" autofocus required>
-                    <i class="fa-solid fa-envelope"></i>
-                </div>
-            </div>
-            <div class="field">
-                <label for="password">mot de passe</label>
-                <div class="input">
-                    <input type="password" id="password" name="password" placeholder="Enter your password" value="y" required>
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <div class="link">
-                    <a href={{ route('forgetPassword.show') }}>mot de passe oublié?</a>
-                </div>
-            </div>
-            <button type="submit">Connectez-vous maintenant</button>
-        </form>
+@error('error')
+<div class="error">
+    <span class="message">{{ $message }}</span>
+    <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
+</div>
+@enderror
+<div class="log_in">
+    <div class="head">
+        <img class="logo" src="{{ asset('img/logo.png') }}" alt="logo de Fidelis">
+        <h1>Connectez-vous à votre compte</h1>
     </div>
-    <div class="pic">
-        <img class="big" src="{{ asset('img/login.png') }}" alt="">
-        <img class="circle" src="{{ asset('img/circle.png') }}" alt="">
-    </div>
+    <form class="form" action={{ route('login') }} method="POST">
+        @csrf
+        <div class="field">
+            <label for="email">Adresse email</label>
+            <div class="input">
+                <input type="text" id="email" name="email" placeholder="fidelis@email.com" value="y" autofocus required>
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+        </div>
+        <div class="field">
+            <label for="password">mot de passe</label>
+            <div class="input">
+                <input type="password" id="password" name="password" placeholder="Enter your password" value="y"
+                       required>
+                <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="link">
+                <a href={{ route('forgetPassword.show') }}>mot de passe oublié?</a>
+            </div>
+        </div>
+        <button type="submit">Connectez-vous maintenant</button>
+    </form>
+</div>
 
-    <script src="{{ asset('dist/js/utils/message.js') }}"></script>
+<script src="{{ asset('dist/js/utils/message.js') }}"></script>
 </body>
 
 </html>

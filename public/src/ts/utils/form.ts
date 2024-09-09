@@ -35,33 +35,79 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /* fill input */
-    const inputName = document.querySelectorAll(
-        "input[name=first_name],input[name=last_name],input[name=name]"
-    );
-    const inputNumber = document.querySelectorAll("input[name=phone_number]");
-    const inputEmail = document.querySelectorAll("input[name=email]");
-    const inputDate = document.querySelectorAll("input[name=birth_date]");
-    const inputAddress = document.querySelectorAll("input[name=address]");
+    function preventDeletion(event) {
+        const deletionKeys = [8, 46];
+        if (deletionKeys.includes(event.keyCode)) event.preventDefault();
+    }
 
-    inputName.forEach((inp) => {
-        inp.addEventListener(
-            "input",
-            () => (inp.value = inp.value.replace(/[^a-z\s]/gi, ""))
-        );
+    frontInput.forEach((inp) => {
+        inp.addEventListener("keydown", preventDeletion);
+        inp.addEventListener("input", (e) => {
+            if (e.data) {
+                inp.value = inp.value.slice(0, -1);
+            } else inp.value = resetInput;
+        });
     });
-    inputNumber.forEach((inp) => {
-        inp.addEventListener(
-            "input",
-            () => (inp.value = inp.value.replace(/[^0-9]/gi, ""))
-        );
+
+    /* fill input */
+    const inputDate = document.querySelectorAll("input[name=birth_date]");
+    const inputWallet = document.querySelectorAll("input[name=wallet]");
+
+    const inputPattern = [
+        {
+            class: "input[name=cin]",
+            pattern: /[^a-z0-9]/gi,
+        },
+        {
+            class: "input[name=first_name],input[name=last_name],input[name=name]",
+            pattern: /[^a-z\s]/gi,
+        },
+        {
+            class: "input[name=phone_number]",
+            pattern: /[^0-9]/gi,
+        },
+        {
+            class: "input[name=email]",
+            pattern: /[^a-zA-Z0-9._@-]/g,
+        },
+        {
+            class: "input[name=address]",
+            pattern: /[^a-zA-Z0-9 ,.-]/g,
+        },
+    ];
+
+    inputPattern.forEach((obj) => {
+        document.querySelectorAll(obj.class).forEach((inp) => {
+            inp.addEventListener(
+                "input",
+                () => (inp.value = inp.value.replace(obj.pattern, ""))
+            );
+        });
     });
-    inputEmail.forEach((inp) => {
-        inp.addEventListener(
-            "input",
-            () => (inp.value = inp.value.replace(/[^a-zA-Z0-9._@-]/g, ""))
-        );
+
+    inputWallet.forEach((inp) => {
+        inp.addEventListener("input", () => {
+            // Replace any character that isn't a digit or a decimal point
+            inp.value = inp.value.replace(/[^\d.]/g, "");
+
+            // Ensure only one decimal point is allowed
+            const parts = inp.value.split(".");
+            if (parts.length > 2) {
+                inp.value = parts[0] + "." + parts.slice(1).join("");
+            }
+
+            // If a decimal point exists, ensure only two decimal places are allowed
+            if (parts[1]?.length > 2) {
+                inp.value = parts[0] + "." + parts[1].substring(0, 2);
+            }
+
+            // Prevent leading zeros (except in the case of '0.' for decimal numbers)
+            if (/^0[0-9]/.test(inp.value)) {
+                inp.value = inp.value.replace(/^0+/, "");
+            }
+        });
     });
+
     inputDate.forEach((inp) => {
         inp.addEventListener("input", () => {
             let value = inp.value;
@@ -81,14 +127,6 @@ window.addEventListener("DOMContentLoaded", () => {
                 value = value.slice(0, 7) + "-" + value.slice(7);
 
             // Update the input field value
-            inp.value = value;
-        });
-    });
-
-    inputAddress.forEach((inp) => {
-        inp.addEventListener("input", function () {
-            let value = inp.value;
-            value = value.replace(/[^a-zA-Z0-9 ,.-]/g, "");
             inp.value = value;
         });
     });

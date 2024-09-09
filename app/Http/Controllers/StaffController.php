@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Models\Branch;
+use App\Models\Agency;
 use App\Models\Client;
 use App\Models\Staff;
 use Exception;
@@ -15,40 +15,72 @@ class StaffController extends Controller
 {
     public function index()
     {
-        $columns = ["Prénom", "Nom", "N.téléphone", "Sexe", "Email", "D.naissance", "Créateur", "branche"];
-        $fields = ['first_name', 'last_name', 'phone_number', 'gender', 'email', 'created_at', 'creator', 'branch'];
-        $staffs = Staff::with(['admins', 'branches'])
-            ->orderBy('created_at', 'desc')
-            ->get();
 
-        $data = $staffs->map(function ($staff) {
-            return [
-                'id' => $staff->id,
-                'first_name' => $staff->first_name,
-                'last_name' => $staff->last_name,
-                'phone_number' => $staff->phone_number,
-                'gender' => $staff->gender,
-                'email' => $staff->email,
-                'created_at' => $staff->created_at,
-                'creator' => $staff->admins ? $staff->admins->first_name . ' ' .  $staff->admins->last_name : 'N/A',
-                'branch' => $staff->branches ? $staff->branches->name : 'N/A',
-                'active' => $staff->active
-            ];
-        });
-        $table = 'staffs';
-        return view('pages.dashboard.staffs.staffs', compact('data', 'columns', 'fields', 'table'));
+        $data['columns'] = [
+            "id" => [],
+            "first_name" => [
+                'text' => 'Prénom',
+                'th_class' => '',
+            ],
+            "last_name" => [
+                'text' => 'Nom',
+                'th_class' => '',
+            ],
+            "phone_number" => [
+                'text' => 'N.téléphone',
+                'th_class' => 'fit-width',
+            ],
+            "gender" => [
+                'text' => 'Sexe',
+                'th_class' => 'fit-width',
+            ],
+            "email" => [
+                'text' => 'email',
+                'th_class' => '',
+            ],
+            "active" => [],
+            "agency_name" => [
+                'text' => 'agence',
+                'th_class' => 'fit-width',
+            ],
+            "admin_name" => [
+                'text' => 'c.administrateur',
+                'th_class' => 'fit-width',
+            ],
+        ];
+        $data['rows'] = Staff::with(['admin', 'agency'])
+            ->orderBy('staffs.created_at', 'desc')
+            ->get()
+            ->map(function ($staff) {
+                $staff->agency_name = $staff->agency ? $staff->agency->name : null;
+                $staff->admin_name = $staff->admin ? $staff->admin->first_name . ' ' . $staff->admin->last_name : null;
+
+                unset(
+                    $staff->agency,
+                    $staff->agency_id,
+                    $staff->admin,
+                    $staff->creator_admin_id,
+                    $staff->created_at,
+                    $staff->updated_at,
+                    $staff->birth_date,
+                    $staff->password,
+                    $staff->image
+                );
+                return $staff;
+            });
+        return view('pages.dashboard.staffs.staffs', compact('data'));
     }
 
-    public function showAddForm()
+    public function create()
     {
-        $branches = Branch::select('id', 'name')
+        $data['agencies'] = Agency::select('id', 'name')
             ->where(['active' => 1])
             ->get();
-        return view('pages.dashboard.staffs.add', compact('branches'));
+        return view('pages.dashboard.staffs.add', compact('data'));
     }
 
 
-    public function create(Request $request)
+    public function insert(Request $request)
     {
         try {
             $request->validate([
@@ -111,29 +143,23 @@ class StaffController extends Controller
 
             return redirect()->route('staffs');
         } catch (Exception $e) {
-            return back()->withErrors(['error' =>  $e->getMessage()]);
+            return back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
-    public function changeStatus($id)
+    public function edit($id)
     {
-        $staff = Staff::find($id);
-        $staff->active = !$staff->active;
-        $staff->update();
-        return redirect()->route('staffs');
-    }
-
-    public function showEditForm($id)
-    {
-        $branches = Branch::select('id', 'name')
+        $data['agencies'] = Agency::select('id', 'name')
             ->where('active', 1)
             ->get();
 
-        $staff = Staff::find($id);
-        return view('pages.dashboard.staffs.edit', compact('staff', 'branches'));
+        $data['row'] = Staff::find($id);
+        $data['row']['agency_name'] = $data['row']->agency_id ? Agency::find($data['row']->agency_id)->name : null;
+
+        return view('pages.dashboard.staffs.edit', compact('data'));
     }
 
-    public function edit(Request $request, $id)
+    public function update(Request $request, $id)
     {
         try {
             $request->validate([
@@ -163,7 +189,6 @@ class StaffController extends Controller
             ]);
 
 
-
             $staff = Staff::find($id);
             $staff->first_name = $request->first_name;
             $staff->last_name = $request->last_name;
@@ -176,7 +201,7 @@ class StaffController extends Controller
                 Client::where('email', $request->email)->exists();
 
             if ($emailExists) {
-                return back()->withErrors(['error' =>  'ce mail est deja utilisé']);
+                return back()->withErrors(['error' => 'ce mail est deja utilisé']);
             }
             $staff->email = $request->email;
             $staff->password = $request->password;
@@ -185,7 +210,15 @@ class StaffController extends Controller
 
             return redirect()->route('staffs');
         } catch (Exception $e) {
-            return back()->withErrors(['error' =>  $e->getMessage()]);
+            return back()->withErrors(['error' => $e->getMessage()]);
         }
+    }
+
+    public function changeStatus($id)
+    {
+        $staff = Staff::find($id);
+        $staff->active = !$staff->active;
+        $staff->update();
+        return redirect()->route('staffs');
     }
 }

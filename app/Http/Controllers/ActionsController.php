@@ -2,65 +2,81 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClientCards;
+use App\Models\Client;
 use App\Models\Transaction;
-use App\Models\TransactionDemande;
+use App\Models\PendingTransaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ActionsController extends Controller
 {
     public function index()
     {
-        $columns = ["série", "client", "Personnel", "points", 'description'];
-        $fields = ['card_serial', 'client', "staff", 'points', 'description'];
-        $data = TransactionDemande::with('clientCards.client', 'staffs')
-            ->where('status', 'Waiting')
-            ->orderBy('created_at')
+        $data['columns'] = [
+            'id' => [],
+            'staff_id' => [],
+            'client_id' => [],
+            'accepted' => [],
+            'rejected' => [],
+            "points" => [
+                'text' => 'points',
+                'th_class' => 'fit-width'
+            ],
+            'description' => [
+                'text' => 'description',
+                'th_class' => ''
+
+            ]
+        ];
+
+        $selection = [
+            ...array_map(fn($val) => "pending_transactions.$val", array_keys($data['columns'])),
+            'clients.first_name as client_first_name',
+            'clients.last_name as client_last_name',
+            'staffs.first_name as staff_first_name',
+            'staffs.last_name as staff_last_name',
+            'agencies.name as agency_name',
+        ];
+
+        $data['rows'] = PendingTransaction::select($selection)
+            ->leftJoin('clients', 'clients.id', '=', 'pending_transactions.client_id')
+            ->leftJoin('staffs', 'staffs.id', '=', 'pending_transactions.staff_id')
+            ->leftJoin('agencies', 'agencies.id', '=', 'staffs.agency_id')
+            ->where([
+                ['accepted', 'false'],
+                ['rejected', 'false'],
+            ])
             ->get();
 
-        $data = $data->map(function ($item) {
-            return [
-                'id' => $item->id,
-                'card_serial' => $item->clientCards ? $item->clientCards->card_serial : null,
-                'client' => $item->clientCards && $item->clientCards->client
-                    ? $item->clientCards->client->first_name . ' ' . $item->clientCards->client->last_name
-                    : null,
-                'staff' => $item->staffs->first_name . ' ' . $item->staffs->last_name,
-                'points' => $item->points,
-                'description' => $item->description
-            ];
-        });
-        $table = 'actions';
-        return view('pages.dashboard.actions.actions', compact('data', 'table', 'columns', 'fields'));
+
+        $data['columns'] = array_merge(
+            [
+                'agency_name' => ['text' => 'agence', 'th_class' => 'fit-width'],
+                'staff_name' => ['text' => 'personnel', 'th_class' => 'fit-width'],
+                'client_name' => ['text' => 'client', 'th_class' => 'fit-width']
+            ],
+            $data['columns']
+        );
+
+
+        foreach ($data['rows'] as $row) {
+            $row['client_name'] = $row['client_first_name'] . ' ' . $row['client_last_name'];
+            $row['staff_name'] = $row['staff_first_name'] . ' ' . $row['staff_last_name'];
+
+            $history = json_decode($row['description'], true)['history'];
+            ksort($history);
+
+            $row['description'] = end($history)['message'];
+
+            unset(
+                $row['client_first_name'],
+                $row['client_last_name'],
+                $row['staff_first_name'],
+                $row['staff_last_name']
+            );
+        }
+
+        return view('pages.dashboard.actions.actions', compact('data'));
     }
-
-    public function valider($id)
-    {
-        $transactionDemande = TransactionDemande::find($id);
-
-        $clientCard = ClientCards::find($transactionDemande->id_client_card);
-        $clientCard->wallet =  $clientCard->wallet +  $transactionDemande->points;
-        $clientCard->update();
-
-        $transaction = new Transaction;
-        $transaction->id_client_card = $transactionDemande->id_client_card;
-        $transaction->points = $transactionDemande->points;
-        $transaction->id_money_converter = $transactionDemande->id_money_converter;
-        $transaction->type_money_converter = 'staff';
-        $transaction->description = $transactionDemande->description;
-        $transaction->save();
-
-        $transactionDemande->status = 'Done';
-        $transactionDemande->update();
-
-        return redirect()->route('actions');
-    }
-    public function invalider($id)
-    {
-        $transactionDemande = TransactionDemande::find($id);
-        $transactionDemande->status = 'Refused';
-        $transactionDemande->update();
-
-        return redirect()->route('actions');
-    }
+    
 }

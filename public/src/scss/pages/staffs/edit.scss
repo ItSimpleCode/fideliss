@@ -1,5 +1,9 @@
 @import "../../layouts/global";
 @import "../../layouts/backgrounds";
+@import "../../layouts/classes";
 @import "../../layouts/buttons";
 @import "../../layouts/form";
-@import "../../layouts/classes";
+
+.outer-bg {
+    overflow: auto;
+}

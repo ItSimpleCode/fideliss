@@ -12,14 +12,10 @@ class CheckAdminAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guard('admin')->check()) {
-            return redirect('/');
-        }
-
-        return $next($request);
+        return Auth::guard('admin')->check() ? $next($request) : redirect('/');
     }
 }

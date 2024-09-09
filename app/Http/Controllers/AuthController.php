@@ -30,29 +30,27 @@ class AuthController extends Controller
             //     'password' => 'required|string|min:8|max:255',
             // ]);
 
-            $admin = Admin::where(['email' => $request->email, 'password' => $request->password])->first();
-            // if ($admin && Hash::check($request->password, $admin->password)) {
-            if ($admin) {
-                Auth::guard('admin')->login($admin);
-                $fullName = $admin['first_name'] . ' ' . $admin['last_name'];
-                $currentDateTime = Carbon::now()->format('Y-m-d H:i');
-                // Mail::to($request->email)->send(new LoginMessageMail($fullName, $currentDateTime));
-                return redirect()->route('statistics');
-            } else {
-                $staff = Staff::where(['email' => $request->email, 'password' => $request->password])->first();
-                if ($staff) {
-                    if (!$staff->active) {
-                        return back()->withErrors(['error' => 'ce compte est désactivé']);
-                    }
-                    Auth::guard('staff')->login($staff);
-                    $fullName = $staff['first_name'] . ' ' . $staff['last_name'];
-                    $currentDateTime = Carbon::now()->format('Y-m-d H:i');
-                    // Mail::to($request->email)->send(new LoginMessageMail($fullName, $currentDateTime));
-                    return redirect()->route('transaction.demande');
-                }
-            }
+            $user_login = ['email' => strtolower($request->email), 'password' => strtolower($request->password)];
 
-            return back()->withErrors(['error' => 'email ou mot de passe incorrect']);
+            $data = [
+                'guard' => 'admin',
+                'row' => Admin::where($user_login)->first(),
+                'route' => 'statistics'
+            ];
+            if (!$data['row']) $data = [
+                'guard' => 'staff',
+                'row' => Staff::where($user_login)->first(),
+                'route' => 'pending_transactions'
+            ];
+
+            if ($data['guard'] == 'admin' || ($data['guard'] == 'staff' && $data['row']->active)) {
+                Auth::guard($data['guard'])->login($data['row']);
+                $user = "{$data['row']->first_name} {$data['row']->last_name}";
+                $currentDateTime = Carbon::now()->format('Y-m-d H:i');
+                // Mail::to($data['row']->email)->send(new LoginMessageMail($fullName, $currentDateTime));
+                return redirect()->route($data['route']);
+            } else redirect()->route('login.show')->withErrors(['error' => 'email ou mot de passe incorrect']);
+
         } catch (Exception $e) {
             return back()->withErrors(['error' => 'Quelque chose ne tourne pas rond']);
         }
@@ -64,6 +62,7 @@ class AuthController extends Controller
     {
         return view('forgetPassword');
     }
+
     public function SendPasswordInMail(Request $request)
     {
         $admin = Admin::where(['email' => $request->email])->first();

@@ -1,11 +1,25 @@
 .aside {
-    margin: 142px 0 24px;
-
-    display: flex;
-    flex-flow: column nowrap;
-    row-gap: 48px;
-
     overflow-y: auto;
+    z-index: 9999;
+
+    @media (max-width: 1139px) {
+        display: none !important;
+        flex-flow: column nowrap;
+        row-gap: 48px;
+
+
+        position: absolute;
+        top: ($navHeight + 24px * 2);
+        left: 24px;
+
+        &.show {
+            display: flex !important;
+        }
+    }
+
+    @media (min-width: 1140px) {
+        margin: ($navHeight + 24px * 2) 0 24px;
+    }
 
     .list {
         display: flex;
@@ -50,13 +64,17 @@
                 }
             }
 
-            i {
+            svg {
                 width: 24px;
                 height: 24px;
 
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                .stroke {
+                    stroke: #252C58;
+                }
+
+                .fill {
+                    fill: #252C58;
+                }
             }
         }
     }

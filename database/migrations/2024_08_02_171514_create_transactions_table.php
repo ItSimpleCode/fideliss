@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,11 +12,12 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_client_card')->nullable()->constrained('client_cards')->onDelete('set null');
-            $table->integer('points');
-            $table->integer('id_money_converter');
-            $table->enum('type_money_converter', ['admin', 'staff']);
-            $table->string('description');
+            $table->enum('actor', ['admin', 'staff']);
+            $table->foreignId('admin_id')->nullable()->constrained('admins')->onDelete('set null');
+            $table->foreignId('staff_id')->nullable()->constrained('staffs')->onDelete('set null');
+            $table->foreignId('client_id')->constrained('clients');
+            $table->decimal('points', 10, 2);
+            $table->json('description');
             $table->timestamps();
         });
     }

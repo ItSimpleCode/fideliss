@@ -3,14 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Card extends Model
+
+class Card extends Authenticatable
 {
     use HasFactory;
 
-    public function clientcards()
+    public function cards()
     {
-        return $this->hasMany(ClientCards::class, 'id_card');
+        return $this->hasMany(Client::class, 'card_id');
     }
 }

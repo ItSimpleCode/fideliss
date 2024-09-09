@@ -15,35 +15,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('dist/css/fontAwesome/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('dist/css/fontAwesome/solid.css') }}">
-
     @yield('stylesheet')
-
 </head>
 
 <body>
-    @include('layouts.navigation')
+@include('layouts.navigation')
 
-    <main>
-        @include('layouts.aside')
-        <section class="content">
-            @error('error')
-                <div class="error">
-                    <span class="message">{{ $message }}</span>
-                    <button class="close_error"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            @enderror
-            @yield('content')
-        </section>
-    </main>
+<main>
+    @include('layouts.aside')
+    <section class="content">
+        @error('error')
+        <div class="error">
+            <span class="message">{{ $message }}</span>
+            <button class="close_error">x</button>
+        </div>
+        @enderror
+        @yield('content')
+    </section>
+</main>
 
-    <!-- Chart.js CDN -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
-
-    <script src="{{ asset('dist/js/utils/message.js') }}"></script>
-    <script src="{{ asset('dist/js/main.js') }}"></script>
-    @yield('script')
+<script src="{{ asset('dist/js/utils/message.js') }}"></script>
+<script src="{{ asset('dist/js/main.js') }}"></script>
+@yield('script')
 </body>
 
 </html>

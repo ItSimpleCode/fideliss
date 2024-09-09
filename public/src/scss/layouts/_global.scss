@@ -1,13 +1,14 @@
 @import "../variables/colors";
-// @import "../variables/fonts";
 @import "./message";
-@import "./aside";
 @import "./navigation";
+@import "./aside";
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+
+    font-family: "sora", serif;
 
     transition: scrollbar-color 0.5s, scrollbar-width 0.5s;
     scrollbar-width: none;
@@ -17,7 +18,6 @@
 body {
     background-color: #EEEFF3;
     height: 100dvh;
-    font-family: "sora";
 }
 
 main {
@@ -27,13 +27,20 @@ main {
     flex-flow: row nowrap;
     padding-left: 24px;
 
-    &>.content {
+    @media (max-width: 1139px) {
+        padding-left: 0;
+    }
+
+    & > .content {
         flex: 1;
         overflow: auto;
-        padding: 142px 24px 24px;
+        padding: ($navHeight + 24px * 2) 24px 24px;
+        display: flex;
+        flex-flow: column nowrap;
+        row-gap: 24px;
 
-        .error {
-            margin-bottom: 24px;
+        @media (min-width: 1140px) {
+            padding: ($navHeight + 24px * 2) 24px 24px;
         }
     }
 }
@@ -52,16 +59,17 @@ button {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 i {
     width: 24px;
     height: 24px;
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
 }
+
 
 .no-data {
     width: 100%;

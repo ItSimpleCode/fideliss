@@ -12,14 +12,10 @@ class CheckStaffAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::guard('staff')->check()) {
-            return redirect('/');
-        }
-
-        return $next($request);
+        return (Auth::guard('staff')->check() && Auth::guard('staff')->user()->active) ? ($next($request)) : (redirect()->route('logout.show'));
     }
 }
